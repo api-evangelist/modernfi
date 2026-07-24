@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: API Reference Accounts auth API
+  version: 1.0.0
+servers:
+- url: https://api.modernfi.com
+  description: Production
+- url: https://api.uat.modernfi.com
+  description: UAT
+- url: http://localhost:8000
+  description: Local
+- url: https://auth.modernfi.com
+  description: Production
+- url: https://auth.uat.modernfi.com
+  description: UAT
+tags:
+- name: auth
+paths:
+  /oauth/token:
+    post:
+      operationId: getToken
+      summary: Request an access token
+      description: Obtain an OAuth2 access token using client credentials
+      tags:
+      - auth
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/auth_getToken_Response_200'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                client_id:
+                  type: string
+                  description: The client ID of the application
+                client_secret:
+                  type: string
+                  description: The client secret of the application
+                audience:
+                  type: string
+                  enum:
+                  - https://api.uat.modernfi.com
+                  description: The API identifier
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+              required:
+              - client_id
+              - client_secret
+              - audience
+              - grant_type
+components:
+  schemas:
+    auth_getToken_Response_200:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+      required:
+      - access_token
+      - token_type
+      - expires_in
+      title: auth_getToken_Response_200
+  securitySchemes:
+    OAuth:
+      type: http
+      scheme: bearer

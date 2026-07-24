@@ -1,0 +1,1490 @@
+openapi: 3.1.0
+info:
+  title: API Reference Accounts API
+  version: 1.0.0
+servers:
+- url: https://api.modernfi.com
+  description: Production
+- url: https://api.uat.modernfi.com
+  description: UAT
+- url: http://localhost:8000
+  description: Local
+- url: https://auth.modernfi.com
+  description: Production
+- url: https://auth.uat.modernfi.com
+  description: UAT
+tags:
+- name: Accounts
+paths:
+  /digital-banking/v1/accounts:
+    get:
+      operationId: list
+      summary: List Accounts
+      tags:
+      - Accounts
+      parameters:
+      - name: statuses
+        in: query
+        description: Filter accounts by status. May be specified multiple times (e.g. ?statuses=CLOSED&statuses=SCHEDULED_FOR_CLOSURE). If omitted, accounts of all statuses are returned.
+        required: false
+        schema:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AccountStatus'
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    post:
+      operationId: create
+      summary: Create Account
+      tags:
+      - Accounts
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      - name: idempotency-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequest'
+  /digital-banking/v1/accounts/{account_id}:
+    get:
+      operationId: get
+      summary: Get Account
+      tags:
+      - Accounts
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/DigitalBankingV1AccountsAccountIdGetParametersAccountId'
+      - name: id_type
+        in: query
+        description: Type of the account id. Must be 'institution' or 'None'.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/IdType'
+          - type: 'null'
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    delete:
+      operationId: close
+      summary: Close Account
+      description: This endpoint closes an account after verifying access. If the account balance is not zero, the operation will liquidate the account and drop the balance to zero.
+      tags:
+      - Accounts
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloseAccountResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    patch:
+      operationId: update
+      summary: Update Account
+      description: 'Updates an account. Note: account_type is immutable and cannot be changed after creation.'
+      tags:
+      - Accounts
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAccountRequest'
+  /digital-banking/v1/accounts/{account_id}/allocation:
+    get:
+      operationId: getAllocation
+      summary: Get Account Allocation
+      tags:
+      - Accounts
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/DigitalBankingV1AccountsAccountIdAllocationGetParametersAccountId'
+      - name: id_type
+        in: query
+        description: Type of the account id. Must be 'institution' or 'None'.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/IdType'
+          - type: 'null'
+      - name: run_date
+        in: query
+        description: The date for which to retrieve allocation data. If not provided, uses the most recent run date.
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+  /digital-banking/v1/accounts/{account_id}/signer-primary-tin:
+    get:
+      operationId: getSignerPrimaryTin
+      summary: Get Account Signer Primary Tin
+      tags:
+      - Accounts
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountTINResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+  /digital-banking/v1/accounts/{account_id}/beneficiary-tin:
+    get:
+      operationId: getBeneficiaryTin
+      summary: Get Account Beneficiary Tin
+      tags:
+      - Accounts
+      parameters:
+      - name: account_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountTINResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+components:
+  schemas:
+    InterestRateTierRequestFloatingRatePercentage:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Multiplier applied to the index rate before adding floating_spread. Required when floating_spread is set. Effective rate = market_rate * floating_rate_percentage + floating_spread
+      title: InterestRateTierRequestFloatingRatePercentage
+    DigitalBankingV1AccountsAccountIdGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdGetParametersAccountId
+    UpdateAccountRequest:
+      type: object
+      properties:
+        depositor_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+        account_title:
+          type:
+          - string
+          - 'null'
+        institution_sweep_account_id:
+          type:
+          - string
+          - 'null'
+        institution_return_account_id:
+          type:
+          - string
+          - 'null'
+        is_reciprocation_prioritized:
+          type:
+          - boolean
+          - 'null'
+        is_receiving_printed_statements:
+          type:
+          - boolean
+          - 'null'
+        signer_primary:
+          type:
+          - string
+          - 'null'
+        signer_secondary:
+          type:
+          - string
+          - 'null'
+        beneficiary_name:
+          type:
+          - string
+          - 'null'
+        institution_cost_center_id:
+          type:
+          - string
+          - 'null'
+        cost_center_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        notes:
+          type:
+          - string
+          - 'null'
+        managed_sweep_target_balance:
+          oneOf:
+          - $ref: '#/components/schemas/UpdateAccountRequestManagedSweepTargetBalance'
+          - type: 'null'
+        program_tags:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        institution_alternative_id:
+          type:
+          - string
+          - 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+          description: Account officer assigned to this account
+        custom_field_1:
+          type:
+          - string
+          - 'null'
+          description: Custom field 1
+        custom_field_2:
+          type:
+          - string
+          - 'null'
+          description: Custom field 2
+        custom_field_3:
+          type:
+          - string
+          - 'null'
+          description: Custom field 3
+        custom_field_4:
+          type:
+          - string
+          - 'null'
+          description: Custom field 4
+      title: UpdateAccountRequest
+    AccountType:
+      type: string
+      enum:
+      - MMDA
+      - DDA
+      title: AccountType
+    CreateAccountRequestManagedSweepTargetBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Target balance for managed sweep accounts. Must be a non-negative USD amount.
+      title: CreateAccountRequestManagedSweepTargetBalance
+    InterestRateTierRequestRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      title: InterestRateTierRequestRate
+    AccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_id:
+          type: string
+        signer_primary:
+          type:
+          - string
+          - 'null'
+        signer_primary_tin_last4:
+          type:
+          - string
+          - 'null'
+        account_title:
+          type: string
+        interest_rate:
+          type: string
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/InterestRateTierResponse'
+        insurance_limit:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+        created_at:
+          type: string
+        is_joint_account:
+          type: boolean
+        total_balance:
+          type: string
+        pending_balance:
+          type: string
+        closed_at:
+          type:
+          - string
+          - 'null'
+        signer_secondary:
+          type:
+          - string
+          - 'null'
+        beneficiary_name:
+          type:
+          - string
+          - 'null'
+        beneficiary_tin:
+          type:
+          - string
+          - 'null'
+        beneficiary_tin_last4:
+          type:
+          - string
+          - 'null'
+        institution_account_id:
+          type:
+          - string
+          - 'null'
+        institution_sweep_account_id:
+          type:
+          - string
+          - 'null'
+        institution_return_account_id:
+          type:
+          - string
+          - 'null'
+        institution_branch_id:
+          type:
+          - string
+          - 'null'
+        institution_alternative_id:
+          type:
+          - string
+          - 'null'
+        cost_center_id:
+          type:
+          - string
+          - 'null'
+        cost_center_code:
+          type:
+          - string
+          - 'null'
+        depositors:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/DepositorResponse'
+        managed_sweep_target_balance:
+          type:
+          - string
+          - 'null'
+        shadow_account:
+          oneOf:
+          - $ref: '#/components/schemas/ShadowAccountResponse'
+          - type: 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        pricing_group_id:
+          type:
+          - string
+          - 'null'
+        is_reciprocation_prioritized:
+          type: boolean
+        is_receiving_printed_statements:
+          type: boolean
+        rate:
+          type:
+          - string
+          - 'null'
+        floating_spread:
+          type:
+          - string
+          - 'null'
+        floating_spread_bps:
+          type:
+          - string
+          - 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+        floating_rate_percentage:
+          type:
+          - string
+          - 'null'
+        index_rate:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_rate:
+          type:
+          - string
+          - 'null'
+        rate_configuration:
+          $ref: '#/components/schemas/RateConfiguration'
+        account_officer:
+          type:
+          - string
+          - 'null'
+          description: Account officer assigned to this account
+        is_non_interest_bearing:
+          type: boolean
+          default: false
+          description: Whether this account is non-interest-bearing
+        custom_field_1:
+          type:
+          - string
+          - 'null'
+          description: Custom field 1
+        custom_field_2:
+          type:
+          - string
+          - 'null'
+          description: Custom field 2
+        custom_field_3:
+          type:
+          - string
+          - 'null'
+          description: Custom field 3
+        custom_field_4:
+          type:
+          - string
+          - 'null'
+          description: Custom field 4
+      required:
+      - id
+      - institution_id
+      - signer_primary
+      - account_title
+      - interest_rate
+      - interest_rate_tiers
+      - insurance_limit
+      - account_type
+      - created_at
+      - is_joint_account
+      - total_balance
+      - pending_balance
+      - is_reciprocation_prioritized
+      - is_receiving_printed_statements
+      - rate_configuration
+      title: AccountResponse
+    CreateAccountRequest:
+      type: object
+      properties:
+        signer_primary:
+          type:
+          - string
+          - 'null'
+        signer_primary_tin:
+          type:
+          - string
+          - 'null'
+        account_title:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+        depositor_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        depositor:
+          oneOf:
+          - $ref: '#/components/schemas/CreateDepositorRequest'
+          - type: 'null'
+          description: New depositor to create and link to this account
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/InterestRateTierRequest'
+          description: Used to define tiers of interest rates based on account balance. If only one tier is needed, use the interest_rate field instead.
+        program_tags:
+          type: array
+          items:
+            type: string
+        is_apy:
+          type: boolean
+          default: false
+          description: Indicates if the interest rate is an Annual Percentage Yield (APY). If ommitted or false, the rate is considered a nominal interest rate.
+        interest_rate:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Interest rate must be between 0 and 1 (e.g., 0.04 for 4%).
+        signer_secondary:
+          type:
+          - string
+          - 'null'
+        beneficiary_name:
+          type:
+          - string
+          - 'null'
+        beneficiary_tin:
+          type:
+          - string
+          - 'null'
+        institution_account_id:
+          type:
+          - string
+          - 'null'
+        institution_sweep_account_id:
+          type:
+          - string
+          - 'null'
+        institution_return_account_id:
+          type:
+          - string
+          - 'null'
+        institution_branch_id:
+          type:
+          - string
+          - 'null'
+        institution_cost_center_id:
+          type:
+          - string
+          - 'null'
+        cost_center_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        managed_sweep_target_balance:
+          oneOf:
+          - $ref: '#/components/schemas/CreateAccountRequestManagedSweepTargetBalance'
+          - type: 'null'
+          description: Target balance for managed sweep accounts. Must be a non-negative USD amount.
+        shadow_account:
+          oneOf:
+          - $ref: '#/components/schemas/ShadowAccountRequest'
+          - type: 'null'
+          description: Configuration for shadow account associated with this account.
+        account_agreement_file_data:
+          type:
+          - string
+          - 'null'
+          description: Base64 encoded PDF file data (max 25MB)
+        notes:
+          type:
+          - string
+          - 'null'
+          description: Notes for the account
+        pricing_group_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: Pricing group ID associated with the account
+        is_reciprocation_prioritized:
+          type: boolean
+          default: false
+          description: Whether this account should be prioritized for reciprocation.
+        is_receiving_printed_statements:
+          type: boolean
+          default: false
+          description: Whether this account should receive printed statements.
+        account_officer:
+          type:
+          - string
+          - 'null'
+          description: Account officer assigned to this account (free-text)
+        is_non_interest_bearing:
+          type: boolean
+          default: false
+          description: Whether this account is non-interest-bearing. If true, no interest rates, tiers, or pricing groups can be assigned.
+        custom_field_1:
+          type:
+          - string
+          - 'null'
+          description: Custom field 1
+        custom_field_2:
+          type:
+          - string
+          - 'null'
+          description: Custom field 2
+        custom_field_3:
+          type:
+          - string
+          - 'null'
+          description: Custom field 3
+        custom_field_4:
+          type:
+          - string
+          - 'null'
+          description: Custom field 4
+      required:
+      - account_title
+      - account_type
+      - depositor_ids
+      title: CreateAccountRequest
+    EmailData:
+      type: object
+      properties:
+        email_address:
+          type: string
+          format: email
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - email_address
+      title: EmailData
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    AccountStatus:
+      type: string
+      enum:
+      - OPEN
+      - SCHEDULED_FOR_CLOSURE
+      - CLOSED
+      title: AccountStatus
+    InstitutionData:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+      required:
+      - name
+      - state
+      title: InstitutionData
+    RateConfiguration:
+      type: string
+      enum:
+      - FIXED
+      - FLOATING_MARKET
+      - FLOATING_CUSTOM
+      - TIERED
+      - MIXED
+      title: RateConfiguration
+    InterestRateTierResponse:
+      type: object
+      properties:
+        min_balance:
+          type: string
+        max_balance:
+          type: string
+        rate:
+          type:
+          - string
+          - 'null'
+        floating_spread:
+          type:
+          - string
+          - 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+        floating_rate_percentage:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - min_balance
+      - max_balance
+      title: InterestRateTierResponse
+    DepositorType:
+      type: string
+      enum:
+      - CONSUMER
+      - BUSINESS
+      - NONPROFIT
+      - LOCAL_GOVERNMENT
+      - FEDERAL_GOVERNMENT
+      - US_DEPOSITORY
+      - FOREIGN_DEPOSITORY
+      - FOREIGN_GOVERNMENT
+      title: DepositorType
+    IdType:
+      type: string
+      enum:
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
+    ShadowAccountResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        account_number:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+        closed_at:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - account_number
+      - account_type
+      title: ShadowAccountResponse
+    ShadowAccountRequest:
+      type: object
+      properties:
+        account_number:
+          type: string
+        account_type:
+          $ref: '#/components/schemas/AccountType'
+      required:
+      - account_number
+      - account_type
+      title: ShadowAccountRequest
+    AddressData:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code (e.g., US)
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - street
+      - city
+      - state
+      - zip
+      - country_code
+      title: AddressData
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    OwnershipCategory:
+      type: string
+      enum:
+      - JOINT
+      - SINGLE
+      - RETIREMENT
+      - ESTATE_REVOCABLE_TRUST
+      - OTHER_CONSUMER
+      - CORPORATION
+      - LIMITED_LIABILITY_COMPANY
+      - LIMITED_PARTNERSHIP
+      - SOLE_PROPRIETORSHIP
+      - OTHER_BUSINESS
+      - CLUBS_ASSOCIATIONS
+      - OTHER_NONPROFIT
+      - MUNICIPALITIES
+      - SCHOOL_DISTRICTS
+      - OTHER_LOCAL_GOVERNMENT
+      - US_GOVERNMENT
+      - US_DEPOSITORY
+      title: OwnershipCategory
+    CloseAccountResponse:
+      type: object
+      properties:
+        account_id:
+          type: string
+        liquidation_amount:
+          type: string
+        scheduled_to_close_date:
+          type: string
+          format: date
+      required:
+      - account_id
+      - liquidation_amount
+      - scheduled_to_close_date
+      title: CloseAccountResponse
+    InterestRateTierRequestMaxBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      title: InterestRateTierRequestMaxBalance
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    InterestRateTierRequestMinBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      title: InterestRateTierRequestMinBalance
+    CreateDepositorRequest:
+      type: object
+      properties:
+        tin:
+          type: string
+          description: TIN must be unique per institution
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        entity_name:
+          type:
+          - string
+          - 'null'
+        is_organization:
+          type: boolean
+          default: false
+        institution_depositor_id:
+          type:
+          - string
+          - 'null'
+        phone_numbers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PhoneNumberData'
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailData'
+        addresses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AddressData'
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+        depositor_type:
+          oneOf:
+          - $ref: '#/components/schemas/DepositorType'
+          - type: 'null'
+        ownership_category:
+          oneOf:
+          - $ref: '#/components/schemas/OwnershipCategory'
+          - type: 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        institution_opt_out_federal_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
+      required:
+      - tin
+      title: CreateDepositorRequest
+    ReferenceRateType:
+      type: string
+      enum:
+      - EFFR
+      - CU_RECEIVE_DEFAULT
+      - BANK_RECEIVE_DEFAULT
+      - EFFR_UPPER_BAND
+      - EFFR_LOWER_BAND
+      - SOFR_OVERNIGHT
+      - SOFR_1M
+      - SOFR_3M
+      - SOFR_6M
+      - SOFR_12M
+      - CMT_1M
+      - CMT_3M
+      - CMT_6M
+      - FIDELITY_FISXX
+      - FIDELITY_SPAXX
+      - FIDELITY_FCIXX
+      - WSJ_PRIME
+      - IORB
+      title: ReferenceRateType
+    DepositorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_id:
+          type: string
+        institution_depositor_id:
+          type:
+          - string
+          - 'null'
+        tin:
+          type:
+          - string
+          - 'null'
+        tin_last_four:
+          type:
+          - string
+          - 'null'
+          description: Last 4 digits of the TIN (masked).
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        entity_name:
+          type:
+          - string
+          - 'null'
+        is_organization:
+          type: boolean
+        phone_numbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumberData'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailData'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressData'
+        depositor_type:
+          $ref: '#/components/schemas/DepositorType'
+        ownership_category:
+          oneOf:
+          - $ref: '#/components/schemas/OwnershipCategory'
+          - type: 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        institution_opt_out_federal_ids:
+          type: array
+          items:
+            type: string
+          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
+      required:
+      - id
+      - institution_id
+      - institution_depositor_id
+      - first_name
+      - last_name
+      - entity_name
+      - is_organization
+      - phone_numbers
+      - emails
+      - addresses
+      - depositor_type
+      title: DepositorResponse
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    DigitalBankingV1AccountsAccountIdAllocationGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdAllocationGetParametersAccountId
+    AllocationData:
+      type: object
+      properties:
+        amount:
+          type: string
+        institution:
+          $ref: '#/components/schemas/InstitutionData'
+      required:
+      - amount
+      - institution
+      title: AllocationData
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    AllocationResponse:
+      type: object
+      properties:
+        account_id:
+          type: string
+        run_date:
+          type: string
+        allocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/AllocationData'
+      required:
+      - account_id
+      - run_date
+      - allocations
+      title: AllocationResponse
+    InterestRateTierRequest:
+      type: object
+      properties:
+        min_balance:
+          $ref: '#/components/schemas/InterestRateTierRequestMinBalance'
+        max_balance:
+          $ref: '#/components/schemas/InterestRateTierRequestMaxBalance'
+        rate:
+          oneOf:
+          - $ref: '#/components/schemas/InterestRateTierRequestRate'
+          - type: 'null'
+        floating_spread:
+          oneOf:
+          - $ref: '#/components/schemas/InterestRateTierRequestFloatingSpread'
+          - type: 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+          description: Reference rate index type. Required when floating_spread is set.
+        floating_rate_percentage:
+          oneOf:
+          - $ref: '#/components/schemas/InterestRateTierRequestFloatingRatePercentage'
+          - type: 'null'
+          description: Multiplier applied to the index rate before adding floating_spread. Required when floating_spread is set. Effective rate = market_rate * floating_rate_percentage + floating_spread
+      required:
+      - min_balance
+      - max_balance
+      title: InterestRateTierRequest
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    AccountTINResponse:
+      type: object
+      properties:
+        tin:
+          type: string
+          description: The full decrypted TIN
+      required:
+      - tin
+      title: AccountTINResponse
+    UpdateAccountRequestManagedSweepTargetBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      title: UpdateAccountRequestManagedSweepTargetBalance
+    PhoneNumberData:
+      type: object
+      properties:
+        number:
+          type: string
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - number
+      title: PhoneNumberData
+    InterestRateTierRequestFloatingSpread:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      title: InterestRateTierRequestFloatingSpread
+  securitySchemes:
+    OAuth:
+      type: http
+      scheme: bearer

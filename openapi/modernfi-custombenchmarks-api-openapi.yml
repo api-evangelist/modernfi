@@ -1,0 +1,477 @@
+openapi: 3.1.0
+info:
+  title: API Reference Accounts customBenchmarks API
+  version: 1.0.0
+servers:
+- url: https://api.modernfi.com
+  description: Production
+- url: https://api.uat.modernfi.com
+  description: UAT
+- url: http://localhost:8000
+  description: Local
+- url: https://auth.modernfi.com
+  description: Production
+- url: https://auth.uat.modernfi.com
+  description: UAT
+tags:
+- name: customBenchmarks
+paths:
+  /digital-banking/v1/custom-benchmarks:
+    get:
+      operationId: list
+      summary: List Custom Benchmarks
+      description: List all custom benchmarks for the institution, including their current rates.
+      tags:
+      - customBenchmarks
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    post:
+      operationId: create
+      summary: Create Custom Benchmark
+      description: Create a new custom benchmark with an initial rate. Custom benchmarks allow institutions to define their own rate indices that can be referenced by account rate tiers. When a custom benchmark's rate is updated, all accounts using it in their rate tiers will automatically receive the new rate.
+      tags:
+      - customBenchmarks
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomBenchmarkRequest'
+  /digital-banking/v1/custom-benchmarks/{custom_benchmark_id}:
+    get:
+      operationId: get
+      summary: Get Custom Benchmark
+      description: Retrieve details for a specific custom benchmark, including its current rate.
+      tags:
+      - customBenchmarks
+      parameters:
+      - name: custom_benchmark_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    put:
+      operationId: update_rate
+      summary: Update Custom Benchmark Rate
+      description: Add a new rate to a custom benchmark. The new rate will automatically cascade to all accounts that reference this benchmark in their rate tiers on the specified effective date. This creates a new rate entry while preserving historical rate data.
+      tags:
+      - customBenchmarks
+      parameters:
+      - name: custom_benchmark_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomBenchmarkRateRequest'
+    delete:
+      operationId: delete
+      summary: Delete Custom Benchmark
+      description: Delete a custom benchmark. This operation will fail if the benchmark is currently referenced by any account or pricing group rate tiers. Remove all tier references before deleting.
+      tags:
+      - customBenchmarks
+      parameters:
+      - name: custom_benchmark_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    patch:
+      operationId: patch
+      summary: Patch Custom Benchmark
+      description: Update a custom benchmark's name and/or description. This endpoint does not affect rates. Use PUT /custom-benchmarks/{id} to add new rates.
+      tags:
+      - customBenchmarks
+      parameters:
+      - name: custom_benchmark_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchCustomBenchmarkRequest'
+components:
+  schemas:
+    PatchCustomBenchmarkRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the custom benchmark
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the custom benchmark
+      title: PatchCustomBenchmarkRequest
+    CreateCustomBenchmarkRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the custom benchmark (e.g., 'Short-Term Funding Cost')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this benchmark
+        rate:
+          $ref: '#/components/schemas/CustomBenchmarkRate'
+          description: Initial rate for the custom benchmark (e.g., 0.0425 for 4.25%)
+      required:
+      - name
+      - rate
+      title: CreateCustomBenchmarkRequest
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    CustomBenchmarkRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: New rate for the custom benchmark. Will create a new rate entry.
+      title: CustomBenchmarkRate
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    UpdateCustomBenchmarkRateRequest:
+      type: object
+      properties:
+        rate:
+          $ref: '#/components/schemas/CustomBenchmarkRate'
+          description: New rate for the custom benchmark. Will create a new rate entry.
+        effective_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the new rate becomes effective. Defaults to now if not provided.
+      required:
+      - rate
+      title: UpdateCustomBenchmarkRateRequest
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+  securitySchemes:
+    OAuth:
+      type: http
+      scheme: bearer

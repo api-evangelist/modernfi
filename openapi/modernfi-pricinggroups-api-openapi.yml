@@ -1,0 +1,818 @@
+openapi: 3.1.0
+info:
+  title: API Reference Accounts pricingGroups API
+  version: 1.0.0
+servers:
+- url: https://api.modernfi.com
+  description: Production
+- url: https://api.uat.modernfi.com
+  description: UAT
+- url: http://localhost:8000
+  description: Local
+- url: https://auth.modernfi.com
+  description: Production
+- url: https://auth.uat.modernfi.com
+  description: UAT
+tags:
+- name: pricingGroups
+paths:
+  /digital-banking/v1/pricing-groups:
+    get:
+      operationId: list
+      summary: List Pricing Groups
+      description: List all pricing groups for the institution, including account counts and current rate tiers.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PricingGroupResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    post:
+      operationId: create
+      summary: Create Pricing Group
+      description: Create a new pricing group with rate tiers. Pricing groups allow institutions to manage interest rates at scale by defining reusable rate structures that can be assigned to multiple accounts. When a pricing group's rates are updated, all assigned accounts receive the new rates automatically.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingGroupResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePricingGroupRequest'
+  /digital-banking/v1/pricing-groups/{pricing_group_id}:
+    get:
+      operationId: get
+      summary: Get Pricing Group
+      description: Retrieve details for a specific pricing group, including its rate tiers and account count.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: pricing_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingGroupResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    delete:
+      operationId: delete
+      summary: Delete Pricing Group
+      description: Delete a pricing group. This operation will fail if any accounts are currently assigned to this pricing group. Unassign accounts first before deleting.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: pricing_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    patch:
+      operationId: updateMetadata
+      summary: Update Pricing Group Metadata
+      description: Update pricing group name and/or description. This endpoint does not affect rates or account assignments. Use PUT /pricing-groups/{id}/rates to update rates.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: pricing_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingGroupResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePricingGroupMetadataRequest'
+  /digital-banking/v1/pricing-groups/{pricing_group_id}/rates:
+    put:
+      operationId: updateRates
+      summary: Update Pricing Group Rates
+      description: Update the rate tiers for a pricing group. The new rates will automatically cascade to all accounts assigned to this pricing group on the specified effective date. This creates a new rate tier version while preserving historical rate data.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: pricing_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PricingGroupResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePricingGroupRatesRequest'
+  /digital-banking/v1/pricing-groups/{pricing_group_id}/accounts:
+    post:
+      operationId: assignAccounts
+      summary: Assign Accounts To Pricing Group
+      description: Assign multiple accounts to a pricing group. The pricing group's current rate structure will be copied to all assigned accounts. If accounts are already assigned to a different pricing group, they will be reassigned and receive the new rates.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: pricing_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignAccountsToPricingGroupRequest'
+    delete:
+      operationId: unassignAccounts
+      summary: Unassign Accounts From Pricing Group
+      description: Unassign multiple accounts from a pricing group. Accounts will retain their current rates but will no longer receive automatic updates when the pricing group rates change. Future rate changes for these accounts must be made individually or by assigning them to a different pricing group.
+      tags:
+      - pricingGroups
+      parameters:
+      - name: pricing_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnassignAccountsRequest'
+components:
+  schemas:
+    PricingGroupResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_id:
+          type: string
+        name:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        account_count:
+          type: integer
+          description: Number of accounts currently assigned to this pricing group
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierResponse'
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountData'
+          description: List of accounts assigned to this pricing group
+      required:
+      - id
+      - institution_id
+      - name
+      - description
+      - account_count
+      - interest_rate_tiers
+      - created_at
+      - updated_at
+      - accounts
+      title: PricingGroupResponse
+    PricingGroupRateTierRequestFloatingRatePercentage:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Multiplier applied to the index rate. Required when floating_spread is set.
+      title: PricingGroupRateTierRequestFloatingRatePercentage
+    UnassignAccountsRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to unassign from the pricing group
+      required:
+      - account_ids
+      title: UnassignAccountsRequest
+    UpdatePricingGroupMetadataRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the pricing group
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the pricing group
+      title: UpdatePricingGroupMetadataRequest
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    PricingGroupRateTierRequestMaxBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Maximum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMaxBalance
+    PricingGroupRateTierResponse:
+      type: object
+      properties:
+        min_balance:
+          type: string
+        max_balance:
+          type: string
+        rate:
+          type:
+          - string
+          - 'null'
+        floating_spread:
+          type:
+          - string
+          - 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+        floating_rate_percentage:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - min_balance
+      - max_balance
+      title: PricingGroupRateTierResponse
+    CreatePricingGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this pricing group
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: Rate tiers for the pricing group. At least one tier is required.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
+      required:
+      - name
+      - interest_rate_tiers
+      title: CreatePricingGroupRequest
+    PricingGroupRateTierRequestMinBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Minimum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMinBalance
+    PricingGroupRateTierRequestRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+      title: PricingGroupRateTierRequestRate
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    UpdatePricingGroupRatesRequest:
+      type: object
+      properties:
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: New rate tiers for the pricing group.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+      required:
+      - interest_rate_tiers
+      title: UpdatePricingGroupRatesRequest
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    ReferenceRateType:
+      type: string
+      enum:
+      - EFFR
+      - CU_RECEIVE_DEFAULT
+      - BANK_RECEIVE_DEFAULT
+      - EFFR_UPPER_BAND
+      - EFFR_LOWER_BAND
+      - SOFR_OVERNIGHT
+      - SOFR_1M
+      - SOFR_3M
+      - SOFR_6M
+      - SOFR_12M
+      - CMT_1M
+      - CMT_3M
+      - CMT_6M
+      - FIDELITY_FISXX
+      - FIDELITY_SPAXX
+      - FIDELITY_FCIXX
+      - WSJ_PRIME
+      - IORB
+      title: ReferenceRateType
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    PricingGroupRateTierRequestFloatingSpread:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
+      title: PricingGroupRateTierRequestFloatingSpread
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PricingGroupRateTierRequest:
+      type: object
+      properties:
+        min_balance:
+          $ref: '#/components/schemas/PricingGroupRateTierRequestMinBalance'
+          description: Minimum balance for this tier (inclusive)
+        max_balance:
+          $ref: '#/components/schemas/PricingGroupRateTierRequestMaxBalance'
+          description: Maximum balance for this tier (inclusive)
+        rate:
+          oneOf:
+          - $ref: '#/components/schemas/PricingGroupRateTierRequestRate'
+          - type: 'null'
+          description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+        floating_spread:
+          oneOf:
+          - $ref: '#/components/schemas/PricingGroupRateTierRequestFloatingSpread'
+          - type: 'null'
+          description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+          description: Reference rate index type (e.g., EFFR). Required when floating_spread is set and custom_benchmark_id is not. Mutually exclusive with custom_benchmark_id.
+        floating_rate_percentage:
+          oneOf:
+          - $ref: '#/components/schemas/PricingGroupRateTierRequestFloatingRatePercentage'
+          - type: 'null'
+          description: Multiplier applied to the index rate. Required when floating_spread is set.
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: Custom benchmark to float against. Mutually exclusive with rate_index_type.
+      required:
+      - min_balance
+      - max_balance
+      title: PricingGroupRateTierRequest
+    AccountData:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+      required:
+      - id
+      - title
+      title: AccountData
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    AssignAccountsToPricingGroupRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to assign to this pricing group
+        effective_at:
+          type: string
+          format: date-time
+          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
+      required:
+      - account_ids
+      title: AssignAccountsToPricingGroupRequest
+  securitySchemes:
+    OAuth:
+      type: http
+      scheme: bearer

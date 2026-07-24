@@ -1,0 +1,576 @@
+openapi: 3.1.0
+info:
+  title: API Reference Accounts files API
+  version: 1.0.0
+servers:
+- url: https://api.modernfi.com
+  description: Production
+- url: https://api.uat.modernfi.com
+  description: UAT
+- url: http://localhost:8000
+  description: Local
+- url: https://auth.modernfi.com
+  description: Production
+- url: https://auth.uat.modernfi.com
+  description: UAT
+tags:
+- name: files
+paths:
+  /digital-banking/v1/files/statements:
+    get:
+      operationId: get_statements_digital_banking_v1_files_statements_get
+      summary: Get Statements
+      tags:
+      - files
+      parameters:
+      - name: statement_type
+        in: query
+        description: Type of statement to retrieve. Account statements require account_id. Institution statements require institution_id.
+        required: true
+        schema:
+          $ref: '#/components/schemas/StatementType'
+      - name: account_id
+        in: query
+        description: Required for account-level statement types.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/DigitalBankingV1FilesStatementsGetParametersAccountIdSchema'
+          - type: 'null'
+      - name: institution_id
+        in: query
+        description: Required for institution-level statement types.
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          format: uuid
+      - name: start_date
+        in: query
+        description: Filter to include only statements after this date (inclusive).
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date
+      - name: end_date
+        in: query
+        description: Filter to include only statements before this date (inclusive)
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+          format: date
+      - name: id_type
+        in: query
+        description: Type of the account id. Must be 'institution' or 'None'.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/IdType'
+          - type: 'null'
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatementsResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+  /digital-banking/v1/files/account-monthly-statement-config:
+    get:
+      operationId: get_account_monthly_statement_config_digital_banking_v1_files_account_monthly_statement_config_get
+      summary: Get Account Monthly Statement Config
+      tags:
+      - files
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountMonthlyStatementConfigResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    post:
+      operationId: post_account_monthly_statement_config_digital_banking_v1_files_account_monthly_statement_config_post
+      summary: Post Account Monthly Statement Config
+      tags:
+      - files
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountMonthlyStatementConfigResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountMonthlyStatementConfigRequest'
+  /digital-banking/v1/files/preview-account-monthly-statement:
+    get:
+      operationId: get_preview_account_monthly_statement_digital_banking_v1_files_preview_account_monthly_statement_get
+      summary: Get Preview Account Monthly Statement
+      tags:
+      - files
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                description: Any type
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+  /digital-banking/v1/files/{file_id}:
+    get:
+      operationId: get_file_digital_banking_v1_files__file_id__get
+      summary: Get File
+      tags:
+      - files
+      parameters:
+      - name: file_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: account_id
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/DigitalBankingV1FilesFileIdGetParametersAccountId'
+      - name: id_type
+        in: query
+        description: Type of the account id. Must be 'institution' or 'None'.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/IdType'
+          - type: 'null'
+      - name: response_type
+        in: query
+        description: Form of the response. 'presigned_url' (default) returns a JSON object with a short-lived presigned download URL. 'file' streams the file back directly as raw bytes (Content-Type derived from the file, e.g. application/pdf or text/csv), for callers that cannot fetch presigned URLs.
+        required: false
+        schema:
+          $ref: '#/components/schemas/FileResponseType'
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: When response_type=file, the file is streamed back directly as raw bytes, with a Content-Type derived from the file (e.g. application/pdf or text/csv). Otherwise a JSON object containing a presigned_url is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+components:
+  schemas:
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      description: Required for account-level statement types.
+      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    DigitalBankingV1FilesFileIdGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1FilesFileIdGetParametersAccountId
+    IdType:
+      type: string
+      enum:
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
+    StatementResponse:
+      type: object
+      properties:
+        file_id:
+          type: string
+        title:
+          type: string
+        statement_date:
+          type: string
+        account_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The ID of the associated account
+        institution_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The ID of the associated institution
+      required:
+      - file_id
+      - title
+      - statement_date
+      title: StatementResponse
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    FileResponse:
+      type: object
+      properties:
+        presigned_url:
+          type: string
+      required:
+      - presigned_url
+      title: FileResponse
+    StatementsResponse:
+      type: object
+      properties:
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatementResponse'
+      required:
+      - statements
+      title: StatementsResponse
+    StatementType:
+      type: string
+      enum:
+      - INSTITUTION_DAILY_SWEEP
+      - INSTITUTION_DAILY_RECEIVE
+      - INSTITUTION_MONTHLY_INTEREST
+      - ACCOUNT_MONTHLY_SWEEP
+      - INSTITUTION_DAILY_GL_POSTINGS
+      - INSTITUTION_DAILY_GL_BALANCES
+      - INSTITUTION_DAILY_COST_CENTER_POSTINGS
+      - INSTITUTION_DAILY_COST_CENTER_BALANCES
+      - INSTITUTION_DAILY_TRIAL_BALANCES
+      - INSTITUTION_QUARTERLY_CALL_REPORT
+      - INSTITUTION_WEEKLY_FR2900
+      - INSTITUTION_DAILY_ACCOUNT_HISTORY
+      - INSTITUTION_DAILY_TRANSACTION_HISTORY
+      - INSTITUTION_DAILY_TRANSACTION_ERRORS
+      - INSTITUTION_MONTHLY_SETTLEMENT_POSTINGS
+      - INSTITUTION_MONTHLY_COST_CENTER_SETTLEMENT_POSTINGS
+      - INSTITUTION_MONTHLY_NBID
+      - INSTITUTION_MONTHLY_ACCOUNT_STATEMENT_BUNDLE
+      title: StatementType
+    FileResponseType:
+      type: string
+      enum:
+      - presigned_url
+      - file
+      title: FileResponseType
+    AccountMonthlyStatementConfigResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique ID of the statement config
+        institution_id:
+          type: string
+          format: uuid
+          description: Institution this config belongs to
+        statement_title:
+          type:
+          - string
+          - 'null'
+          description: Header title on the statement
+        disclosures_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Disclosures text at the bottom of the statement
+        contact_and_mailing_info:
+          type:
+          - string
+          - 'null'
+          description: Contact info displayed in the statement footer
+        closing_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Closing message or signature text
+        is_regulatory_mark:
+          type: boolean
+          description: Show the regulatory mark on the statement
+        is_account_id_masking:
+          type: boolean
+          description: Mask account numbers on the statement
+      required:
+      - id
+      - institution_id
+      - is_regulatory_mark
+      - is_account_id_masking
+      title: AccountMonthlyStatementConfigResponse
+    AccountMonthlyStatementConfigRequest:
+      type: object
+      properties:
+        statement_title:
+          type:
+          - string
+          - 'null'
+          description: Custom statement title. Leave blank or null to use the default title.
+        disclosures_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Disclosures text displayed at the bottom of each page. Leave blank or null to omit.
+        contact_and_mailing_info:
+          type:
+          - string
+          - 'null'
+          description: Contact and mailing information shown on the statement. Supports multiple lines.
+        closing_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Closing message displayed at the end of the statement. Leave blank or null to use the default text.
+        is_regulatory_mark:
+          type: boolean
+          description: Indicates whether to display the regulatory mark.
+        is_account_id_masking:
+          type: boolean
+          description: Determines whether account numbers should be masked.
+      required:
+      - is_regulatory_mark
+      - is_account_id_masking
+      title: AccountMonthlyStatementConfigRequest
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+  securitySchemes:
+    OAuth:
+      type: http
+      scheme: bearer

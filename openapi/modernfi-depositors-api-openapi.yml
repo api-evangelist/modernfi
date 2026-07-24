@@ -1,0 +1,724 @@
+openapi: 3.1.0
+info:
+  title: API Reference Accounts Depositors API
+  version: 1.0.0
+servers:
+- url: https://api.modernfi.com
+  description: Production
+- url: https://api.uat.modernfi.com
+  description: UAT
+- url: http://localhost:8000
+  description: Local
+- url: https://auth.modernfi.com
+  description: Production
+- url: https://auth.uat.modernfi.com
+  description: UAT
+tags:
+- name: Depositors
+paths:
+  /digital-banking/v1/depositors:
+    get:
+      operationId: list
+      summary: List Depositors
+      tags:
+      - Depositors
+      parameters:
+      - name: name
+        in: query
+        description: Search by first name, last name, or entity name (case-insensitive partial match).
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: institution_depositor_id
+        in: query
+        description: Filter by exact institution depositor ID.
+        required: false
+        schema:
+          type:
+          - string
+          - 'null'
+      - name: depositor_type
+        in: query
+        description: Filter by depositor type.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/DepositorType'
+          - type: 'null'
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DepositorResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    post:
+      operationId: create
+      summary: Create Depositor
+      tags:
+      - Depositors
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      - name: idempotency-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositorResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDepositorRequest'
+  /digital-banking/v1/depositors/{depositor_id}:
+    get:
+      operationId: get
+      summary: Get Depositor
+      tags:
+      - Depositors
+      parameters:
+      - name: depositor_id
+        in: path
+        required: true
+        schema:
+          $ref: '#/components/schemas/DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId'
+      - name: id_type
+        in: query
+        description: Type of the depositor id. Must be 'institution' or 'None'.
+        required: false
+        schema:
+          oneOf:
+          - $ref: '#/components/schemas/IdType'
+          - type: 'null'
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositorResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+    patch:
+      operationId: update_depositor_digital_banking_v1_depositors__depositor_id__patch
+      summary: Update Depositor
+      tags:
+      - Depositors
+      parameters:
+      - name: depositor_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositorResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDepositorRequest'
+  /digital-banking/v1/depositors/{depositor_id}/tin:
+    get:
+      operationId: getTin
+      summary: Get Depositor Tin
+      tags:
+      - Depositors
+      parameters:
+      - name: depositor_id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DepositorTINResponse'
+        '400':
+          description: Bad Request - Invalid input or validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorDetail'
+        '401':
+          description: Unauthenticated - Invalid or missing authentication credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '403':
+          description: Unauthorized - Insufficient permissions to access resource
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorDetail'
+components:
+  schemas:
+    DepositorTINResponse:
+      type: object
+      properties:
+        tin:
+          type: string
+          description: The full decrypted TIN
+      required:
+      - tin
+      title: DepositorTINResponse
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    CreateDepositorRequest:
+      type: object
+      properties:
+        tin:
+          type: string
+          description: TIN must be unique per institution
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        entity_name:
+          type:
+          - string
+          - 'null'
+        is_organization:
+          type: boolean
+          default: false
+        institution_depositor_id:
+          type:
+          - string
+          - 'null'
+        phone_numbers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PhoneNumberData'
+        emails:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/EmailData'
+        addresses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AddressData'
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+        depositor_type:
+          oneOf:
+          - $ref: '#/components/schemas/DepositorType'
+          - type: 'null'
+        ownership_category:
+          oneOf:
+          - $ref: '#/components/schemas/OwnershipCategory'
+          - type: 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        institution_opt_out_federal_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
+      required:
+      - tin
+      title: CreateDepositorRequest
+    ApprovalStatus:
+      type: string
+      enum:
+      - PENDING
+      - APPROVED
+      - REJECTED
+      title: ApprovalStatus
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    DepositorType:
+      type: string
+      enum:
+      - CONSUMER
+      - BUSINESS
+      - NONPROFIT
+      - LOCAL_GOVERNMENT
+      - FEDERAL_GOVERNMENT
+      - US_DEPOSITORY
+      - FOREIGN_DEPOSITORY
+      - FOREIGN_GOVERNMENT
+      title: DepositorType
+    IdType:
+      type: string
+      enum:
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
+    DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId
+    DepositorResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        institution_id:
+          type: string
+        institution_depositor_id:
+          type:
+          - string
+          - 'null'
+        tin:
+          type:
+          - string
+          - 'null'
+        tin_last_four:
+          type:
+          - string
+          - 'null'
+          description: Last 4 digits of the TIN (masked).
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        entity_name:
+          type:
+          - string
+          - 'null'
+        is_organization:
+          type: boolean
+        phone_numbers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PhoneNumberData'
+        emails:
+          type: array
+          items:
+            $ref: '#/components/schemas/EmailData'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressData'
+        depositor_type:
+          $ref: '#/components/schemas/DepositorType'
+        ownership_category:
+          oneOf:
+          - $ref: '#/components/schemas/OwnershipCategory'
+          - type: 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        institution_opt_out_federal_ids:
+          type: array
+          items:
+            type: string
+          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
+      required:
+      - id
+      - institution_id
+      - institution_depositor_id
+      - first_name
+      - last_name
+      - entity_name
+      - is_organization
+      - phone_numbers
+      - emails
+      - addresses
+      - depositor_type
+      title: DepositorResponse
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    AddressData:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code (e.g., US)
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - street
+      - city
+      - state
+      - zip
+      - country_code
+      title: AddressData
+    PhoneNumberData:
+      type: object
+      properties:
+        number:
+          type: string
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - number
+      title: PhoneNumberData
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    OwnershipCategory:
+      type: string
+      enum:
+      - JOINT
+      - SINGLE
+      - RETIREMENT
+      - ESTATE_REVOCABLE_TRUST
+      - OTHER_CONSUMER
+      - CORPORATION
+      - LIMITED_LIABILITY_COMPANY
+      - LIMITED_PARTNERSHIP
+      - SOLE_PROPRIETORSHIP
+      - OTHER_BUSINESS
+      - CLUBS_ASSOCIATIONS
+      - OTHER_NONPROFIT
+      - MUNICIPALITIES
+      - SCHOOL_DISTRICTS
+      - OTHER_LOCAL_GOVERNMENT
+      - US_GOVERNMENT
+      - US_DEPOSITORY
+      title: OwnershipCategory
+    UpdateDepositorRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        entity_name:
+          type:
+          - string
+          - 'null'
+        institution_depositor_id:
+          type:
+          - string
+          - 'null'
+        depositor_type:
+          oneOf:
+          - $ref: '#/components/schemas/DepositorType'
+          - type: 'null'
+        ownership_category:
+          oneOf:
+          - $ref: '#/components/schemas/OwnershipCategory'
+          - type: 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        phone_numbers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PhoneNumberData'
+        addresses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AddressData'
+        approval_status:
+          oneOf:
+          - $ref: '#/components/schemas/ApprovalStatus'
+          - type: 'null'
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Account IDs to associate with this depositor. These are appended to existing associations.
+        institution_opt_out_federal_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
+      title: UpdateDepositorRequest
+    EmailData:
+      type: object
+      properties:
+        email_address:
+          type: string
+          format: email
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - email_address
+      title: EmailData
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+  securitySchemes:
+    OAuth:
+      type: http
+      scheme: bearer
