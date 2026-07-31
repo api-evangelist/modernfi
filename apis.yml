@@ -1,7 +1,14 @@
 aid: modernfi
 name: ModernFi
-description: ModernFi is a company surfaced as a portfolio company of a16z and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  ModernFi operates institution-owned deposit networks for U.S. banks and credit
+  unions, giving them infrastructure to grow deposits, extend reciprocal deposit
+  insurance beyond standard FDIC/NCUA limits, optimize funding, and deepen
+  depositor relationships. Its Digital Banking API (v1) lets member institutions
+  programmatically manage deposit accounts, depositors, transaction records and
+  sweeps, monthly statements and files, custom rate benchmarks, and pricing
+  groups — authenticated with OAuth 2.0 client credentials and pulled into
+  treasury, ALCO, risk, and reporting systems. ModernFi is backed by a16z.
 url: https://raw.githubusercontent.com/api-evangelist/modernfi/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +16,202 @@ x-backed-by:
 - a16z
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Banking
+- Deposits
+- Fintech
+- Credit Unions
+- Financial Services
+- Deposit Network
+- Treasury
+image: https://modernfi.com/favicon.ico
+apis:
+- aid: modernfi:modernfi-accounts-api
+  name: ModernFi Accounts API
+  description: The Accounts API from ModernFi — 5 operation(s) for accounts.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- aid: modernfi:modernfi-auth-api
+  name: ModernFi auth API
+  description: The auth API from ModernFi — 1 operation(s) for auth.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - auth
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-auth-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- aid: modernfi:modernfi-custombenchmarks-api
+  name: ModernFi customBenchmarks API
+  description: The customBenchmarks API from ModernFi — 2 operation(s) for custombenchmarks.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - customBenchmarks
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-custombenchmarks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- aid: modernfi:modernfi-depositors-api
+  name: ModernFi Depositors API
+  description: The Depositors API from ModernFi — 3 operation(s) for depositors.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - Depositors
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-depositors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- aid: modernfi:modernfi-files-api
+  name: ModernFi files API
+  description: The files API from ModernFi — 4 operation(s) for files.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - files
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-files-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- aid: modernfi:modernfi-pricinggroups-api
+  name: ModernFi pricingGroups API
+  description: The pricingGroups API from ModernFi — 4 operation(s) for pricinggroups.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - pricingGroups
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-pricinggroups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- aid: modernfi:modernfi-transactions-api
+  name: ModernFi Transactions API
+  description: The Transactions API from ModernFi — 2 operation(s) for transactions.
+  humanURL: https://docs.modernfi.com
+  baseURL: https://api.modernfi.com
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/modernfi-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.modernfi.com
+  - type: APIReference
+    url: https://docs.modernfi.com/api-reference
+  - type: GettingStarted
+    url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+common:
+- type: DeveloperPortal
+  url: https://docs.modernfi.com
+- type: Documentation
+  url: https://docs.modernfi.com
+- type: APIReference
+  url: https://docs.modernfi.com/api-reference
+- type: GettingStarted
+  url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
+- type: Support
+  url: https://modernfi.com/contact
+- type: PrivacyPolicy
+  url: https://modernfi.com/privacy
+- type: GitHubOrganization
+  url: https://github.com/modernfi
+- type: StatusPage
+  url: https://status.modernfi.com
+- type: Deprecation
+  url: https://docs.modernfi.com/topics/versioning
+- type: ChangeLog
+  url: changelog/modernfi-changelog.yml
+- type: Authentication
+  url: authentication/modernfi-authentication.yml
+- type: Conventions
+  url: conventions/modernfi-conventions.yml
+- type: Idempotency
+  url: conventions/modernfi-conventions.yml
+- type: ErrorCatalog
+  url: errors/modernfi-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/modernfi-lifecycle.yml
+- type: Conformance
+  url: conformance/modernfi-conformance.yml
+- type: DataModel
+  url: data-model/modernfi-data-model.yml
+- type: Sandbox
+  url: sandbox/modernfi-sandbox.yml
+- type: MCPServer
+  url: mcp/modernfi-mcp.yml
+- type: WellKnown
+  url: well-known/modernfi-well-known.yml
+- type: Overlay
+  url: overlays/modernfi-digital-banking-overlay.yaml
+- type: LLMsTxt
+  url: llms/modernfi-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/modernfi-agentic-access.yml
+- type: DomainSecurity
+  url: security/modernfi-domain-security.yml
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1

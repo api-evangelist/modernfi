@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/modernfi-openapi-original.json
+format: custom-json
+envelope:
+  shape: '{ "detail": "<message>" }'
+  schema: ErrorDetail
+  content_type: application/json
+  problem_json: false
+  note: >-
+    ModernFi does not use RFC 9457 application/problem+json. Standard errors use
+    the ErrorDetail object ({detail: string}); 422 validation errors use
+    HTTPValidationError ({detail: [{loc, msg, type}]}).
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid input or validation error.
+  schema: ErrorDetail
+- status: 401
+  title: Unauthenticated
+  description: Invalid or missing authentication credentials.
+  schema: ErrorDetail
+- status: 403
+  title: Unauthorized
+  description: Insufficient permissions to access resource (e.g. a read-only token attempting a write).
+  schema: ErrorDetail
+- status: 422
+  title: Validation Error
+  description: Request body or parameters failed schema validation.
+  schema: HTTPValidationError
+- status: 500
+  title: Internal Server Error
+  description: An unexpected error occurred on the server.
+  schema: ErrorDetail
+coverage: >-
+  All 36 resource operations return the same 400/401/403/422/500 set; create
+  operations additionally return 201, deletes return 204. Derived from the
+  responses declared across every path in the OpenAPI.

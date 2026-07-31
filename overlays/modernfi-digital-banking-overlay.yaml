@@ -1,0 +1,34 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for ModernFi Digital Banking API
+  version: 1.0.0
+extends: openapi/modernfi-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: modernfi
+    x-apievangelist-category: banking-deposits
+    x-apievangelist-auth: oauth2-client-credentials
+    x-apievangelist-idempotency: Idempotency-Key
+    x-apievangelist-notes: >-
+      ModernFi Digital Banking API v1 — institution-owned deposit network
+      infrastructure. Auth is OAuth 2.0 client_credentials via
+      auth.modernfi.com (Auth0). Create operations accept an Idempotency-Key
+      header (UUID v4, 24h retention). Errors use a custom { detail } JSON
+      envelope (not RFC 9457).
+- target: $.info
+  update:
+    contact:
+      name: ModernFi Support
+      email: support@modernfi.com
+      url: https://docs.modernfi.com
+- target: $.info
+  update:
+    x-apievangelist-artifacts:
+      authentication: authentication/modernfi-authentication.yml
+      conventions: conventions/modernfi-conventions.yml
+      errors: errors/modernfi-problem-types.yml
+      lifecycle: lifecycle/modernfi-lifecycle.yml
+      sandbox: sandbox/modernfi-sandbox.yml
+      data_model: data-model/modernfi-data-model.yml
+      mcp: mcp/modernfi-mcp.yml

@@ -1,0 +1,26 @@
+{
+  "provider": "modernfi",
+  "sources": [
+    "modernfi-accounts-api-openapi.yml",
+    "modernfi-auth-api-openapi.yml",
+    "modernfi-custombenchmarks-api-openapi.yml",
+    "modernfi-depositors-api-openapi.yml",
+    "modernfi-files-api-openapi.yml",
+    "modernfi-pricinggroups-api-openapi.yml",
+    "modernfi-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "modernfi-accounts-api-openapi.yml",
+    "modernfi-auth-api-openapi.yml",
+    "modernfi-custombenchmarks-api-openapi.yml",
+    "modernfi-depositors-api-openapi.yml",
+    "modernfi-files-api-openapi.yml",
+    "modernfi-pricinggroups-api-openapi.yml",
+    "modernfi-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,80 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/modernfi-openapi-original.json
+entities:
+- name: Account
+  schema: AccountResponse
+  id: id
+  description: A deposit account managed within a member institution's ModernFi deposit network.
+  key_fields: [institution_id, account_type, total_balance, pending_balance, insurance_limit, pricing_group_id, custom_benchmark_id, shadow_account]
+- name: Depositor
+  schema: DepositorResponse
+  id: id
+  description: The account holder (individual or organization) that owns one or more accounts.
+  key_fields: [institution_id, institution_depositor_id, tin, depositor_type, ownership_category]
+- name: Transaction
+  schema: TransactionResponse
+  id: id
+  description: A transaction record / sweep entry against an account.
+- name: ShadowAccount
+  schema: ShadowAccountResponse
+  id: id
+  description: The shadow/network account backing a customer-facing account.
+- name: Allocation
+  schema: AllocationResponse
+  id: account_id
+  description: The daily allocation of an account's balance across network institutions.
+- name: CustomBenchmark
+  schema: CustomBenchmarkRate
+  id: custom_benchmark_id
+  description: A custom rate benchmark used to price accounts.
+- name: PricingGroup
+  schema: PricingGroup
+  id: pricing_group_id
+  description: A named group that applies shared rate configuration to assigned accounts.
+- name: File
+  schema: FileResponse
+  id: file_id
+  description: A generated document (e.g. monthly statement) available for download.
+relationships:
+- from: Account
+  to: Depositor
+  type: has_many
+  via: depositors
+- from: Account
+  to: Institution
+  type: belongs_to
+  via: institution_id
+- from: Account
+  to: PricingGroup
+  type: belongs_to
+  via: pricing_group_id
+- from: Account
+  to: CustomBenchmark
+  type: belongs_to
+  via: custom_benchmark_id
+- from: Account
+  to: ShadowAccount
+  type: has_one
+  via: shadow_account
+- from: Account
+  to: Transaction
+  type: has_many
+  via: /accounts/{account_id}/transactions
+- from: Account
+  to: Allocation
+  type: has_one
+  via: /accounts/{account_id}/allocation
+- from: Transaction
+  to: Account
+  type: belongs_to
+  via: account_id
+- from: PricingGroup
+  to: Account
+  type: has_many
+  via: /pricing-groups/{pricing_group_id}/accounts
+notes: >-
+  Entity graph derived from OpenAPI response schemas and path structure.
+  Identifiers are opaque strings (no documented type prefixes). Transactions and
+  allocations are sub-resources of an account; accounts reference depositors,
+  pricing groups, custom benchmarks and a shadow account by id.

@@ -1,0 +1,68 @@
+# Modernfi
+
+## Instructions for AI Agents
+
+- For clean Markdown of any page, append `.md` to the page URL
+- For section-specific indexes, append `/llms.txt` to any section URL
+- For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://docs.modernfi.com/_mcp/server
+
+## Docs
+
+- [Overview for Developers](https://docs.modernfi.com/modernfi-developer-hub/overview-for-developers.md)
+- [Getting Started](https://docs.modernfi.com/modernfi-developer-hub/getting-started.md)
+- [Using the Sandbox](https://docs.modernfi.com/topics/using-the-sandbox.md)
+- [Authentication](https://docs.modernfi.com/topics/authentication.md)
+- [Account Structure](https://docs.modernfi.com/topics/account-structure.md)
+- [Idempotency](https://docs.modernfi.com/topics/idempotency.md)
+- [Transactions](https://docs.modernfi.com/topics/transaction-records-and-sweeps.md)
+- [Balance Fields](https://docs.modernfi.com/topics/balance-fields.md)
+- [Interest](https://docs.modernfi.com/topics/interest.md)
+- [Reports](https://docs.modernfi.com/topics/reports.md)
+- [Versioning](https://docs.modernfi.com/topics/versioning.md)
+- [Changelog](https://docs.modernfi.com/changelog.md)
+
+## API Docs
+
+- API Reference > Accounts [List Accounts](https://docs.modernfi.com/api-reference/accounts/list.md)
+- API Reference > Accounts [Create Account](https://docs.modernfi.com/api-reference/accounts/create.md)
+- API Reference > Accounts [Get Account](https://docs.modernfi.com/api-reference/accounts/get.md)
+- API Reference > Accounts [Close Account](https://docs.modernfi.com/api-reference/accounts/close.md)
+- API Reference > Accounts [Update Account](https://docs.modernfi.com/api-reference/accounts/update.md)
+- API Reference > Accounts [Get Account Allocation](https://docs.modernfi.com/api-reference/accounts/get-allocation.md)
+- API Reference > Accounts [Get Account Signer Primary Tin](https://docs.modernfi.com/api-reference/accounts/get-signer-primary-tin.md)
+- API Reference > Accounts [Get Account Beneficiary Tin](https://docs.modernfi.com/api-reference/accounts/get-beneficiary-tin.md)
+- API Reference > Custom Benchmarks [List Custom Benchmarks](https://docs.modernfi.com/api-reference/custom-benchmarks/list.md)
+- API Reference > Custom Benchmarks [Create Custom Benchmark](https://docs.modernfi.com/api-reference/custom-benchmarks/create.md)
+- API Reference > Custom Benchmarks [Get Custom Benchmark](https://docs.modernfi.com/api-reference/custom-benchmarks/get.md)
+- API Reference > Custom Benchmarks [Update Custom Benchmark Rate](https://docs.modernfi.com/api-reference/custom-benchmarks/update-rate.md)
+- API Reference > Custom Benchmarks [Delete Custom Benchmark](https://docs.modernfi.com/api-reference/custom-benchmarks/delete.md)
+- API Reference > Custom Benchmarks [Patch Custom Benchmark](https://docs.modernfi.com/api-reference/custom-benchmarks/patch.md)
+- API Reference > Depositors [List Depositors](https://docs.modernfi.com/api-reference/depositors/list.md)
+- API Reference > Depositors [Create Depositor](https://docs.modernfi.com/api-reference/depositors/create.md)
+- API Reference > Depositors [Get Depositor](https://docs.modernfi.com/api-reference/depositors/get.md)
+- API Reference > Depositors [Update Depositor](https://docs.modernfi.com/api-reference/depositors/update-depositor-digital-banking-v-1-depositors-depositor-id-patch.md)
+- API Reference > Depositors [Get Depositor Tin](https://docs.modernfi.com/api-reference/depositors/get-tin.md)
+- API Reference > Files [Get Statements](https://docs.modernfi.com/api-reference/files/get-statements-digital-banking-v-1-files-statements-get.md)
+- API Reference > Files [Get Account Monthly Statement Config](https://docs.modernfi.com/api-reference/files/get-account-monthly-statement-config-digital-banking-v-1-files-account-monthly-statement-config-get.md)
+- API Reference > Files [Post Account Monthly Statement Config](https://docs.modernfi.com/api-reference/files/post-account-monthly-statement-config-digital-banking-v-1-files-account-monthly-statement-config-post.md)
+- API Reference > Files [Get Preview Account Monthly Statement](https://docs.modernfi.com/api-reference/files/get-preview-account-monthly-statement-digital-banking-v-1-files-preview-account-monthly-statement-get.md)
+- API Reference > Files [Get File](https://docs.modernfi.com/api-reference/files/get-file-digital-banking-v-1-files-file-id-get.md)
+- API Reference > Transactions [List Transactions](https://docs.modernfi.com/api-reference/transactions/list.md)
+- API Reference > Transactions [Create Transaction](https://docs.modernfi.com/api-reference/transactions/create.md)
+- API Reference > Transactions [Get Transaction](https://docs.modernfi.com/api-reference/transactions/get.md)
+- API Reference > Transactions [Update Transaction](https://docs.modernfi.com/api-reference/transactions/update.md)
+- API Reference > Pricing Groups [List Pricing Groups](https://docs.modernfi.com/api-reference/pricing-groups/list.md)
+- API Reference > Pricing Groups [Create Pricing Group](https://docs.modernfi.com/api-reference/pricing-groups/create.md)
+- API Reference > Pricing Groups [Get Pricing Group](https://docs.modernfi.com/api-reference/pricing-groups/get.md)
+- API Reference > Pricing Groups [Delete Pricing Group](https://docs.modernfi.com/api-reference/pricing-groups/delete.md)
+- API Reference > Pricing Groups [Update Pricing Group Metadata](https://docs.modernfi.com/api-reference/pricing-groups/update-metadata.md)
+- API Reference > Pricing Groups [Update Pricing Group Rates](https://docs.modernfi.com/api-reference/pricing-groups/update-rates.md)
+- API Reference > Pricing Groups [Assign Accounts To Pricing Group](https://docs.modernfi.com/api-reference/pricing-groups/assign-accounts.md)
+- API Reference > Pricing Groups [Unassign Accounts From Pricing Group](https://docs.modernfi.com/api-reference/pricing-groups/unassign-accounts.md)
+- API Reference > Auth [Request an access token](https://docs.modernfi.com/api-reference/auth/get-token.md)
+
+## OpenAPI Specification
+
+The raw OpenAPI 3.1 specification for this API is available at:
+- [OpenAPI JSON](https://docs.modernfi.com/openapi.json)
+- [OpenAPI YAML](https://docs.modernfi.com/openapi.yaml)

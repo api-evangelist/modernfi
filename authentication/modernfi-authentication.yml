@@ -1,0 +1,37 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/modernfi-openapi-original.json
+docs: https://docs.modernfi.com/topics/authentication
+summary:
+  types:
+  - oauth2
+  - http
+  oauth2_flows:
+  - clientCredentials
+  identity_provider: Auth0
+notes: >-
+  The OpenAPI declares a single HTTP bearer scheme named "OAuth", but the
+  documented flow is OAuth 2.0 client_credentials. Credentials (Client ID +
+  Client Secret) are issued by ModernFi after institution onboarding and
+  delivered via SendSafely. A token is minted at
+  https://auth.modernfi.com/oauth/token with grant_type=client_credentials and
+  an audience of the target API host, then passed as "Authorization: Bearer
+  <access_token>". Access is granted at two coarse levels rather than
+  fine-grained scopes: read-only (retrieve accounts, depositors, transactions,
+  statements) and read+write (full create/modify). Tokens expire in 86400s.
+schemes:
+- name: OAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/modernfi-openapi-original.json
+- name: OAuth2ClientCredentials
+  type: oauth2
+  flow: clientCredentials
+  tokenUrl: https://auth.modernfi.com/oauth/token
+  audience: https://api.modernfi.com
+  access_levels:
+  - read-only
+  - read+write
+  source: https://docs.modernfi.com/topics/authentication
+  discovery: well-known/modernfi-openid-configuration.json

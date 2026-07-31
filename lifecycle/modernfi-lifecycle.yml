@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.modernfi.com/topics/versioning
+versioning:
+  scheme: semver
+  current: v1
+  path_prefix: /digital-banking/v1
+  docs: https://docs.modernfi.com/topics/versioning
+  policy: >-
+    MAJOR for incompatible changes, MINOR for backwards-compatible additions,
+    PATCH for backwards-compatible fixes. Non-breaking changes may ship on the
+    current version without a bump.
+deprecation:
+  policy_url: https://docs.modernfi.com/topics/versioning
+  approach: >-
+    Breaking changes are communicated in advance with a migration window during
+    which both the old and new versions remain supported.
+  sunset_header: unknown
+changelog:
+  url: https://docs.modernfi.com/changelog
+  rss: https://docs.modernfi.com/changelog.rss
+  scheme: semver
+status_page: https://status.modernfi.com
+sla:
+  url: null
+deprecated_operations: []
+notes: >-
+  Public status page at status.modernfi.com. Deprecation is handled via advance
+  communication + a dual-version migration window rather than RFC 8594 Sunset
+  headers (header support not documented). No operations are marked deprecated
+  in the OpenAPI.

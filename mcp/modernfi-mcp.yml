@@ -1,0 +1,31 @@
+generated: '2026-07-20'
+method: searched
+status: published
+source: https://docs.modernfi.com/_mcp/server
+server:
+  name: fern-docs-mcp-server
+  version: 1.0.0
+  description: >-
+    Official ModernFi documentation MCP server (Fern-hosted). Provides
+    AI-powered search over the ModernFi developer documentation at
+    docs.modernfi.com. This is a docs-search server, not a full API-operations
+    server.
+  transport: streamable-http
+  url: https://docs.modernfi.com/_mcp/server
+  install:
+    claude_code: claude mcp add --transport http fern_mcp_docs-modernfi-com https://docs.modernfi.com/_mcp/server
+    cursor: Add "https://docs.modernfi.com/_mcp/server" to your MCP server configuration
+    generic: POST JSON-RPC 2.0 messages to this URL
+tools:
+- name: searchDocs
+  description: >-
+    Search the documentation at docs.modernfi.com. Returns relevant doc passages
+    with source URLs.
+  read_only: true
+  input:
+    query: string (the search query to run against the docs)
+notes: >-
+  ModernFi ships an official hosted MCP server for documentation search. A
+  candidate API-operations MCP server (one tool per OpenAPI operationId) could
+  additionally be derived from openapi/modernfi-openapi-original.json but is not
+  published by the provider.

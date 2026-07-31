@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/modernfi-openapi-original.json
+skills:
+- file: modernfi-onboard-depositor-and-open-account.md
+  name: Onboard a depositor and open a deposit account
+  api: openapi/modernfi-openapi-original.json
+  operations: [create, create, get, getAllocation]
+- file: modernfi-record-and-reconcile-transactions.md
+  name: Record and reconcile account transactions
+  api: openapi/modernfi-openapi-original.json
+  operations: [create, list, get, get_statements_digital_banking_v1_files_statements_get]
+- file: modernfi-price-accounts-with-groups-and-benchmarks.md
+  name: Price accounts with pricing groups and custom benchmarks
+  api: openapi/modernfi-openapi-original.json
+  operations: [create, create, updateRates, assignAccounts]

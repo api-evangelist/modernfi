@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.modernfi.com/changelog
+url: https://docs.modernfi.com/changelog
+rss: https://docs.modernfi.com/changelog.rss
+scheme: semver
+change_types: [Added, Improved, Fixed, Breaking]
+entry_format: >-
+  Each entry carries a semver version number, a release date, change-type tags
+  (Added / Improved / Fixed / Breaking), and a description with migration
+  guidance for breaking changes.
+entries: []
+notes: >-
+  ModernFi maintains a dated, RSS-backed API changelog at docs.modernfi.com/changelog
+  documenting new/updated endpoints, schema changes, deprecations and removals in
+  reverse chronological order. No individual dated entries were exposed in the
+  fetched markdown (the log renders client-side); the RSS feed
+  (changelog.rss) is the machine-readable source for recent entries.

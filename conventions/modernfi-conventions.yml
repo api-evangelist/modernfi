@@ -1,0 +1,61 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.modernfi.com/
+spec: openapi/modernfi-openapi-original.json
+authentication:
+  style: oauth2-client-credentials
+  header: 'Authorization: Bearer <access_token>'
+  token_url: https://auth.modernfi.com/oauth/token
+  access_levels: [read-only, read+write]
+  ref: authentication/modernfi-authentication.yml
+  docs: https://docs.modernfi.com/topics/authentication
+idempotency:
+  supported: true
+  header: Idempotency-Key
+  value: client-generated UUID v4 (recommended)
+  scope: >-
+    Create operations only — Create Account (POST /accounts), Create Depositor
+    (POST /depositors), Create Transaction (POST /accounts/{account_id}/transactions).
+    The Idempotency-Key header is a required parameter on these operations in the
+    OpenAPI.
+  retention: 24 hours
+  storage_rule: >-
+    A key is stored only when the endpoint returns a 2XX. Requests that conflict
+    with a concurrent request, fail validation, or return a non-2XX are NOT
+    stored, so they are safe to retry (no resource was created or modified).
+  docs: https://docs.modernfi.com/topics/idempotency
+pagination:
+  style: page-number
+  applies_to:
+  - GET /accounts/{account_id}/transactions
+  params:
+    page: integer (1-based page number)
+    page_size: integer (items per page)
+  note: >-
+    Collection endpoints for accounts and depositors return bare JSON arrays and
+    are filtered via query parameters (statuses, name, depositor_type) rather than
+    paginated. Transaction listing is page-number paginated.
+filtering:
+  accounts: statuses (repeatable query param)
+  depositors: [name, institution_depositor_id, depositor_type]
+  transactions: [id_type, start_date, end_date, start_datetime, end_datetime, transaction_type, transaction_status, timezone]
+versioning:
+  scheme: semver + uri-path
+  current: v1
+  path_prefix: /digital-banking/v1
+  policy: >-
+    Semantic versioning. Breaking changes are communicated in advance with a
+    migration window during which both versions remain supported. Non-breaking
+    changes may ship on the current version without a version bump.
+  ref: lifecycle/modernfi-lifecycle.yml
+  docs: https://docs.modernfi.com/topics/versioning
+error_envelope:
+  shape: 'JSON object: { "detail": "<message>" }'
+  validation_shape: 'HTTPValidationError: { "detail": [ { "loc": [...], "msg": "...", "type": "..." } ] }'
+  content_type: application/json
+  problem_json: false
+  ref: errors/modernfi-problem-types.yml
+rate_limiting:
+  signaling: Not documented in the public API docs or OpenAPI.
+request_id:
+  header: Not documented.

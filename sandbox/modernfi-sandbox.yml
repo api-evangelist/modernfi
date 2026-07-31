@@ -1,0 +1,35 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.modernfi.com/topics/using-the-sandbox
+summary: >-
+  ModernFi provides a sandbox that runs on the same production-grade
+  infrastructure and the SAME production endpoints as live, but scopes all
+  activity to a separate, isolated institution provisioned for your testing.
+  There is no separate sandbox hostname or test key prefix — the environment is
+  determined by the credentials you are issued.
+model:
+  separation: isolated-institution
+  key_prefix: none
+  endpoints:
+    auth: https://auth.modernfi.com
+    api: https://api.modernfi.com
+  note: >-
+    Production endpoints are used in sandbox mode; the institution behind the
+    sandbox credentials is flagged as test so no real customer or cross-institution
+    data is touched.
+credentials:
+  issuance: Sandbox-specific Client ID / Client Secret provisioned by ModernFi
+  delivery: SendSafely (secure transfer)
+  note: No self-serve/published test credentials — obtained via onboarding.
+automation:
+  daily_allocation_job: true
+  interest: Interest amounts may not reflect exact production rates.
+  statements:
+    monthly: Generated on the same cadence as production.
+    mid_month_on_demand: false
+    branding: Sandbox statements do not include institution branding.
+test_values: []
+notes: >-
+  ModernFi does not publish magic/test identifiers (test card numbers, test
+  IBANs, etc.); the sandbox is a fully isolated live-shaped institution rather
+  than a fixture-token model. No test values are invented here.

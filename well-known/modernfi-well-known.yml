@@ -1,0 +1,34 @@
+generated: '2026-07-20'
+method: searched
+source: live probes of /.well-known/ on ModernFi hosts
+hosts:
+- host: https://auth.modernfi.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: modernfi-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: modernfi-oauth-authorization-server.json
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://api.modernfi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+- host: https://modernfi.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+notes: >-
+  The auth host (Auth0 tenant) exposes standard OIDC discovery and RFC 8414
+  authorization-server metadata. No security.txt, api-catalog, or ai-plugin.json
+  were found on the API, auth, or marketing hosts.
