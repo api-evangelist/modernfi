@@ -1,0 +1,3096 @@
+{
+  "item": [
+    {
+      "id": "e131ed24-ce57-42d6-b09c-0c4b638ff15a",
+      "name": "pricingGroups",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1519649e-987c-4242-b995-2e49f3f9ab10",
+          "name": "List Pricing Groups",
+          "request": {
+            "name": "List Pricing Groups",
+            "description": {
+              "content": "List all pricing groups for the institution, including account counts and current rate tiers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20ebba5c-481f-4854-8d14-f33a2405621c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"institution_id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"account_count\": 6437,\n    \"interest_rate_tiers\": [\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"IORB\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      },\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"FIDELITY_FISXX\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      }\n    ],\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\",\n    \"accounts\": [\n      {\n        \"id\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"title\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"institution_id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"account_count\": 3836,\n    \"interest_rate_tiers\": [\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"WSJ_PRIME\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      },\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"CMT_6M\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      }\n    ],\n    \"created_at\": \"string\",\n    \"updated_at\": \"string\",\n    \"accounts\": [\n      {\n        \"id\": \"string\",\n        \"title\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"title\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25539bc9-7730-47e7-84a9-075a2ffe7ce7",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70290606-e77f-4cfb-8d74-ff10d1d1b5a1",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c87f1c55-7e2b-42fe-904b-3cadda5351bd",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35ee77ee-16d7-405b-8833-fefa8616b76e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4d1206f2-513d-4146-ad10-527b54598011",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7273ae0-0fbf-4af4-8e6c-a85f4f22c40e",
+          "name": "Create Pricing Group",
+          "request": {
+            "name": "Create Pricing Group",
+            "description": {
+              "content": "Create a new pricing group with rate tiers. Pricing groups allow institutions to manage interest rates at scale by defining reusable rate structures that can be assigned to multiple accounts. When a pricing group's rates are updated, all assigned accounts receive the new rates automatically.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"<double>\",\n      \"max_balance\": \"<double>\",\n      \"rate\": \"<double>\",\n      \"floating_spread\": \"<double>\",\n      \"rate_index_type\": \"<string>\",\n      \"floating_rate_percentage\": \"<double>\",\n      \"custom_benchmark_id\": \"<string,null-uuid>\"\n    },\n    {\n      \"min_balance\": \"<double>\",\n      \"max_balance\": \"<double>\",\n      \"rate\": \"<double>\",\n      \"floating_spread\": \"<double>\",\n      \"rate_index_type\": \"<string>\",\n      \"floating_rate_percentage\": \"<double>\",\n      \"custom_benchmark_id\": \"<string,null-uuid>\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4be6ee72-ef59-4630-ba98-cebea2f3c509",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 145.87151478377302,\n      \"max_balance\": 617.7058027790449,\n      \"rate\": 4607.69065175913,\n      \"floating_spread\": 9027.508199763664,\n      \"rate_index_type\": \"SOFR_12M\",\n      \"floating_rate_percentage\": 7878.243501706315,\n      \"custom_benchmark_id\": \"0007d440-0c91-4b69-6749-a45c5a279863\"\n    },\n    {\n      \"min_balance\": 6336.9274015094525,\n      \"max_balance\": 2928.8117496877207,\n      \"rate\": 6290.061025600111,\n      \"floating_spread\": 9003.042441810747,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 912.9267315555667,\n      \"custom_benchmark_id\": \"e4ce1a7d-aba4-bc65-2ac1-d8fa13a71a02\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"account_count\": 8341,\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"SOFR_3M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfc88373-6735-42bc-8a37-8bb2521e556c",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 145.87151478377302,\n      \"max_balance\": 617.7058027790449,\n      \"rate\": 4607.69065175913,\n      \"floating_spread\": 9027.508199763664,\n      \"rate_index_type\": \"SOFR_12M\",\n      \"floating_rate_percentage\": 7878.243501706315,\n      \"custom_benchmark_id\": \"0007d440-0c91-4b69-6749-a45c5a279863\"\n    },\n    {\n      \"min_balance\": 6336.9274015094525,\n      \"max_balance\": 2928.8117496877207,\n      \"rate\": 6290.061025600111,\n      \"floating_spread\": 9003.042441810747,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 912.9267315555667,\n      \"custom_benchmark_id\": \"e4ce1a7d-aba4-bc65-2ac1-d8fa13a71a02\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e152840-998a-45b1-9ad6-96b90ea8b733",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 145.87151478377302,\n      \"max_balance\": 617.7058027790449,\n      \"rate\": 4607.69065175913,\n      \"floating_spread\": 9027.508199763664,\n      \"rate_index_type\": \"SOFR_12M\",\n      \"floating_rate_percentage\": 7878.243501706315,\n      \"custom_benchmark_id\": \"0007d440-0c91-4b69-6749-a45c5a279863\"\n    },\n    {\n      \"min_balance\": 6336.9274015094525,\n      \"max_balance\": 2928.8117496877207,\n      \"rate\": 6290.061025600111,\n      \"floating_spread\": 9003.042441810747,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 912.9267315555667,\n      \"custom_benchmark_id\": \"e4ce1a7d-aba4-bc65-2ac1-d8fa13a71a02\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81032a86-c9be-40f1-84c0-53b727a520dd",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 145.87151478377302,\n      \"max_balance\": 617.7058027790449,\n      \"rate\": 4607.69065175913,\n      \"floating_spread\": 9027.508199763664,\n      \"rate_index_type\": \"SOFR_12M\",\n      \"floating_rate_percentage\": 7878.243501706315,\n      \"custom_benchmark_id\": \"0007d440-0c91-4b69-6749-a45c5a279863\"\n    },\n    {\n      \"min_balance\": 6336.9274015094525,\n      \"max_balance\": 2928.8117496877207,\n      \"rate\": 6290.061025600111,\n      \"floating_spread\": 9003.042441810747,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 912.9267315555667,\n      \"custom_benchmark_id\": \"e4ce1a7d-aba4-bc65-2ac1-d8fa13a71a02\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2cf1185-27ac-49c1-b3b7-3d6de5161794",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 145.87151478377302,\n      \"max_balance\": 617.7058027790449,\n      \"rate\": 4607.69065175913,\n      \"floating_spread\": 9027.508199763664,\n      \"rate_index_type\": \"SOFR_12M\",\n      \"floating_rate_percentage\": 7878.243501706315,\n      \"custom_benchmark_id\": \"0007d440-0c91-4b69-6749-a45c5a279863\"\n    },\n    {\n      \"min_balance\": 6336.9274015094525,\n      \"max_balance\": 2928.8117496877207,\n      \"rate\": 6290.061025600111,\n      \"floating_spread\": 9003.042441810747,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 912.9267315555667,\n      \"custom_benchmark_id\": \"e4ce1a7d-aba4-bc65-2ac1-d8fa13a71a02\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56f1405a-0506-46c5-b467-3288db0a3cba",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 145.87151478377302,\n      \"max_balance\": 617.7058027790449,\n      \"rate\": 4607.69065175913,\n      \"floating_spread\": 9027.508199763664,\n      \"rate_index_type\": \"SOFR_12M\",\n      \"floating_rate_percentage\": 7878.243501706315,\n      \"custom_benchmark_id\": \"0007d440-0c91-4b69-6749-a45c5a279863\"\n    },\n    {\n      \"min_balance\": 6336.9274015094525,\n      \"max_balance\": 2928.8117496877207,\n      \"rate\": 6290.061025600111,\n      \"floating_spread\": 9003.042441810747,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 912.9267315555667,\n      \"custom_benchmark_id\": \"e4ce1a7d-aba4-bc65-2ac1-d8fa13a71a02\"\n    }\n  ],\n  \"description\": \"<string,null>\",\n  \"effective_at\": \"<dateTime>\",\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d151dd0-1036-44b9-a63b-7b337d6c3dc6",
+          "name": "Get Pricing Group",
+          "request": {
+            "name": "Get Pricing Group",
+            "description": {
+              "content": "Retrieve details for a specific pricing group, including its rate tiers and account count.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups",
+                ":pricing_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pricing_group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c971348-b207-4f0a-bc09-0f0bf11577bb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"account_count\": 8341,\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"SOFR_3M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0978a808-5a85-4fce-b25b-8855c278f2ef",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6c05238-8264-41fc-8204-3469e44b1a78",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae36b575-7f42-43fe-b418-1d29e8283ab2",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98417d1a-7e6a-43d4-966c-9679fb9576b0",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f91dcac7-f135-4910-8637-95f2e44bdee4",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c18bde9d-f3ab-4555-b03b-9da7741101ae",
+          "name": "Delete Pricing Group",
+          "request": {
+            "name": "Delete Pricing Group",
+            "description": {
+              "content": "Delete a pricing group. This operation will fail if any accounts are currently assigned to this pricing group. Unassign accounts first before deleting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups",
+                ":pricing_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pricing_group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "837d7ae6-0a12-4727-a551-b9e2f482f988",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da7b5bd1-416f-475b-8ec0-f8ece143c4cc",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d99defc9-fcbf-49f5-8144-18327d999d8a",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c16b9c6c-07b4-4dd7-acfb-4b5c6bc23c76",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cfa4935-5ff9-42a8-b71a-90ce7f7cb530",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d86b819a-9187-4d6b-80b3-33bd8b7fc511",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fca6fde-17fa-47f0-8b86-99c4833eef23",
+          "name": "Update Pricing Group Metadata",
+          "request": {
+            "name": "Update Pricing Group Metadata",
+            "description": {
+              "content": "Update pricing group name and/or description. This endpoint does not affect rates or account assignments. Use PUT /pricing-groups/{id}/rates to update rates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups",
+                ":pricing_group_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pricing_group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "befe543b-7207-485f-bfd4-8a28c9766cda",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"account_count\": 8341,\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"SOFR_3M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d3c422a-1be1-400e-a4dc-49bec808afe3",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "643a2bd3-3009-4173-8f4f-b7bc29dedcb4",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c049ac45-6834-4827-bc51-50124b7f8e39",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec45b0fc-551a-43ae-b808-29bd61eb4a73",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02188632-9171-406e-a278-bf0739ee5a77",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string,null>\",\n  \"description\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4980a6d7-6948-42c8-9858-a60fa32fef92",
+          "name": "Update Pricing Group Rates",
+          "request": {
+            "name": "Update Pricing Group Rates",
+            "description": {
+              "content": "Update the rate tiers for a pricing group. The new rates will automatically cascade to all accounts assigned to this pricing group on the specified effective date. This creates a new rate tier version while preserving historical rate data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups",
+                ":pricing_group_id",
+                "rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pricing_group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"<double>\",\n      \"max_balance\": \"<double>\",\n      \"rate\": \"<double>\",\n      \"floating_spread\": \"<double>\",\n      \"rate_index_type\": \"<string>\",\n      \"floating_rate_percentage\": \"<double>\",\n      \"custom_benchmark_id\": \"<string,null-uuid>\"\n    },\n    {\n      \"min_balance\": \"<double>\",\n      \"max_balance\": \"<double>\",\n      \"rate\": \"<double>\",\n      \"floating_spread\": \"<double>\",\n      \"rate_index_type\": \"<string>\",\n      \"floating_rate_percentage\": \"<double>\",\n      \"custom_benchmark_id\": \"<string,null-uuid>\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b7911808-23b5-454e-a179-c3efd863ff90",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 4874.0948726732495,\n      \"max_balance\": 3503.499818549063,\n      \"rate\": 2861.546010228824,\n      \"floating_spread\": 1533.7207078387983,\n      \"rate_index_type\": \"CMT_1M\",\n      \"floating_rate_percentage\": 382.3604931624325,\n      \"custom_benchmark_id\": \"787cc600-a319-dd06-5757-58dd51bd4071\"\n    },\n    {\n      \"min_balance\": 9164.128604564392,\n      \"max_balance\": 2372.954882007826,\n      \"rate\": 1771.5661468417786,\n      \"floating_spread\": 9318.448944680853,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 7424.058205094591,\n      \"custom_benchmark_id\": \"28979f4f-2fb6-5870-1fcd-31d9dcfff874\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"account_count\": 8341,\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"SOFR_3M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"created_at\": \"string\",\n  \"updated_at\": \"string\",\n  \"accounts\": [\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"title\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f308e62d-8388-453a-828d-479b18c1da90",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 4874.0948726732495,\n      \"max_balance\": 3503.499818549063,\n      \"rate\": 2861.546010228824,\n      \"floating_spread\": 1533.7207078387983,\n      \"rate_index_type\": \"CMT_1M\",\n      \"floating_rate_percentage\": 382.3604931624325,\n      \"custom_benchmark_id\": \"787cc600-a319-dd06-5757-58dd51bd4071\"\n    },\n    {\n      \"min_balance\": 9164.128604564392,\n      \"max_balance\": 2372.954882007826,\n      \"rate\": 1771.5661468417786,\n      \"floating_spread\": 9318.448944680853,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 7424.058205094591,\n      \"custom_benchmark_id\": \"28979f4f-2fb6-5870-1fcd-31d9dcfff874\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56152eaa-53fe-4ab1-9bb7-8547475a22cb",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 4874.0948726732495,\n      \"max_balance\": 3503.499818549063,\n      \"rate\": 2861.546010228824,\n      \"floating_spread\": 1533.7207078387983,\n      \"rate_index_type\": \"CMT_1M\",\n      \"floating_rate_percentage\": 382.3604931624325,\n      \"custom_benchmark_id\": \"787cc600-a319-dd06-5757-58dd51bd4071\"\n    },\n    {\n      \"min_balance\": 9164.128604564392,\n      \"max_balance\": 2372.954882007826,\n      \"rate\": 1771.5661468417786,\n      \"floating_spread\": 9318.448944680853,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 7424.058205094591,\n      \"custom_benchmark_id\": \"28979f4f-2fb6-5870-1fcd-31d9dcfff874\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f8e8fe0-f3a3-4f70-93d9-8fe4489be261",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 4874.0948726732495,\n      \"max_balance\": 3503.499818549063,\n      \"rate\": 2861.546010228824,\n      \"floating_spread\": 1533.7207078387983,\n      \"rate_index_type\": \"CMT_1M\",\n      \"floating_rate_percentage\": 382.3604931624325,\n      \"custom_benchmark_id\": \"787cc600-a319-dd06-5757-58dd51bd4071\"\n    },\n    {\n      \"min_balance\": 9164.128604564392,\n      \"max_balance\": 2372.954882007826,\n      \"rate\": 1771.5661468417786,\n      \"floating_spread\": 9318.448944680853,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 7424.058205094591,\n      \"custom_benchmark_id\": \"28979f4f-2fb6-5870-1fcd-31d9dcfff874\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "150e246e-f9df-48b9-9ed2-0425db5d793f",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 4874.0948726732495,\n      \"max_balance\": 3503.499818549063,\n      \"rate\": 2861.546010228824,\n      \"floating_spread\": 1533.7207078387983,\n      \"rate_index_type\": \"CMT_1M\",\n      \"floating_rate_percentage\": 382.3604931624325,\n      \"custom_benchmark_id\": \"787cc600-a319-dd06-5757-58dd51bd4071\"\n    },\n    {\n      \"min_balance\": 9164.128604564392,\n      \"max_balance\": 2372.954882007826,\n      \"rate\": 1771.5661468417786,\n      \"floating_spread\": 9318.448944680853,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 7424.058205094591,\n      \"custom_benchmark_id\": \"28979f4f-2fb6-5870-1fcd-31d9dcfff874\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92bf346e-ff7d-4815-b820-39b14a85bf18",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 4874.0948726732495,\n      \"max_balance\": 3503.499818549063,\n      \"rate\": 2861.546010228824,\n      \"floating_spread\": 1533.7207078387983,\n      \"rate_index_type\": \"CMT_1M\",\n      \"floating_rate_percentage\": 382.3604931624325,\n      \"custom_benchmark_id\": \"787cc600-a319-dd06-5757-58dd51bd4071\"\n    },\n    {\n      \"min_balance\": 9164.128604564392,\n      \"max_balance\": 2372.954882007826,\n      \"rate\": 1771.5661468417786,\n      \"floating_spread\": 9318.448944680853,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 7424.058205094591,\n      \"custom_benchmark_id\": \"28979f4f-2fb6-5870-1fcd-31d9dcfff874\"\n    }\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "625a1a80-6ee9-47c6-97a1-26aae68774dd",
+          "name": "Assign Accounts To Pricing Group",
+          "request": {
+            "name": "Assign Accounts To Pricing Group",
+            "description": {
+              "content": "Assign multiple accounts to a pricing group. The pricing group's current rate structure will be copied to all assigned accounts. If accounts are already assigned to a different pricing group, they will be reassigned and receive the new rates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups",
+                ":pricing_group_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pricing_group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c0a5f8e-81e4-4b7e-b80f-94fcf454d40f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5913924e-c686-4676-ae28-1da685a9ae3a",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29c63bdc-f0c1-4588-8398-1388c59a2210",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fff725c5-33ec-4fd9-bfcf-361c40cf2d19",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd676dd9-1cfc-4cb0-a43b-3c267b44cc3b",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "677f3d15-87c4-4bf0-becb-440e44ee5e56",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"effective_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5bf38e70-a758-47a4-afe4-4d0e4bd5c7da",
+          "name": "Unassign Accounts From Pricing Group",
+          "request": {
+            "name": "Unassign Accounts From Pricing Group",
+            "description": {
+              "content": "Unassign multiple accounts from a pricing group. Accounts will retain their current rates but will no longer receive automatic updates when the pricing group rates change. Future rate changes for these accounts must be made individually or by assigning them to a different pricing group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "pricing-groups",
+                ":pricing_group_id",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "pricing_group_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ab1772a6-5ff8-46f6-a030-ea4ddc826cce",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "beca1513-3010-415f-aef6-15fd8b25fcad",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {},\n      \"key_3\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "081fa3e2-d708-4591-8f92-729691a54fdf",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3e4c195-61c6-4348-acaa-dfbd7016e0c9",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e94a240e-087b-4671-ac62-4f80d91716a6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee228070-fb9d-4f87-bfd4-f1f25c68c31b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "pricing-groups",
+                    ":pricing_group_id",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "pricing_group_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.modernfi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "98c2a437-dad6-4da4-9c84-98f8e838d040",
+    "name": "API Reference Accounts pricingGroups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

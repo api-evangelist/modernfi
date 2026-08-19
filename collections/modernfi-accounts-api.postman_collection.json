@@ -1,0 +1,3108 @@
+{
+  "item": [
+    {
+      "id": "f58b843f-4d67-45ac-8a04-1b27289e7dfb",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dea2aa5b-efb3-4ed9-9221-d1e95e11ae94",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter accounts by status. May be specified multiple times (e.g. ?statuses=CLOSED&statuses=SCHEDULED_FOR_CLOSURE). If omitted, accounts of all statuses are returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>",
+                  "description": "Filter accounts by status. May be specified multiple times (e.g. ?statuses=CLOSED&statuses=SCHEDULED_FOR_CLOSURE). If omitted, accounts of all statuses are returned."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37796fbf-2a52-44f2-9077-44e9dbaa9d9c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "SCHEDULED_FOR_CLOSURE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "OPEN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"institution_id\": \"string\",\n    \"signer_primary\": \"string\",\n    \"account_title\": \"string\",\n    \"interest_rate\": \"string\",\n    \"interest_rate_tiers\": [\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"SOFR_OVERNIGHT\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      },\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"EFFR_UPPER_BAND\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      }\n    ],\n    \"insurance_limit\": \"string\",\n    \"account_type\": \"DDA\",\n    \"created_at\": \"string\",\n    \"is_joint_account\": false,\n    \"total_balance\": \"string\",\n    \"pending_balance\": \"string\",\n    \"is_reciprocation_prioritized\": true,\n    \"is_receiving_printed_statements\": true,\n    \"rate_configuration\": \"FIXED\",\n    \"signer_primary_tin_last4\": \"string\",\n    \"closed_at\": \"string\",\n    \"signer_secondary\": \"string\",\n    \"beneficiary_name\": \"string\",\n    \"beneficiary_tin\": \"string\",\n    \"beneficiary_tin_last4\": \"string\",\n    \"institution_account_id\": \"string\",\n    \"institution_sweep_account_id\": \"string\",\n    \"institution_return_account_id\": \"string\",\n    \"institution_branch_id\": \"string\",\n    \"institution_alternative_id\": \"string\",\n    \"cost_center_id\": \"string\",\n    \"cost_center_code\": \"string\",\n    \"depositors\": [\n      {\n        \"id\": \"string\",\n        \"institution_id\": \"string\",\n        \"institution_depositor_id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"entity_name\": \"string\",\n        \"is_organization\": true,\n        \"phone_numbers\": [\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"emails\": [\n          {\n            \"email_address\": \"RB7dsb@xDdAlLBDN.dey\",\n            \"is_primary\": true\n          },\n          {\n            \"email_address\": \"JPmQ2Xo2Y@mxCRrMrZjWXrDiwzjMeIXyfUSxHoZGe.bl\",\n            \"is_primary\": true\n          }\n        ],\n        \"addresses\": [\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"depositor_type\": \"BUSINESS\",\n        \"tin\": \"string\",\n        \"tin_last_four\": \"string\",\n        \"ownership_category\": \"MUNICIPALITIES\",\n        \"account_officer\": \"string\",\n        \"notes\": \"string\",\n        \"institution_opt_out_federal_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"institution_id\": \"string\",\n        \"institution_depositor_id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"entity_name\": \"string\",\n        \"is_organization\": false,\n        \"phone_numbers\": [\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"emails\": [\n          {\n            \"email_address\": \"dB64y@rRctbyIm.ap\",\n            \"is_primary\": true\n          },\n          {\n            \"email_address\": \"emxZzoRLBqv@ATbMtwHzxgGESlID.imj\",\n            \"is_primary\": true\n          }\n        ],\n        \"addresses\": [\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"depositor_type\": \"NONPROFIT\",\n        \"tin\": \"string\",\n        \"tin_last_four\": \"string\",\n        \"ownership_category\": \"US_DEPOSITORY\",\n        \"account_officer\": \"string\",\n        \"notes\": \"string\",\n        \"institution_opt_out_federal_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"managed_sweep_target_balance\": \"string\",\n    \"shadow_account\": {\n      \"id\": \"string\",\n      \"account_number\": \"string\",\n      \"account_type\": \"DDA\",\n      \"closed_at\": \"string\"\n    },\n    \"notes\": \"string\",\n    \"pricing_group_id\": \"string\",\n    \"rate\": \"string\",\n    \"floating_spread\": \"string\",\n    \"floating_spread_bps\": \"string\",\n    \"rate_index_type\": \"SOFR_12M\",\n    \"floating_rate_percentage\": \"string\",\n    \"index_rate\": \"string\",\n    \"custom_benchmark_id\": \"string\",\n    \"custom_benchmark_rate\": \"string\",\n    \"account_officer\": \"string\",\n    \"is_non_interest_bearing\": false,\n    \"custom_field_1\": \"string\",\n    \"custom_field_2\": \"string\",\n    \"custom_field_3\": \"string\",\n    \"custom_field_4\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"institution_id\": \"string\",\n    \"signer_primary\": \"string\",\n    \"account_title\": \"string\",\n    \"interest_rate\": \"string\",\n    \"interest_rate_tiers\": [\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"EFFR\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      },\n      {\n        \"min_balance\": \"string\",\n        \"max_balance\": \"string\",\n        \"rate\": \"string\",\n        \"floating_spread\": \"string\",\n        \"rate_index_type\": \"FIDELITY_SPAXX\",\n        \"floating_rate_percentage\": \"string\",\n        \"custom_benchmark_id\": \"string\"\n      }\n    ],\n    \"insurance_limit\": \"string\",\n    \"account_type\": \"MMDA\",\n    \"created_at\": \"string\",\n    \"is_joint_account\": true,\n    \"total_balance\": \"string\",\n    \"pending_balance\": \"string\",\n    \"is_reciprocation_prioritized\": false,\n    \"is_receiving_printed_statements\": true,\n    \"rate_configuration\": \"FIXED\",\n    \"signer_primary_tin_last4\": \"string\",\n    \"closed_at\": \"string\",\n    \"signer_secondary\": \"string\",\n    \"beneficiary_name\": \"string\",\n    \"beneficiary_tin\": \"string\",\n    \"beneficiary_tin_last4\": \"string\",\n    \"institution_account_id\": \"string\",\n    \"institution_sweep_account_id\": \"string\",\n    \"institution_return_account_id\": \"string\",\n    \"institution_branch_id\": \"string\",\n    \"institution_alternative_id\": \"string\",\n    \"cost_center_id\": \"string\",\n    \"cost_center_code\": \"string\",\n    \"depositors\": [\n      {\n        \"id\": \"string\",\n        \"institution_id\": \"string\",\n        \"institution_depositor_id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"entity_name\": \"string\",\n        \"is_organization\": false,\n        \"phone_numbers\": [\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"emails\": [\n          {\n            \"email_address\": \"eMDr62@hQVQgNlE.dnf\",\n            \"is_primary\": true\n          },\n          {\n            \"email_address\": \"SrWxYunme@tCovp.lirj\",\n            \"is_primary\": true\n          }\n        ],\n        \"addresses\": [\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n        \"tin\": \"string\",\n        \"tin_last_four\": \"string\",\n        \"ownership_category\": \"OTHER_CONSUMER\",\n        \"account_officer\": \"string\",\n        \"notes\": \"string\",\n        \"institution_opt_out_federal_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"institution_id\": \"string\",\n        \"institution_depositor_id\": \"string\",\n        \"first_name\": \"string\",\n        \"last_name\": \"string\",\n        \"entity_name\": \"string\",\n        \"is_organization\": false,\n        \"phone_numbers\": [\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"number\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"emails\": [\n          {\n            \"email_address\": \"VprjBsx@HEBPFDtLBvdQlaeHOfL.myu\",\n            \"is_primary\": true\n          },\n          {\n            \"email_address\": \"POxQ@oAuiroACqTrWwyBJzpKmBHPfvgMhA.cw\",\n            \"is_primary\": true\n          }\n        ],\n        \"addresses\": [\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          },\n          {\n            \"street\": \"string\",\n            \"city\": \"string\",\n            \"state\": \"string\",\n            \"zip\": \"string\",\n            \"country_code\": \"string\",\n            \"is_primary\": true\n          }\n        ],\n        \"depositor_type\": \"CONSUMER\",\n        \"tin\": \"string\",\n        \"tin_last_four\": \"string\",\n        \"ownership_category\": \"RETIREMENT\",\n        \"account_officer\": \"string\",\n        \"notes\": \"string\",\n        \"institution_opt_out_federal_ids\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"managed_sweep_target_balance\": \"string\",\n    \"shadow_account\": {\n      \"id\": \"string\",\n      \"account_number\": \"string\",\n      \"account_type\": \"DDA\",\n      \"closed_at\": \"string\"\n    },\n    \"notes\": \"string\",\n    \"pricing_group_id\": \"string\",\n    \"rate\": \"string\",\n    \"floating_spread\": \"string\",\n    \"floating_spread_bps\": \"string\",\n    \"rate_index_type\": \"SOFR_3M\",\n    \"floating_rate_percentage\": \"string\",\n    \"index_rate\": \"string\",\n    \"custom_benchmark_id\": \"string\",\n    \"custom_benchmark_rate\": \"string\",\n    \"account_officer\": \"string\",\n    \"is_non_interest_bearing\": false,\n    \"custom_field_1\": \"string\",\n    \"custom_field_2\": \"string\",\n    \"custom_field_3\": \"string\",\n    \"custom_field_4\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e0e06c4-042d-422f-9d1a-586cd4fc5c21",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "SCHEDULED_FOR_CLOSURE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "OPEN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57f1497a-1932-44e0-b51a-10a119e046c8",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "SCHEDULED_FOR_CLOSURE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "OPEN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "532af7c0-cf04-4502-922d-78d28b5f7c2f",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "SCHEDULED_FOR_CLOSURE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "OPEN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c32b7c56-f319-46cd-99ca-9caac8fed14c",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "SCHEDULED_FOR_CLOSURE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "OPEN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac0f6672-77e6-40a4-8ea8-a379005a6558",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statuses",
+                      "value": "SCHEDULED_FOR_CLOSURE"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "OPEN"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eff51d48-a82e-47cd-8c9a-ca492904f4f8",
+          "name": "Create Account",
+          "request": {
+            "name": "Create Account",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "idempotency-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"<string>\",\n    \"first_name\": \"<string,null>\",\n    \"last_name\": \"<string,null>\",\n    \"entity_name\": \"<string,null>\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"<string,null>\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"<string>\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"<string>\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"<email>\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"<email>\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"<string>\",\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"depositor_type\": \"<string>\",\n    \"ownership_category\": \"<string>\",\n    \"account_officer\": \"<string,null>\",\n    \"notes\": \"<string,null>\",\n    \"institution_opt_out_federal_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"<double>\",\n      \"max_balance\": \"<double>\",\n      \"rate\": \"<double>\",\n      \"floating_spread\": \"<double>\",\n      \"rate_index_type\": \"<string>\",\n      \"floating_rate_percentage\": \"<double>\"\n    },\n    {\n      \"min_balance\": \"<double>\",\n      \"max_balance\": \"<double>\",\n      \"rate\": \"<double>\",\n      \"floating_spread\": \"<double>\",\n      \"rate_index_type\": \"<string>\",\n      \"floating_rate_percentage\": \"<double>\"\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": \"<double>\",\n  \"shadow_account\": {\n    \"account_number\": \"<string>\",\n    \"account_type\": \"<string>\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ba762ea9-b03f-41dc-a660-ab034f0a7a47",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "idempotency-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"MMDA\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"entity_name\": \"string\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"string\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"xOVwHbbXzLCG@ZVtZktOdXzqMdswjWxgFOmNOmZOZg.aqb\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"sL-Q@N.kod\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"d90c1f75-47ba-5a11-7d5a-dc6f73373510\",\n      \"55e26834-bcf1-5f77-f6ec-9f89619b3394\"\n    ],\n    \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n    \"ownership_category\": \"US_DEPOSITORY\",\n    \"account_officer\": \"string\",\n    \"notes\": \"string\",\n    \"institution_opt_out_federal_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 3830.0350989205367,\n      \"max_balance\": 311.4748588750216,\n      \"rate\": 7884.446496300774,\n      \"floating_spread\": 1047.88648404044,\n      \"rate_index_type\": \"SOFR_6M\",\n      \"floating_rate_percentage\": 9084.37446047195\n    },\n    {\n      \"min_balance\": 3178.316664224853,\n      \"max_balance\": 1865.3327837541144,\n      \"rate\": 3783.1514277721935,\n      \"floating_spread\": 2952.4135045741573,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 5633.235907461053\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": 9976.22909046275,\n  \"shadow_account\": {\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"signer_primary\": \"string\",\n  \"account_title\": \"string\",\n  \"interest_rate\": \"string\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"CMT_6M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"insurance_limit\": \"string\",\n  \"account_type\": \"MMDA\",\n  \"created_at\": \"string\",\n  \"is_joint_account\": false,\n  \"total_balance\": \"string\",\n  \"pending_balance\": \"string\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"rate_configuration\": \"TIERED\",\n  \"signer_primary_tin_last4\": \"string\",\n  \"closed_at\": \"string\",\n  \"signer_secondary\": \"string\",\n  \"beneficiary_name\": \"string\",\n  \"beneficiary_tin\": \"string\",\n  \"beneficiary_tin_last4\": \"string\",\n  \"institution_account_id\": \"string\",\n  \"institution_sweep_account_id\": \"string\",\n  \"institution_return_account_id\": \"string\",\n  \"institution_branch_id\": \"string\",\n  \"institution_alternative_id\": \"string\",\n  \"cost_center_id\": \"string\",\n  \"cost_center_code\": \"string\",\n  \"depositors\": [\n    {\n      \"id\": \"string\",\n      \"institution_id\": \"string\",\n      \"institution_depositor_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"entity_name\": \"string\",\n      \"is_organization\": true,\n      \"phone_numbers\": [\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"emails\": [\n        {\n          \"email_address\": \"P3dbvt08xU7Z30@CxzGHnnTpUcfSvCARrnVfL.ms\",\n          \"is_primary\": true\n        },\n        {\n          \"email_address\": \"fVTXyf-K@PGOUtlrjMoFTxhikYJNKoaksgzVrOVA.xps\",\n          \"is_primary\": true\n        }\n      ],\n      \"addresses\": [\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"depositor_type\": \"US_DEPOSITORY\",\n      \"tin\": \"string\",\n      \"tin_last_four\": \"string\",\n      \"ownership_category\": \"US_GOVERNMENT\",\n      \"account_officer\": \"string\",\n      \"notes\": \"string\",\n      \"institution_opt_out_federal_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"institution_id\": \"string\",\n      \"institution_depositor_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"entity_name\": \"string\",\n      \"is_organization\": true,\n      \"phone_numbers\": [\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"emails\": [\n        {\n          \"email_address\": \"M9KT9P-3zeQxJq@oKBJokTBUCsHjhgeshuChhnQfc.zuu\",\n          \"is_primary\": true\n        },\n        {\n          \"email_address\": \"oNNUUdgOf@JhdoaZwjcpKSztwMgcxvXUHijczvt.uze\",\n          \"is_primary\": true\n        }\n      ],\n      \"addresses\": [\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"depositor_type\": \"NONPROFIT\",\n      \"tin\": \"string\",\n      \"tin_last_four\": \"string\",\n      \"ownership_category\": \"SOLE_PROPRIETORSHIP\",\n      \"account_officer\": \"string\",\n      \"notes\": \"string\",\n      \"institution_opt_out_federal_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"managed_sweep_target_balance\": \"string\",\n  \"shadow_account\": {\n    \"id\": \"string\",\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\",\n    \"closed_at\": \"string\"\n  },\n  \"notes\": \"string\",\n  \"pricing_group_id\": \"string\",\n  \"rate\": \"string\",\n  \"floating_spread\": \"string\",\n  \"floating_spread_bps\": \"string\",\n  \"rate_index_type\": \"FIDELITY_FCIXX\",\n  \"floating_rate_percentage\": \"string\",\n  \"index_rate\": \"string\",\n  \"custom_benchmark_id\": \"string\",\n  \"custom_benchmark_rate\": \"string\",\n  \"account_officer\": \"string\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"string\",\n  \"custom_field_2\": \"string\",\n  \"custom_field_3\": \"string\",\n  \"custom_field_4\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0708fdce-4180-4d6b-81dd-ff1c4a923613",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "idempotency-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"MMDA\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"entity_name\": \"string\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"string\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"xOVwHbbXzLCG@ZVtZktOdXzqMdswjWxgFOmNOmZOZg.aqb\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"sL-Q@N.kod\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"d90c1f75-47ba-5a11-7d5a-dc6f73373510\",\n      \"55e26834-bcf1-5f77-f6ec-9f89619b3394\"\n    ],\n    \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n    \"ownership_category\": \"US_DEPOSITORY\",\n    \"account_officer\": \"string\",\n    \"notes\": \"string\",\n    \"institution_opt_out_federal_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 3830.0350989205367,\n      \"max_balance\": 311.4748588750216,\n      \"rate\": 7884.446496300774,\n      \"floating_spread\": 1047.88648404044,\n      \"rate_index_type\": \"SOFR_6M\",\n      \"floating_rate_percentage\": 9084.37446047195\n    },\n    {\n      \"min_balance\": 3178.316664224853,\n      \"max_balance\": 1865.3327837541144,\n      \"rate\": 3783.1514277721935,\n      \"floating_spread\": 2952.4135045741573,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 5633.235907461053\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": 9976.22909046275,\n  \"shadow_account\": {\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d5e411c-a44c-4ea7-a455-4f262f332435",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "idempotency-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"MMDA\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"entity_name\": \"string\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"string\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"xOVwHbbXzLCG@ZVtZktOdXzqMdswjWxgFOmNOmZOZg.aqb\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"sL-Q@N.kod\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"d90c1f75-47ba-5a11-7d5a-dc6f73373510\",\n      \"55e26834-bcf1-5f77-f6ec-9f89619b3394\"\n    ],\n    \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n    \"ownership_category\": \"US_DEPOSITORY\",\n    \"account_officer\": \"string\",\n    \"notes\": \"string\",\n    \"institution_opt_out_federal_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 3830.0350989205367,\n      \"max_balance\": 311.4748588750216,\n      \"rate\": 7884.446496300774,\n      \"floating_spread\": 1047.88648404044,\n      \"rate_index_type\": \"SOFR_6M\",\n      \"floating_rate_percentage\": 9084.37446047195\n    },\n    {\n      \"min_balance\": 3178.316664224853,\n      \"max_balance\": 1865.3327837541144,\n      \"rate\": 3783.1514277721935,\n      \"floating_spread\": 2952.4135045741573,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 5633.235907461053\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": 9976.22909046275,\n  \"shadow_account\": {\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3371ff4e-a6c4-46a1-9e81-27eca15a7ef7",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "idempotency-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"MMDA\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"entity_name\": \"string\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"string\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"xOVwHbbXzLCG@ZVtZktOdXzqMdswjWxgFOmNOmZOZg.aqb\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"sL-Q@N.kod\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"d90c1f75-47ba-5a11-7d5a-dc6f73373510\",\n      \"55e26834-bcf1-5f77-f6ec-9f89619b3394\"\n    ],\n    \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n    \"ownership_category\": \"US_DEPOSITORY\",\n    \"account_officer\": \"string\",\n    \"notes\": \"string\",\n    \"institution_opt_out_federal_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 3830.0350989205367,\n      \"max_balance\": 311.4748588750216,\n      \"rate\": 7884.446496300774,\n      \"floating_spread\": 1047.88648404044,\n      \"rate_index_type\": \"SOFR_6M\",\n      \"floating_rate_percentage\": 9084.37446047195\n    },\n    {\n      \"min_balance\": 3178.316664224853,\n      \"max_balance\": 1865.3327837541144,\n      \"rate\": 3783.1514277721935,\n      \"floating_spread\": 2952.4135045741573,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 5633.235907461053\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": 9976.22909046275,\n  \"shadow_account\": {\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70bf81cd-590b-4c15-b4c3-c71fb8b6b3fe",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "idempotency-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"MMDA\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"entity_name\": \"string\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"string\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"xOVwHbbXzLCG@ZVtZktOdXzqMdswjWxgFOmNOmZOZg.aqb\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"sL-Q@N.kod\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"d90c1f75-47ba-5a11-7d5a-dc6f73373510\",\n      \"55e26834-bcf1-5f77-f6ec-9f89619b3394\"\n    ],\n    \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n    \"ownership_category\": \"US_DEPOSITORY\",\n    \"account_officer\": \"string\",\n    \"notes\": \"string\",\n    \"institution_opt_out_federal_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 3830.0350989205367,\n      \"max_balance\": 311.4748588750216,\n      \"rate\": 7884.446496300774,\n      \"floating_spread\": 1047.88648404044,\n      \"rate_index_type\": \"SOFR_6M\",\n      \"floating_rate_percentage\": 9084.37446047195\n    },\n    {\n      \"min_balance\": 3178.316664224853,\n      \"max_balance\": 1865.3327837541144,\n      \"rate\": 3783.1514277721935,\n      \"floating_spread\": 2952.4135045741573,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 5633.235907461053\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": 9976.22909046275,\n  \"shadow_account\": {\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41a1dde1-33f6-4207-9286-f421d6e2b727",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "idempotency-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_title\": \"<string>\",\n  \"account_type\": \"MMDA\",\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"signer_primary\": \"<string,null>\",\n  \"signer_primary_tin\": \"<string,null>\",\n  \"depositor\": {\n    \"tin\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"entity_name\": \"string\",\n    \"is_organization\": false,\n    \"institution_depositor_id\": \"string\",\n    \"phone_numbers\": [\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"number\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"emails\": [\n      {\n        \"email_address\": \"xOVwHbbXzLCG@ZVtZktOdXzqMdswjWxgFOmNOmZOZg.aqb\",\n        \"is_primary\": true\n      },\n      {\n        \"email_address\": \"sL-Q@N.kod\",\n        \"is_primary\": true\n      }\n    ],\n    \"addresses\": [\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      },\n      {\n        \"street\": \"string\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zip\": \"string\",\n        \"country_code\": \"string\",\n        \"is_primary\": true\n      }\n    ],\n    \"account_ids\": [\n      \"d90c1f75-47ba-5a11-7d5a-dc6f73373510\",\n      \"55e26834-bcf1-5f77-f6ec-9f89619b3394\"\n    ],\n    \"depositor_type\": \"FEDERAL_GOVERNMENT\",\n    \"ownership_category\": \"US_DEPOSITORY\",\n    \"account_officer\": \"string\",\n    \"notes\": \"string\",\n    \"institution_opt_out_federal_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": 3830.0350989205367,\n      \"max_balance\": 311.4748588750216,\n      \"rate\": 7884.446496300774,\n      \"floating_spread\": 1047.88648404044,\n      \"rate_index_type\": \"SOFR_6M\",\n      \"floating_rate_percentage\": 9084.37446047195\n    },\n    {\n      \"min_balance\": 3178.316664224853,\n      \"max_balance\": 1865.3327837541144,\n      \"rate\": 3783.1514277721935,\n      \"floating_spread\": 2952.4135045741573,\n      \"rate_index_type\": \"WSJ_PRIME\",\n      \"floating_rate_percentage\": 5633.235907461053\n    }\n  ],\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"is_apy\": false,\n  \"interest_rate\": \"<number,null-double>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"beneficiary_tin\": \"<string,null>\",\n  \"institution_account_id\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"institution_branch_id\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"managed_sweep_target_balance\": 9976.22909046275,\n  \"shadow_account\": {\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\"\n  },\n  \"account_agreement_file_data\": \"<string,null>\",\n  \"notes\": \"<string,null>\",\n  \"pricing_group_id\": \"<string,null-uuid>\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"account_officer\": \"<string,null>\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cfde6c4a-61e5-4e5a-a36f-eb471d4a483c",
+          "name": "Get Account",
+          "request": {
+            "name": "Get Account",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id_type",
+                  "value": "<string>",
+                  "description": "Type of the account id. Must be 'institution' or 'None'."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b343b38e-2cad-478e-8815-836792c2f12c",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"signer_primary\": \"string\",\n  \"account_title\": \"string\",\n  \"interest_rate\": \"string\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"CMT_6M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"insurance_limit\": \"string\",\n  \"account_type\": \"MMDA\",\n  \"created_at\": \"string\",\n  \"is_joint_account\": false,\n  \"total_balance\": \"string\",\n  \"pending_balance\": \"string\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"rate_configuration\": \"TIERED\",\n  \"signer_primary_tin_last4\": \"string\",\n  \"closed_at\": \"string\",\n  \"signer_secondary\": \"string\",\n  \"beneficiary_name\": \"string\",\n  \"beneficiary_tin\": \"string\",\n  \"beneficiary_tin_last4\": \"string\",\n  \"institution_account_id\": \"string\",\n  \"institution_sweep_account_id\": \"string\",\n  \"institution_return_account_id\": \"string\",\n  \"institution_branch_id\": \"string\",\n  \"institution_alternative_id\": \"string\",\n  \"cost_center_id\": \"string\",\n  \"cost_center_code\": \"string\",\n  \"depositors\": [\n    {\n      \"id\": \"string\",\n      \"institution_id\": \"string\",\n      \"institution_depositor_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"entity_name\": \"string\",\n      \"is_organization\": true,\n      \"phone_numbers\": [\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"emails\": [\n        {\n          \"email_address\": \"P3dbvt08xU7Z30@CxzGHnnTpUcfSvCARrnVfL.ms\",\n          \"is_primary\": true\n        },\n        {\n          \"email_address\": \"fVTXyf-K@PGOUtlrjMoFTxhikYJNKoaksgzVrOVA.xps\",\n          \"is_primary\": true\n        }\n      ],\n      \"addresses\": [\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"depositor_type\": \"US_DEPOSITORY\",\n      \"tin\": \"string\",\n      \"tin_last_four\": \"string\",\n      \"ownership_category\": \"US_GOVERNMENT\",\n      \"account_officer\": \"string\",\n      \"notes\": \"string\",\n      \"institution_opt_out_federal_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"institution_id\": \"string\",\n      \"institution_depositor_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"entity_name\": \"string\",\n      \"is_organization\": true,\n      \"phone_numbers\": [\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"emails\": [\n        {\n          \"email_address\": \"M9KT9P-3zeQxJq@oKBJokTBUCsHjhgeshuChhnQfc.zuu\",\n          \"is_primary\": true\n        },\n        {\n          \"email_address\": \"oNNUUdgOf@JhdoaZwjcpKSztwMgcxvXUHijczvt.uze\",\n          \"is_primary\": true\n        }\n      ],\n      \"addresses\": [\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"depositor_type\": \"NONPROFIT\",\n      \"tin\": \"string\",\n      \"tin_last_four\": \"string\",\n      \"ownership_category\": \"SOLE_PROPRIETORSHIP\",\n      \"account_officer\": \"string\",\n      \"notes\": \"string\",\n      \"institution_opt_out_federal_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"managed_sweep_target_balance\": \"string\",\n  \"shadow_account\": {\n    \"id\": \"string\",\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\",\n    \"closed_at\": \"string\"\n  },\n  \"notes\": \"string\",\n  \"pricing_group_id\": \"string\",\n  \"rate\": \"string\",\n  \"floating_spread\": \"string\",\n  \"floating_spread_bps\": \"string\",\n  \"rate_index_type\": \"FIDELITY_FCIXX\",\n  \"floating_rate_percentage\": \"string\",\n  \"index_rate\": \"string\",\n  \"custom_benchmark_id\": \"string\",\n  \"custom_benchmark_rate\": \"string\",\n  \"account_officer\": \"string\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"string\",\n  \"custom_field_2\": \"string\",\n  \"custom_field_3\": \"string\",\n  \"custom_field_4\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42713981-892a-40a2-aab5-3cf7feabec02",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "387bddce-6309-4166-ba86-337062ea20e4",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adba26cc-5349-49e8-9e85-a88227ebd711",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f62f24d0-6797-4234-8413-1cf45d1c2d03",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13e9eac7-b200-44c0-86fd-62abc01a23e8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9beb4f4d-a942-478c-8168-af108df3448d",
+          "name": "Close Account",
+          "request": {
+            "name": "Close Account",
+            "description": {
+              "content": "This endpoint closes an account after verifying access. If the account balance is not zero, the operation will liquidate the account and drop the balance to zero.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b9cfc26-ba37-432a-b838-d7240831d12a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"liquidation_amount\": \"string\",\n  \"scheduled_to_close_date\": \"1978-02-19\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dbf8dc2-fa05-42e3-b004-d289cb2ca59c",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4ecad83-c5d4-4d0e-af4a-5fd0642d3293",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74debf10-1171-4aec-a56a-58506b51540f",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bfec9d3-f6f0-4d67-8876-74ec5cbc2fd6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d9c5695-7e6c-4cf7-875d-9f331b430862",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efea5e2d-e929-4489-98e4-666def33c90d",
+          "name": "Update Account",
+          "request": {
+            "name": "Update Account",
+            "description": {
+              "content": "Updates an account. Note: account_type is immutable and cannot be changed after creation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts",
+                ":account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": \"<double>\",\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0631388d-62fc-4f2e-b444-71ce85a64364",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": 8931.415782785421,\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"institution_id\": \"string\",\n  \"signer_primary\": \"string\",\n  \"account_title\": \"string\",\n  \"interest_rate\": \"string\",\n  \"interest_rate_tiers\": [\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"EFFR_UPPER_BAND\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    },\n    {\n      \"min_balance\": \"string\",\n      \"max_balance\": \"string\",\n      \"rate\": \"string\",\n      \"floating_spread\": \"string\",\n      \"rate_index_type\": \"CMT_6M\",\n      \"floating_rate_percentage\": \"string\",\n      \"custom_benchmark_id\": \"string\"\n    }\n  ],\n  \"insurance_limit\": \"string\",\n  \"account_type\": \"MMDA\",\n  \"created_at\": \"string\",\n  \"is_joint_account\": false,\n  \"total_balance\": \"string\",\n  \"pending_balance\": \"string\",\n  \"is_reciprocation_prioritized\": false,\n  \"is_receiving_printed_statements\": false,\n  \"rate_configuration\": \"TIERED\",\n  \"signer_primary_tin_last4\": \"string\",\n  \"closed_at\": \"string\",\n  \"signer_secondary\": \"string\",\n  \"beneficiary_name\": \"string\",\n  \"beneficiary_tin\": \"string\",\n  \"beneficiary_tin_last4\": \"string\",\n  \"institution_account_id\": \"string\",\n  \"institution_sweep_account_id\": \"string\",\n  \"institution_return_account_id\": \"string\",\n  \"institution_branch_id\": \"string\",\n  \"institution_alternative_id\": \"string\",\n  \"cost_center_id\": \"string\",\n  \"cost_center_code\": \"string\",\n  \"depositors\": [\n    {\n      \"id\": \"string\",\n      \"institution_id\": \"string\",\n      \"institution_depositor_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"entity_name\": \"string\",\n      \"is_organization\": true,\n      \"phone_numbers\": [\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"emails\": [\n        {\n          \"email_address\": \"P3dbvt08xU7Z30@CxzGHnnTpUcfSvCARrnVfL.ms\",\n          \"is_primary\": true\n        },\n        {\n          \"email_address\": \"fVTXyf-K@PGOUtlrjMoFTxhikYJNKoaksgzVrOVA.xps\",\n          \"is_primary\": true\n        }\n      ],\n      \"addresses\": [\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"depositor_type\": \"US_DEPOSITORY\",\n      \"tin\": \"string\",\n      \"tin_last_four\": \"string\",\n      \"ownership_category\": \"US_GOVERNMENT\",\n      \"account_officer\": \"string\",\n      \"notes\": \"string\",\n      \"institution_opt_out_federal_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"institution_id\": \"string\",\n      \"institution_depositor_id\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"entity_name\": \"string\",\n      \"is_organization\": true,\n      \"phone_numbers\": [\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"number\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"emails\": [\n        {\n          \"email_address\": \"M9KT9P-3zeQxJq@oKBJokTBUCsHjhgeshuChhnQfc.zuu\",\n          \"is_primary\": true\n        },\n        {\n          \"email_address\": \"oNNUUdgOf@JhdoaZwjcpKSztwMgcxvXUHijczvt.uze\",\n          \"is_primary\": true\n        }\n      ],\n      \"addresses\": [\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        },\n        {\n          \"street\": \"string\",\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"zip\": \"string\",\n          \"country_code\": \"string\",\n          \"is_primary\": true\n        }\n      ],\n      \"depositor_type\": \"NONPROFIT\",\n      \"tin\": \"string\",\n      \"tin_last_four\": \"string\",\n      \"ownership_category\": \"SOLE_PROPRIETORSHIP\",\n      \"account_officer\": \"string\",\n      \"notes\": \"string\",\n      \"institution_opt_out_federal_ids\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"managed_sweep_target_balance\": \"string\",\n  \"shadow_account\": {\n    \"id\": \"string\",\n    \"account_number\": \"string\",\n    \"account_type\": \"DDA\",\n    \"closed_at\": \"string\"\n  },\n  \"notes\": \"string\",\n  \"pricing_group_id\": \"string\",\n  \"rate\": \"string\",\n  \"floating_spread\": \"string\",\n  \"floating_spread_bps\": \"string\",\n  \"rate_index_type\": \"FIDELITY_FCIXX\",\n  \"floating_rate_percentage\": \"string\",\n  \"index_rate\": \"string\",\n  \"custom_benchmark_id\": \"string\",\n  \"custom_benchmark_rate\": \"string\",\n  \"account_officer\": \"string\",\n  \"is_non_interest_bearing\": false,\n  \"custom_field_1\": \"string\",\n  \"custom_field_2\": \"string\",\n  \"custom_field_3\": \"string\",\n  \"custom_field_4\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a4b68a1-c528-4ea8-a1c8-9c7d414e174a",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": 8931.415782785421,\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6aefa95-0296-4795-8f81-54014b8794af",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": 8931.415782785421,\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aacd617e-4fd5-4f3a-9799-c014070b3984",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": 8931.415782785421,\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a03ac865-301b-4a9c-a0fb-7cc7ef53899e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": 8931.415782785421,\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f206a8c0-2c89-4cfe-825c-d0649d3af7a3",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"depositor_ids\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"account_title\": \"<string,null>\",\n  \"institution_sweep_account_id\": \"<string,null>\",\n  \"institution_return_account_id\": \"<string,null>\",\n  \"is_reciprocation_prioritized\": \"<boolean,null>\",\n  \"is_receiving_printed_statements\": \"<boolean,null>\",\n  \"signer_primary\": \"<string,null>\",\n  \"signer_secondary\": \"<string,null>\",\n  \"beneficiary_name\": \"<string,null>\",\n  \"institution_cost_center_id\": \"<string,null>\",\n  \"cost_center_id\": \"<string,null-uuid>\",\n  \"notes\": \"<string,null>\",\n  \"managed_sweep_target_balance\": 8931.415782785421,\n  \"program_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"institution_alternative_id\": \"<string,null>\",\n  \"account_officer\": \"<string,null>\",\n  \"custom_field_1\": \"<string,null>\",\n  \"custom_field_2\": \"<string,null>\",\n  \"custom_field_3\": \"<string,null>\",\n  \"custom_field_4\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a9255ef-0616-4252-b6bb-cea1c5506499",
+          "name": "Get Account Allocation",
+          "request": {
+            "name": "Get Account Allocation",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts",
+                ":account_id",
+                "allocation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id_type",
+                  "value": "<string>",
+                  "description": "Type of the account id. Must be 'institution' or 'None'."
+                },
+                {
+                  "disabled": false,
+                  "key": "run_date",
+                  "value": "<string,null-date>",
+                  "description": "The date for which to retrieve allocation data. If not provided, uses the most recent run date."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0eb0788c-2705-404b-b0c2-e82c57592d6e",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "allocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "run_date",
+                      "value": "<string,null-date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"string\",\n  \"run_date\": \"string\",\n  \"allocations\": [\n    {\n      \"amount\": \"string\",\n      \"institution\": {\n        \"name\": \"string\",\n        \"state\": \"string\"\n      }\n    },\n    {\n      \"amount\": \"string\",\n      \"institution\": {\n        \"name\": \"string\",\n        \"state\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8319f82-82c1-4147-b30d-82b989bfbbdc",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "allocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "run_date",
+                      "value": "<string,null-date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9625ee18-f98f-469a-bf11-19ebcf57da6f",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "allocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "run_date",
+                      "value": "<string,null-date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26e8cd0e-4e21-49e3-86f9-fd69c0bf870b",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "allocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "run_date",
+                      "value": "<string,null-date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17364b6e-dc14-416e-9616-9837e696e637",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "allocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "run_date",
+                      "value": "<string,null-date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "796dbc03-863d-4237-a57a-c7edaf648823",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "allocation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "run_date",
+                      "value": "<string,null-date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "927fe7bc-03aa-411c-b168-2191769650ca",
+          "name": "Get Account Signer Primary Tin",
+          "request": {
+            "name": "Get Account Signer Primary Tin",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts",
+                ":account_id",
+                "signer-primary-tin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06e14947-acd4-48d0-b8ca-e81031a707eb",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "signer-primary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tin\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "84f38137-904d-437b-ba4f-4861c88befc9",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "signer-primary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "209485f3-803b-4c88-8bee-b8929b394111",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "signer-primary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74b1686c-6246-4406-9bff-8af8abfd59a3",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "signer-primary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a82b765-834b-4f36-91cc-886fbc2eb80e",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "signer-primary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e7fc0be-14d7-4683-867a-efdf4493c1be",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "signer-primary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e6f0a4e-5037-48b6-a02d-20c9bd9c3880",
+          "name": "Get Account Beneficiary Tin",
+          "request": {
+            "name": "Get Account Beneficiary Tin",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "accounts",
+                ":account_id",
+                "beneficiary-tin"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "account_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60a89f92-cadf-4bf3-b4d3-67985f0d3c01",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "beneficiary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tin\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "671df6f6-c4e6-4540-89b9-8634bcaad255",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "beneficiary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {}\n    },\n    {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bcba1fc-47c9-4471-8e39-a9435b3b3706",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "beneficiary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5936bf29-8697-4dcf-82ed-0f9e8a9e282e",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "beneficiary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b7338773-aba0-48ac-a4ac-7d7bdf1263f8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "beneficiary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a010ffa-7068-4c0f-bc0a-6e88dab36b82",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "accounts",
+                    ":account_id",
+                    "beneficiary-tin"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "account_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.modernfi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "73055daa-0735-4d1d-80ed-b139363d80ba",
+    "name": "API Reference Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

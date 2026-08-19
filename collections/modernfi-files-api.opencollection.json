@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Accounts files API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/files/statements",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "statement_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of statement to retrieve. Account statements require account_id. Institution statements require institution_id."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Required for account-level statement types."
+              },
+              {
+                "name": "institution_id",
+                "value": "",
+                "type": "query",
+                "description": "Required for institution-level statement types."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter to include only statements after this date (inclusive)."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter to include only statements before this date (inclusive)"
+              },
+              {
+                "name": "id_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the account id. Must be 'institution' or 'None'."
+              }
+            ]
+          },
+          "docs": "Get Statements"
+        },
+        {
+          "info": {
+            "name": "Get Account Monthly Statement Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/files/account-monthly-statement-config",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get Account Monthly Statement Config"
+        },
+        {
+          "info": {
+            "name": "Post Account Monthly Statement Config",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.modernfi.com/digital-banking/v1/files/account-monthly-statement-config",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post Account Monthly Statement Config"
+        },
+        {
+          "info": {
+            "name": "Get Preview Account Monthly Statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/files/preview-account-monthly-statement",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Get Preview Account Monthly Statement"
+        },
+        {
+          "info": {
+            "name": "Get File",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/files/:file_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "file_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the account id. Must be 'institution' or 'None'."
+              },
+              {
+                "name": "response_type",
+                "value": "",
+                "type": "query",
+                "description": "Form of the response. 'presigned_url' (default) returns a JSON object with a short-lived presigned download URL. 'file' streams the file back directly as raw bytes (Content-Type derived from the file, e.g. application/pdf or text/csv), for callers that cannot fetch presigned URLs."
+              }
+            ]
+          },
+          "docs": "Get File"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

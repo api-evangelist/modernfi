@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Accounts Depositors API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Depositors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Depositors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/depositors",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Search by first name, last name, or entity name (case-insensitive partial match)."
+              },
+              {
+                "name": "institution_depositor_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by exact institution depositor ID."
+              },
+              {
+                "name": "depositor_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by depositor type."
+              }
+            ]
+          },
+          "docs": "List Depositors"
+        },
+        {
+          "info": {
+            "name": "Create Depositor",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.modernfi.com/digital-banking/v1/depositors",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "idempotency-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Depositor"
+        },
+        {
+          "info": {
+            "name": "Get Depositor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/depositors/:depositor_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "depositor_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the depositor id. Must be 'institution' or 'None'."
+              }
+            ]
+          },
+          "docs": "Get Depositor"
+        },
+        {
+          "info": {
+            "name": "Update Depositor",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.modernfi.com/digital-banking/v1/depositors/:depositor_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "depositor_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Depositor"
+        },
+        {
+          "info": {
+            "name": "Get Depositor Tin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/depositors/:depositor_id/tin",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "depositor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Depositor Tin"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

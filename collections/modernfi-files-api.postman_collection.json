@@ -1,0 +1,1928 @@
+{
+  "item": [
+    {
+      "id": "50df497e-81bd-4dc6-8927-98b34f2320d5",
+      "name": "files",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9799cb9f-4dc3-41cd-8578-1e77418d7e64",
+          "name": "Get Statements",
+          "request": {
+            "name": "Get Statements",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "files",
+                "statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statement_type",
+                  "value": "<string>",
+                  "description": "(Required) Type of statement to retrieve. Account statements require account_id. Institution statements require institution_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<uuid>",
+                  "description": "Required for account-level statement types."
+                },
+                {
+                  "disabled": false,
+                  "key": "institution_id",
+                  "value": "<string,null-uuid>",
+                  "description": "Required for institution-level statement types."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string,null-date>",
+                  "description": "Filter to include only statements after this date (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string,null-date>",
+                  "description": "Filter to include only statements before this date (inclusive)"
+                },
+                {
+                  "disabled": false,
+                  "key": "id_type",
+                  "value": "<string>",
+                  "description": "Type of the account id. Must be 'institution' or 'None'."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94e4874f-d103-4824-95de-4d669edabb4b",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statement_type",
+                      "value": "INSTITUTION_QUARTERLY_CALL_REPORT"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "institution_id",
+                      "value": "<string,null-uuid>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statements\": [\n    {\n      \"file_id\": \"string\",\n      \"title\": \"string\",\n      \"statement_date\": \"string\",\n      \"account_id\": \"8f9e3449-2262-e2ac-8bda-dff32bf4de97\",\n      \"institution_id\": \"4b5e3e77-5c1c-a9fd-6e67-3c16293e0c53\"\n    },\n    {\n      \"file_id\": \"string\",\n      \"title\": \"string\",\n      \"statement_date\": \"string\",\n      \"account_id\": \"a9ca8e5d-4c10-2753-b277-4fe8e40792cd\",\n      \"institution_id\": \"321855c9-594e-4a9e-0832-c6abed284f79\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a71c6a4-14c3-4a8f-85f5-9d124da2ac80",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statement_type",
+                      "value": "INSTITUTION_QUARTERLY_CALL_REPORT"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "institution_id",
+                      "value": "<string,null-uuid>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "881e0e0c-7d7c-4627-bfeb-239808f31b2b",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statement_type",
+                      "value": "INSTITUTION_QUARTERLY_CALL_REPORT"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "institution_id",
+                      "value": "<string,null-uuid>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9eda7d1-163b-42ae-a110-7d3d9f59641d",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statement_type",
+                      "value": "INSTITUTION_QUARTERLY_CALL_REPORT"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "institution_id",
+                      "value": "<string,null-uuid>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b1eb043-d26b-45d8-83fe-dcc2d2f01ac6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statement_type",
+                      "value": "INSTITUTION_QUARTERLY_CALL_REPORT"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "institution_id",
+                      "value": "<string,null-uuid>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e73dec59-7d09-471a-bbf5-22d743ef89b7",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statement_type",
+                      "value": "INSTITUTION_QUARTERLY_CALL_REPORT"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "institution_id",
+                      "value": "<string,null-uuid>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string,null-date>"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef30b942-4fd0-4cd8-8f08-e75b7a336a6a",
+          "name": "Get Account Monthly Statement Config",
+          "request": {
+            "name": "Get Account Monthly Statement Config",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "files",
+                "account-monthly-statement-config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1ae47c0-8846-4929-a494-42973f99d687",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1e38998e-d2a9-ebb5-5be3-2a458e07d04c\",\n  \"institution_id\": \"a5026c0c-cf31-8908-72af-40ef1ab7c383\",\n  \"is_regulatory_mark\": true,\n  \"is_account_id_masking\": false,\n  \"statement_title\": \"string\",\n  \"disclosures_paragraph\": \"string\",\n  \"contact_and_mailing_info\": \"string\",\n  \"closing_paragraph\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95a82173-f66b-4fd8-ac24-67dc3ed3e478",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4aa429a-5855-4098-9a9a-766abf83de73",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b0cc665-c363-46dd-b56f-afbae057f390",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d01103ea-bc58-4eb3-b561-edc607ef4c13",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aea7ab75-fe04-4ad1-837a-2b9b294c4881",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "defa1f62-c47d-45c2-b8e2-65d8ec6d7372",
+          "name": "Post Account Monthly Statement Config",
+          "request": {
+            "name": "Post Account Monthly Statement Config",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "files",
+                "account-monthly-statement-config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a00d2bbe-8482-4605-b23e-5ed54c51dc14",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1e38998e-d2a9-ebb5-5be3-2a458e07d04c\",\n  \"institution_id\": \"a5026c0c-cf31-8908-72af-40ef1ab7c383\",\n  \"is_regulatory_mark\": true,\n  \"is_account_id_masking\": false,\n  \"statement_title\": \"string\",\n  \"disclosures_paragraph\": \"string\",\n  \"contact_and_mailing_info\": \"string\",\n  \"closing_paragraph\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6e29662-d991-47fb-9535-962ad6ebe6b6",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "503c0905-8e70-4de2-ad06-197ab8278e1d",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f916d730-7aa4-4461-ba6c-e27eb06fbe92",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32a678fb-177b-4ba3-93e2-3d95be0a7cf8",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "200d27ed-c3c7-4df3-b0e4-bef7c6942742",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "account-monthly-statement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"is_regulatory_mark\": \"<boolean>\",\n  \"is_account_id_masking\": \"<boolean>\",\n  \"statement_title\": \"<string,null>\",\n  \"disclosures_paragraph\": \"<string,null>\",\n  \"contact_and_mailing_info\": \"<string,null>\",\n  \"closing_paragraph\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00b51488-d388-4cad-8d6d-2a1be96cda35",
+          "name": "Get Preview Account Monthly Statement",
+          "request": {
+            "name": "Get Preview Account Monthly Statement",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "files",
+                "preview-account-monthly-statement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6116ace9-0ff2-45e2-9c71-a6a606b2a10f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "preview-account-monthly-statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b32cb77a-befc-4a76-b1ad-e13565289b0c",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "preview-account-monthly-statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb681ab2-7e0a-4331-bd0b-5990e575e3ef",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "preview-account-monthly-statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dafa3d9b-7c3d-4890-9fb9-c1434ba4fc7d",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "preview-account-monthly-statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45116e99-f65e-4b0b-b4aa-f26f2fb76767",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "preview-account-monthly-statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef9c85d1-6953-4d3b-b70c-a221ac24a3ed",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    "preview-account-monthly-statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf746b83-7d41-49c0-b290-9039700e0a45",
+          "name": "Get File",
+          "request": {
+            "name": "Get File",
+            "description": {},
+            "url": {
+              "path": [
+                "digital-banking",
+                "v1",
+                "files",
+                ":file_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "id_type",
+                  "value": "<string>",
+                  "description": "Type of the account id. Must be 'institution' or 'None'."
+                },
+                {
+                  "disabled": false,
+                  "key": "response_type",
+                  "value": "<string>",
+                  "description": "Form of the response. 'presigned_url' (default) returns a JSON object with a short-lived presigned download URL. 'file' streams the file back directly as raw bytes (Content-Type derived from the file, e.g. application/pdf or text/csv), for callers that cannot fetch presigned URLs."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "file_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "987354d4-04cf-4335-8582-66b5074b91ce",
+              "name": "When response_type=file, the file is streamed back directly as raw bytes, with a Content-Type derived from the file (e.g. application/pdf or text/csv). Otherwise a JSON object containing a presigned_url is returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "presigned_url"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"presigned_url\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bb2174a-d608-41e1-abcf-db2369b4fe8b",
+              "name": "Bad Request - Invalid input or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "presigned_url"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"key_0\": {},\n      \"key_1\": {}\n    },\n    {\n      \"key_0\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "907479c5-5f68-47ea-be4c-a01d11eb20c4",
+              "name": "Unauthenticated - Invalid or missing authentication credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "presigned_url"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5582f7a3-3c90-4dd1-aba6-236e86b48436",
+              "name": "Unauthorized - Insufficient permissions to access resource",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "presigned_url"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2fc15b03-e2bd-4743-9fe2-9602559f23d6",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "presigned_url"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af3591c4-bdb7-4465-903e-b54fadfea434",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "digital-banking",
+                    "v1",
+                    "files",
+                    ":file_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "288b0b7c-8470-0a88-2bc9-b41877f154cf"
+                    },
+                    {
+                      "key": "id_type",
+                      "value": "INSTITUTION"
+                    },
+                    {
+                      "key": "response_type",
+                      "value": "presigned_url"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "file_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.modernfi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e008cda1-e4b3-4b36-b96d-e4971e3d2ad1",
+    "name": "API Reference Accounts files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

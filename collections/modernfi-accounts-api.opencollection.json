@@ -1,0 +1,234 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Accounts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "statuses",
+                "value": "",
+                "type": "query",
+                "description": "Filter accounts by status. May be specified multiple times (e.g. ?statuses=CLOSED&statuses=SCHEDULED_FOR_CLOSURE). If omitted, accounts of all statuses are returned."
+              }
+            ]
+          },
+          "docs": "List Accounts"
+        },
+        {
+          "info": {
+            "name": "Create Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              },
+              {
+                "name": "idempotency-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Account"
+        },
+        {
+          "info": {
+            "name": "Get Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts/:account_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the account id. Must be 'institution' or 'None'."
+              }
+            ]
+          },
+          "docs": "Get Account"
+        },
+        {
+          "info": {
+            "name": "Update Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts/:account_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an account. Note: account_type is immutable and cannot be changed after creation."
+        },
+        {
+          "info": {
+            "name": "Close Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts/:account_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint closes an account after verifying access. If the account balance is not zero, the operation will liquidate the account and drop the balance to zero."
+        },
+        {
+          "info": {
+            "name": "Get Account Allocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts/:account_id/allocation",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of the account id. Must be 'institution' or 'None'."
+              },
+              {
+                "name": "run_date",
+                "value": "",
+                "type": "query",
+                "description": "The date for which to retrieve allocation data. If not provided, uses the most recent run date."
+              }
+            ]
+          },
+          "docs": "Get Account Allocation"
+        },
+        {
+          "info": {
+            "name": "Get Account Signer Primary Tin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts/:account_id/signer-primary-tin",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Account Signer Primary Tin"
+        },
+        {
+          "info": {
+            "name": "Get Account Beneficiary Tin",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/accounts/:account_id/beneficiary-tin",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Account Beneficiary Tin"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

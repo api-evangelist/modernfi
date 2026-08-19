@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference Accounts customBenchmarks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customBenchmarks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Custom Benchmarks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/custom-benchmarks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all custom benchmarks for the institution, including their current rates."
+        },
+        {
+          "info": {
+            "name": "Create Custom Benchmark",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.modernfi.com/digital-banking/v1/custom-benchmarks",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new custom benchmark with an initial rate. Custom benchmarks allow institutions to define their own rate indices that can be referenced by account rate tiers. When a custom benchmark's rate is updated, all accounts using it in their rate tiers will automatically receive the new rate."
+        },
+        {
+          "info": {
+            "name": "Get Custom Benchmark",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.modernfi.com/digital-banking/v1/custom-benchmarks/:custom_benchmark_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "custom_benchmark_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a specific custom benchmark, including its current rate."
+        },
+        {
+          "info": {
+            "name": "Update Custom Benchmark Rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.modernfi.com/digital-banking/v1/custom-benchmarks/:custom_benchmark_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "custom_benchmark_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new rate to a custom benchmark. The new rate will automatically cascade to all accounts that reference this benchmark in their rate tiers on the specified effective date. This creates a new rate entry while preserving historical rate data."
+        },
+        {
+          "info": {
+            "name": "Patch Custom Benchmark",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.modernfi.com/digital-banking/v1/custom-benchmarks/:custom_benchmark_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "custom_benchmark_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a custom benchmark's name and/or description. This endpoint does not affect rates. Use PUT /custom-benchmarks/{id} to add new rates."
+        },
+        {
+          "info": {
+            "name": "Delete Custom Benchmark",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.modernfi.com/digital-banking/v1/custom-benchmarks/:custom_benchmark_id",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "custom_benchmark_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a custom benchmark. This operation will fail if the benchmark is currently referenced by any account or pricing group rate tiers. Remove all tier references before deleting."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
