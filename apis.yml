@@ -37,6 +37,15 @@ tags:
 - Deposits
 - Fintech
 - Credit Unions
+- Financial-Services
+- Deposit Network
+- Treasury
+tags_raw:
+- Company
+- Banking
+- Deposits
+- Fintech
+- Credit Unions
 - Financial Services
 - Deposit Network
 - Treasury
@@ -48,6 +57,8 @@ apis:
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -64,6 +75,8 @@ apis:
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
   tags:
+  - Authentication
+  tags_raw:
   - auth
   properties:
   - type: OpenAPI
@@ -79,7 +92,8 @@ apis:
   description: The customBenchmarks API from ModernFi — 2 operation(s) for custombenchmarks.
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
-  tags:
+  tags: []
+  tags_raw:
   - customBenchmarks
   properties:
   - type: OpenAPI
@@ -112,6 +126,8 @@ apis:
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
   tags:
+  - File
+  tags_raw:
   - files
   properties:
   - type: OpenAPI
@@ -127,7 +143,8 @@ apis:
   description: The pricingGroups API from ModernFi — 4 operation(s) for pricinggroups.
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
-  tags:
+  tags: []
+  tags_raw:
   - pricingGroups
   properties:
   - type: OpenAPI
@@ -144,6 +161,8 @@ apis:
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
