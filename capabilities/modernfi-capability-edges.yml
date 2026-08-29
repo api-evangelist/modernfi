@@ -1,0 +1,46 @@
+slug: modernfi
+provider: ModernFi
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: Accounts
+  spec_file: modernfi-accounts-api-openapi.yml
+  capability_id: BC-1330.10
+  capability_id_l1: BC-1330
+  capability_name: Deposit Account Management
+  confidence: 0.85
+  evidence: POST /digital-banking/v1/accounts 'Create Account', DELETE 'Close Account'; schemas AccountType,
+    InterestRateTierRequest, DepositorType
+  reason: Full lifecycle of deposit accounts (open, update, close, allocation, interest rate tiers) for
+    banks and credit unions — deposit account management.
+- tag: pricingGroups
+  spec_file: modernfi-pricinggroups-api-openapi.yml
+  capability_id: BC-1330.50
+  capability_id_l1: BC-1330
+  capability_name: Deposit Pricing & Interest Management
+  confidence: 0.75
+  evidence: PUT /digital-banking/v1/pricing-groups/{pricing_group_id}/rates  updateRates  Update Pricing
+    Group Rates; PricingGroupRateTierRequestMinBalance, PricingGroupRateTierRequestFloatingRatePercentage,
+    ReferenceRateType; POST .../accounts  Assign Accounts To Pricing Group
+  reason: Balance-tiered interest rate structures assigned to deposit accounts — deposit interest/pricing
+    management in a deposit network platform.
+- tag: Depositors
+  spec_file: modernfi-depositors-api-openapi.yml
+  capability_id: BC-1300.40
+  capability_id_l1: BC-1300
+  capability_name: Customer Information Management
+  confidence: 0.7
+  evidence: POST /digital-banking/v1/depositors 'Create Depositor'; schemas DepositorResponse, OwnershipCategory,
+    AddressData, DepositorTINResponse
+  reason: Manages the customer (depositor) master record — identity, TIN, contact and ownership category
+    — i.e. banking customer information management; onboarding reading is also plausible.
