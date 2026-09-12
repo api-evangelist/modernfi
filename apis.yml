@@ -190,6 +190,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Website
+  url: https://www.modernfi.com/
 - type: CapabilityMap
   url: capabilities/modernfi-capability-edges.yml
   name: ModernFi Business Capability Map
