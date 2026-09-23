@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Accounts pricingGroups API
+  title: Reference Pricing Groups API
   version: 1.0.0
 servers:
 - url: https://api.modernfi.com
@@ -528,89 +528,6 @@ components:
       - updated_at
       - accounts
       title: PricingGroupResponse
-    PricingGroupRateTierRequestFloatingRatePercentage:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Multiplier applied to the index rate. Required when floating_spread is set.
-      title: PricingGroupRateTierRequestFloatingRatePercentage
-    UnassignAccountsRequest:
-      type: object
-      properties:
-        account_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of account IDs to unassign from the pricing group
-      required:
-      - account_ids
-      title: UnassignAccountsRequest
-    UpdatePricingGroupMetadataRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the pricing group
-        description:
-          type:
-          - string
-          - 'null'
-          description: New description for the pricing group
-      title: UpdatePricingGroupMetadataRequest
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
-    PricingGroupRateTierRequestMaxBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Maximum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMaxBalance
-    PricingGroupRateTierResponse:
-      type: object
-      properties:
-        min_balance:
-          type: string
-        max_balance:
-          type: string
-        rate:
-          type:
-          - string
-          - 'null'
-        floating_spread:
-          type:
-          - string
-          - 'null'
-        rate_index_type:
-          oneOf:
-          - $ref: '#/components/schemas/ReferenceRateType'
-          - type: 'null'
-        floating_rate_percentage:
-          type:
-          - string
-          - 'null'
-        custom_benchmark_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - min_balance
-      - max_balance
-      title: PricingGroupRateTierResponse
     CreatePricingGroupRequest:
       type: object
       properties:
@@ -643,28 +560,6 @@ components:
       - name
       - interest_rate_tiers
       title: CreatePricingGroupRequest
-    PricingGroupRateTierRequestMinBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Minimum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMinBalance
-    PricingGroupRateTierRequestRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
-      title: PricingGroupRateTierRequestRate
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
     UpdatePricingGroupRatesRequest:
       type: object
       properties:
@@ -680,37 +575,60 @@ components:
       required:
       - interest_rate_tiers
       title: UpdatePricingGroupRatesRequest
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    ReferenceRateType:
-      type: string
-      enum:
-      - EFFR
-      - CU_RECEIVE_DEFAULT
-      - BANK_RECEIVE_DEFAULT
-      - EFFR_UPPER_BAND
-      - EFFR_LOWER_BAND
-      - SOFR_OVERNIGHT
-      - SOFR_1M
-      - SOFR_3M
-      - SOFR_6M
-      - SOFR_12M
-      - CMT_1M
-      - CMT_3M
-      - CMT_6M
-      - FIDELITY_FISXX
-      - FIDELITY_SPAXX
-      - FIDELITY_FCIXX
-      - WSJ_PRIME
-      - IORB
-      title: ReferenceRateType
-    ValidationErrorCtx:
+    UpdatePricingGroupMetadataRequest:
       type: object
-      properties: {}
-      title: ValidationErrorCtx
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the pricing group
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the pricing group
+      title: UpdatePricingGroupMetadataRequest
+    AssignAccountsToPricingGroupRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to assign to this pricing group
+        effective_at:
+          type: string
+          format: date-time
+          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
+      required:
+      - account_ids
+      title: AssignAccountsToPricingGroupRequest
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    UnassignAccountsRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to unassign from the pricing group
+      required:
+      - account_ids
+      title: UnassignAccountsRequest
     PricingGroupRateTierRequestFloatingSpread:
       oneOf:
       - type: number
@@ -738,6 +656,56 @@ components:
       - msg
       - type
       title: ValidationError
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    PricingGroupRateTierRequestMaxBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Maximum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMaxBalance
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    PricingGroupRateTierResponse:
+      type: object
+      properties:
+        min_balance:
+          type: string
+        max_balance:
+          type: string
+        rate:
+          type:
+          - string
+          - 'null'
+        floating_spread:
+          type:
+          - string
+          - 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+        floating_rate_percentage:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - min_balance
+      - max_balance
+      title: PricingGroupRateTierResponse
     PricingGroupRateTierRequest:
       type: object
       properties:
@@ -777,6 +745,50 @@ components:
       - min_balance
       - max_balance
       title: PricingGroupRateTierRequest
+    PricingGroupRateTierRequestMinBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Minimum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMinBalance
+    PricingGroupRateTierRequestRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+      title: PricingGroupRateTierRequestRate
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    ReferenceRateType:
+      type: string
+      enum:
+      - EFFR
+      - CU_RECEIVE_DEFAULT
+      - BANK_RECEIVE_DEFAULT
+      - EFFR_UPPER_BAND
+      - EFFR_LOWER_BAND
+      - SOFR_OVERNIGHT
+      - SOFR_1M
+      - SOFR_3M
+      - SOFR_6M
+      - SOFR_12M
+      - CMT_1M
+      - CMT_3M
+      - CMT_6M
+      - FIDELITY_FISXX
+      - FIDELITY_SPAXX
+      - FIDELITY_FCIXX
+      - WSJ_PRIME
+      - IORB
+      title: ReferenceRateType
     AccountData:
       type: object
       properties:
@@ -788,30 +800,18 @@ components:
       - id
       - title
       title: AccountData
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
-    AssignAccountsToPricingGroupRequest:
-      type: object
-      properties:
-        account_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of account IDs to assign to this pricing group
-        effective_at:
-          type: string
-          format: date-time
-          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
-      required:
-      - account_ids
-      title: AssignAccountsToPricingGroupRequest
+    PricingGroupRateTierRequestFloatingRatePercentage:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Multiplier applied to the index rate. Required when floating_spread is set.
+      title: PricingGroupRateTierRequestFloatingRatePercentage
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
   securitySchemes:
     OAuth:
       type: http

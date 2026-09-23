@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Accounts Transactions API
+  title: Reference Transactions API
   version: 1.0.0
 servers:
 - url: https://api.modernfi.com
@@ -369,6 +369,12 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionRequest'
 components:
   schemas:
+    DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId
     DigitalBankingV1AccountsAccountIdTransactionsGetParametersTimezoneSchema:
       type: string
       enum:
@@ -971,18 +977,12 @@ components:
       - WET
       - Zulu
       title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersTimezoneSchema
-    UpdateTransactionRequest:
-      type: object
-      properties:
-        transaction_status:
-          oneOf:
-          - $ref: '#/components/schemas/TransactionStatus'
-          - type: 'null'
-        institution_transaction_id:
-          type:
-          - string
-          - 'null'
-      title: UpdateTransactionRequest
+    IdType:
+      type: string
+      enum:
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
     ValidationError:
       type: object
       properties:
@@ -1003,23 +1003,30 @@ components:
       - msg
       - type
       title: ValidationError
-    DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        transaction_status:
+          oneOf:
+          - $ref: '#/components/schemas/TransactionStatus'
+          - type: 'null'
+        institution_transaction_id:
+          type:
+          - string
+          - 'null'
+      title: UpdateTransactionRequest
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
     TransactionResponse:
       type: object
       properties:
@@ -1061,14 +1068,68 @@ components:
       - is_interest_payment
       - transaction_type
       title: TransactionResponse
-    HTTPValidationError:
+    TransactionStatus:
+      type: string
+      enum:
+      - PENDING
+      - POSTED
+      - CANCELLED
+      title: TransactionStatus
+    DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    TransactionTypeFilter:
+      type: string
+      enum:
+      - CREDIT
+      - DEBIT
+      title: TransactionTypeFilter
+    TransactionType:
+      type: string
+      enum:
+      - CREDIT
+      - DEBIT
+      title: TransactionType
+    TransactionStatusFilter:
+      type: string
+      enum:
+      - PENDING
+      - POSTED
+      title: TransactionStatusFilter
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId
+    ValidationErrorDetail:
       type: object
       properties:
         detail:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
     CreateTransactionRequest:
       type: object
       properties:
@@ -1091,67 +1152,6 @@ components:
       - amount
       - transacted_at
       title: CreateTransactionRequest
-    TransactionStatus:
-      type: string
-      enum:
-      - PENDING
-      - POSTED
-      - CANCELLED
-      title: TransactionStatus
-    IdType:
-      type: string
-      enum:
-      - INSTITUTION
-      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
-      title: IdType
-    TransactionType:
-      type: string
-      enum:
-      - CREDIT
-      - DEBIT
-      title: TransactionType
-    DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    TransactionStatusFilter:
-      type: string
-      enum:
-      - PENDING
-      - POSTED
-      title: TransactionStatusFilter
-    TransactionTypeFilter:
-      type: string
-      enum:
-      - CREDIT
-      - DEBIT
-      title: TransactionTypeFilter
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
   securitySchemes:
     OAuth:
       type: http

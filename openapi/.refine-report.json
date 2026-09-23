@@ -1,26 +1,39 @@
 {
   "provider": "modernfi",
   "sources": [
-    "modernfi-accounts-api-openapi.yml",
-    "modernfi-auth-api-openapi.yml",
-    "modernfi-custombenchmarks-api-openapi.yml",
-    "modernfi-depositors-api-openapi.yml",
-    "modernfi-files-api-openapi.yml",
-    "modernfi-pricinggroups-api-openapi.yml",
-    "modernfi-transactions-api-openapi.yml"
+    "_original/modernfi-openapi-original.json"
   ],
   "outputs": [
     "modernfi-accounts-api-openapi.yml",
+    "modernfi-depositors-api-openapi.yml",
+    "modernfi-transactions-api-openapi.yml",
     "modernfi-auth-api-openapi.yml",
     "modernfi-custombenchmarks-api-openapi.yml",
-    "modernfi-depositors-api-openapi.yml",
     "modernfi-files-api-openapi.yml",
-    "modernfi-pricinggroups-api-openapi.yml",
-    "modernfi-transactions-api-openapi.yml"
+    "modernfi-pricinggroups-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "modernfi-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "modernfi-openapi-original.json: declared missing tag: Accounts",
+    "modernfi-openapi-original.json: declared missing tag: Depositors",
+    "modernfi-openapi-original.json: declared missing tag: Transactions",
+    "modernfi-openapi-original.json: declared missing tag: auth",
+    "modernfi-openapi-original.json: declared missing tag: customBenchmarks",
+    "modernfi-openapi-original.json: declared missing tag: files",
+    "modernfi-openapi-original.json: declared missing tag: pricingGroups",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "modernfi-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "modernfi-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "modernfi-custombenchmarks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "modernfi-depositors-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "modernfi-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "modernfi-pricinggroups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "modernfi-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

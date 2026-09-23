@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Accounts customBenchmarks API
+  title: Reference Custom Benchmarks API
   version: 1.0.0
 servers:
 - url: https://api.modernfi.com
@@ -360,38 +360,13 @@ paths:
               $ref: '#/components/schemas/PatchCustomBenchmarkRequest'
 components:
   schemas:
-    PatchCustomBenchmarkRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the custom benchmark
-        description:
-          type:
-          - string
-          - 'null'
-          description: New description for the custom benchmark
-      title: PatchCustomBenchmarkRequest
-    CreateCustomBenchmarkRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the custom benchmark (e.g., 'Short-Term Funding Cost')
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description providing additional context about this benchmark
-        rate:
-          $ref: '#/components/schemas/CustomBenchmarkRate'
-          description: Initial rate for the custom benchmark (e.g., 0.0425 for 4.25%)
-      required:
-      - name
-      - rate
-      title: CreateCustomBenchmarkRequest
+    CustomBenchmarkRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: New rate for the custom benchmark. Will create a new rate entry.
+      title: CustomBenchmarkRate
     ValidationError:
       type: object
       properties:
@@ -412,18 +387,10 @@ components:
       - msg
       - type
       title: ValidationError
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    CustomBenchmarkRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: New rate for the custom benchmark. Will create a new rate entry.
-      title: CustomBenchmarkRate
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
     HTTPValidationError:
       type: object
       properties:
@@ -432,6 +399,20 @@ components:
           items:
             $ref: '#/components/schemas/ValidationError'
       title: HTTPValidationError
+    PatchCustomBenchmarkRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the custom benchmark
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the custom benchmark
+      title: PatchCustomBenchmarkRequest
     UpdateCustomBenchmarkRateRequest:
       type: object
       properties:
@@ -447,10 +428,6 @@ components:
       required:
       - rate
       title: UpdateCustomBenchmarkRateRequest
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
     ErrorDetail:
       type: object
       properties:
@@ -459,6 +436,29 @@ components:
       required:
       - detail
       title: ErrorDetail
+    CreateCustomBenchmarkRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the custom benchmark (e.g., 'Short-Term Funding Cost')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this benchmark
+        rate:
+          $ref: '#/components/schemas/CustomBenchmarkRate'
+          description: Initial rate for the custom benchmark (e.g., 0.0425 for 4.25%)
+      required:
+      - name
+      - rate
+      title: CreateCustomBenchmarkRequest
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
     ValidationErrorDetail:
       type: object
       properties:

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference Accounts files API
+  title: Reference Files API
   version: 1.0.0
 servers:
 - url: https://api.modernfi.com
@@ -14,14 +14,14 @@ servers:
 - url: https://auth.uat.modernfi.com
   description: UAT
 tags:
-- name: files
+- name: Files
 paths:
   /digital-banking/v1/files/statements:
     get:
       operationId: get_statements_digital_banking_v1_files_statements_get
       summary: Get Statements
       tags:
-      - files
+      - Files
       parameters:
       - name: statement_type
         in: query
@@ -120,7 +120,7 @@ paths:
       operationId: get_account_monthly_statement_config_digital_banking_v1_files_account_monthly_statement_config_get
       summary: Get Account Monthly Statement Config
       tags:
-      - files
+      - Files
       parameters:
       - name: Authorization
         in: header
@@ -169,7 +169,7 @@ paths:
       operationId: post_account_monthly_statement_config_digital_banking_v1_files_account_monthly_statement_config_post
       summary: Post Account Monthly Statement Config
       tags:
-      - files
+      - Files
       parameters:
       - name: Authorization
         in: header
@@ -224,7 +224,7 @@ paths:
       operationId: get_preview_account_monthly_statement_digital_banking_v1_files_preview_account_monthly_statement_get
       summary: Get Preview Account Monthly Statement
       tags:
-      - files
+      - Files
       parameters:
       - name: Authorization
         in: header
@@ -274,7 +274,7 @@ paths:
       operationId: get_file_digital_banking_v1_files__file_id__get
       summary: Get File
       tags:
-      - files
+      - Files
       parameters:
       - name: file_id
         in: path
@@ -346,54 +346,17 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
 components:
   schemas:
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+    FileResponseType:
+      type: string
+      enum:
+      - presigned_url
+      - file
+      title: FileResponseType
     ValidationErrorLocItems:
       oneOf:
       - type: string
       - type: integer
       title: ValidationErrorLocItems
-    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      description: Required for account-level statement types.
-      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
     DigitalBankingV1FilesFileIdGetParametersAccountId:
       oneOf:
       - type: string
@@ -432,18 +395,38 @@ components:
       - title
       - statement_date
       title: StatementResponse
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
     ValidationErrorCtx:
       type: object
       properties: {}
       title: ValidationErrorCtx
-    FileResponse:
-      type: object
-      properties:
-        presigned_url:
-          type: string
-      required:
-      - presigned_url
-      title: FileResponse
     StatementsResponse:
       type: object
       properties:
@@ -454,34 +437,14 @@ components:
       required:
       - statements
       title: StatementsResponse
-    StatementType:
-      type: string
-      enum:
-      - INSTITUTION_DAILY_SWEEP
-      - INSTITUTION_DAILY_RECEIVE
-      - INSTITUTION_MONTHLY_INTEREST
-      - ACCOUNT_MONTHLY_SWEEP
-      - INSTITUTION_DAILY_GL_POSTINGS
-      - INSTITUTION_DAILY_GL_BALANCES
-      - INSTITUTION_DAILY_COST_CENTER_POSTINGS
-      - INSTITUTION_DAILY_COST_CENTER_BALANCES
-      - INSTITUTION_DAILY_TRIAL_BALANCES
-      - INSTITUTION_QUARTERLY_CALL_REPORT
-      - INSTITUTION_WEEKLY_FR2900
-      - INSTITUTION_DAILY_ACCOUNT_HISTORY
-      - INSTITUTION_DAILY_TRANSACTION_HISTORY
-      - INSTITUTION_DAILY_TRANSACTION_ERRORS
-      - INSTITUTION_MONTHLY_SETTLEMENT_POSTINGS
-      - INSTITUTION_MONTHLY_COST_CENTER_SETTLEMENT_POSTINGS
-      - INSTITUTION_MONTHLY_NBID
-      - INSTITUTION_MONTHLY_ACCOUNT_STATEMENT_BUNDLE
-      title: StatementType
-    FileResponseType:
-      type: string
-      enum:
+    FileResponse:
+      type: object
+      properties:
+        presigned_url:
+          type: string
+      required:
       - presigned_url
-      - file
-      title: FileResponseType
+      title: FileResponse
     AccountMonthlyStatementConfigResponse:
       type: object
       properties:
@@ -525,6 +488,55 @@ components:
       - is_regulatory_mark
       - is_account_id_masking
       title: AccountMonthlyStatementConfigResponse
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    StatementType:
+      type: string
+      enum:
+      - INSTITUTION_DAILY_SWEEP
+      - INSTITUTION_DAILY_RECEIVE
+      - INSTITUTION_MONTHLY_INTEREST
+      - ACCOUNT_MONTHLY_SWEEP
+      - INSTITUTION_DAILY_GL_POSTINGS
+      - INSTITUTION_DAILY_GL_BALANCES
+      - INSTITUTION_DAILY_COST_CENTER_POSTINGS
+      - INSTITUTION_DAILY_COST_CENTER_BALANCES
+      - INSTITUTION_DAILY_TRIAL_BALANCES
+      - INSTITUTION_QUARTERLY_CALL_REPORT
+      - INSTITUTION_WEEKLY_FR2900
+      - INSTITUTION_DAILY_ACCOUNT_HISTORY
+      - INSTITUTION_DAILY_TRANSACTION_HISTORY
+      - INSTITUTION_DAILY_TRANSACTION_ERRORS
+      - INSTITUTION_MONTHLY_SETTLEMENT_POSTINGS
+      - INSTITUTION_MONTHLY_COST_CENTER_SETTLEMENT_POSTINGS
+      - INSTITUTION_MONTHLY_NBID
+      - INSTITUTION_MONTHLY_ACCOUNT_STATEMENT_BUNDLE
+      title: StatementType
+    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      description: Required for account-level statement types.
+      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
     AccountMonthlyStatementConfigRequest:
       type: object
       properties:
@@ -558,18 +570,6 @@ components:
       - is_regulatory_mark
       - is_account_id_masking
       title: AccountMonthlyStatementConfigRequest
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
   securitySchemes:
     OAuth:
       type: http
