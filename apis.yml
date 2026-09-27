@@ -48,7 +48,7 @@ tags:
 - Deposits
 - Fintech
 - Credit Union
-- Financial-Services
+- Financial Services
 - Deposit Network
 - Treasury
 tags_raw:
@@ -60,6 +60,7 @@ tags_raw:
 - Financial Services
 - Deposit Network
 - Treasury
+- Financial-Services
 image: https://modernfi.com/favicon.ico
 apis:
 - aid: modernfi:modernfi-accounts-api
@@ -81,7 +82,7 @@ apis:
   - type: GettingStarted
     url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
 - aid: modernfi:modernfi-auth-api
-  name: ModernFi auth API
+  name: ModernFi Auth API
   description: The auth API from ModernFi — 1 operation(s) for auth.
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
@@ -99,7 +100,7 @@ apis:
   - type: GettingStarted
     url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
 - aid: modernfi:modernfi-custombenchmarks-api
-  name: ModernFi customBenchmarks API
+  name: ModernFi Custom Benchmarks API
   description: The customBenchmarks API from ModernFi — 2 operation(s) for custombenchmarks.
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
@@ -132,7 +133,7 @@ apis:
   - type: GettingStarted
     url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
 - aid: modernfi:modernfi-files-api
-  name: ModernFi files API
+  name: ModernFi Files API
   description: The files API from ModernFi — 4 operation(s) for files.
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com
@@ -150,7 +151,7 @@ apis:
   - type: GettingStarted
     url: https://docs.modernfi.com/modernfi-developer-hub/getting-started
 - aid: modernfi:modernfi-pricinggroups-api
-  name: ModernFi pricingGroups API
+  name: ModernFi Pricing Groups API
   description: The pricingGroups API from ModernFi — 4 operation(s) for pricinggroups.
   humanURL: https://docs.modernfi.com
   baseURL: https://api.modernfi.com

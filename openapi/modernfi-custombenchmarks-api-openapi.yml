@@ -360,45 +360,41 @@ paths:
               $ref: '#/components/schemas/PatchCustomBenchmarkRequest'
 components:
   schemas:
-    CustomBenchmarkRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: New rate for the custom benchmark. Will create a new rate entry.
-      title: CustomBenchmarkRate
-    ValidationError:
+    CreateCustomBenchmarkRequest:
       type: object
       properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
+        name:
           type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
+          description: Name of the custom benchmark (e.g., 'Short-Term Funding Cost')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this benchmark
+        rate:
+          $ref: '#/components/schemas/CustomBenchmarkRate'
+          description: Initial rate for the custom benchmark (e.g., 0.0425 for 4.25%)
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - name
+      - rate
+      title: CreateCustomBenchmarkRequest
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
     ValidationErrorCtx:
       type: object
       properties: {}
       title: ValidationErrorCtx
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
     PatchCustomBenchmarkRequest:
       type: object
       properties:
@@ -428,37 +424,41 @@ components:
       required:
       - rate
       title: UpdateCustomBenchmarkRateRequest
-    ErrorDetail:
+    HTTPValidationError:
       type: object
       properties:
         detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    CreateCustomBenchmarkRequest:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    CustomBenchmarkRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: New rate for the custom benchmark. Will create a new rate entry.
+      title: CustomBenchmarkRate
+    ValidationError:
       type: object
       properties:
-        name:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
           type: string
-          description: Name of the custom benchmark (e.g., 'Short-Term Funding Cost')
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description providing additional context about this benchmark
-        rate:
-          $ref: '#/components/schemas/CustomBenchmarkRate'
-          description: Initial rate for the custom benchmark (e.g., 0.0425 for 4.25%)
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
       required:
-      - name
-      - rate
-      title: CreateCustomBenchmarkRequest
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
+      - loc
+      - msg
+      - type
+      title: ValidationError
     ValidationErrorDetail:
       type: object
       properties:

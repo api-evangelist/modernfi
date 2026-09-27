@@ -488,6 +488,112 @@ paths:
               $ref: '#/components/schemas/UnassignAccountsRequest'
 components:
   schemas:
+    PricingGroupRateTierRequestRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+      title: PricingGroupRateTierRequestRate
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    UpdatePricingGroupMetadataRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the pricing group
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the pricing group
+      title: UpdatePricingGroupMetadataRequest
+    AccountData:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+      required:
+      - id
+      - title
+      title: AccountData
+    PricingGroupRateTierRequestMinBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Minimum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMinBalance
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    PricingGroupRateTierRequestFloatingRatePercentage:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Multiplier applied to the index rate. Required when floating_spread is set.
+      title: PricingGroupRateTierRequestFloatingRatePercentage
+    PricingGroupRateTierRequestFloatingSpread:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
+      title: PricingGroupRateTierRequestFloatingSpread
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    CreatePricingGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this pricing group
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: Rate tiers for the pricing group. At least one tier is required.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
+      required:
+      - name
+      - interest_rate_tiers
+      title: CreatePricingGroupRequest
     PricingGroupResponse:
       type: object
       properties:
@@ -528,95 +634,35 @@ components:
       - updated_at
       - accounts
       title: PricingGroupResponse
-    CreatePricingGroupRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description providing additional context about this pricing group
-        interest_rate_tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingGroupRateTierRequest'
-          description: Rate tiers for the pricing group. At least one tier is required.
-        effective_at:
-          type: string
-          format: date-time
-          description: When these rates become effective. Defaults to now if not provided.
-        account_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
-      required:
-      - name
-      - interest_rate_tiers
-      title: CreatePricingGroupRequest
-    UpdatePricingGroupRatesRequest:
-      type: object
-      properties:
-        interest_rate_tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingGroupRateTierRequest'
-          description: New rate tiers for the pricing group.
-        effective_at:
-          type: string
-          format: date-time
-          description: When these rates become effective. Defaults to now if not provided.
-      required:
-      - interest_rate_tiers
-      title: UpdatePricingGroupRatesRequest
-    UpdatePricingGroupMetadataRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the pricing group
-        description:
-          type:
-          - string
-          - 'null'
-          description: New description for the pricing group
-      title: UpdatePricingGroupMetadataRequest
-    AssignAccountsToPricingGroupRequest:
-      type: object
-      properties:
-        account_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of account IDs to assign to this pricing group
-        effective_at:
-          type: string
-          format: date-time
-          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
-      required:
-      - account_ids
-      title: AssignAccountsToPricingGroupRequest
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
+    PricingGroupRateTierRequestMaxBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Maximum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMaxBalance
+    ReferenceRateType:
+      type: string
+      enum:
+      - EFFR
+      - CU_RECEIVE_DEFAULT
+      - BANK_RECEIVE_DEFAULT
+      - EFFR_UPPER_BAND
+      - EFFR_LOWER_BAND
+      - SOFR_OVERNIGHT
+      - SOFR_1M
+      - SOFR_3M
+      - SOFR_6M
+      - SOFR_12M
+      - CMT_1M
+      - CMT_3M
+      - CMT_6M
+      - FIDELITY_FISXX
+      - FIDELITY_SPAXX
+      - FIDELITY_FCIXX
+      - WSJ_PRIME
+      - IORB
+      title: ReferenceRateType
     UnassignAccountsRequest:
       type: object
       properties:
@@ -629,52 +675,6 @@ components:
       required:
       - account_ids
       title: UnassignAccountsRequest
-    PricingGroupRateTierRequestFloatingSpread:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
-      title: PricingGroupRateTierRequestFloatingSpread
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    PricingGroupRateTierRequestMaxBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Maximum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMaxBalance
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
     PricingGroupRateTierResponse:
       type: object
       properties:
@@ -745,20 +745,45 @@ components:
       - min_balance
       - max_balance
       title: PricingGroupRateTierRequest
-    PricingGroupRateTierRequestMinBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Minimum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMinBalance
-    PricingGroupRateTierRequestRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
-      title: PricingGroupRateTierRequestRate
+    UpdatePricingGroupRatesRequest:
+      type: object
+      properties:
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: New rate tiers for the pricing group.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+      required:
+      - interest_rate_tiers
+      title: UpdatePricingGroupRatesRequest
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    AssignAccountsToPricingGroupRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to assign to this pricing group
+        effective_at:
+          type: string
+          format: date-time
+          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
+      required:
+      - account_ids
+      title: AssignAccountsToPricingGroupRequest
     HTTPValidationError:
       type: object
       properties:
@@ -767,51 +792,26 @@ components:
           items:
             $ref: '#/components/schemas/ValidationError'
       title: HTTPValidationError
-    ReferenceRateType:
-      type: string
-      enum:
-      - EFFR
-      - CU_RECEIVE_DEFAULT
-      - BANK_RECEIVE_DEFAULT
-      - EFFR_UPPER_BAND
-      - EFFR_LOWER_BAND
-      - SOFR_OVERNIGHT
-      - SOFR_1M
-      - SOFR_3M
-      - SOFR_6M
-      - SOFR_12M
-      - CMT_1M
-      - CMT_3M
-      - CMT_6M
-      - FIDELITY_FISXX
-      - FIDELITY_SPAXX
-      - FIDELITY_FCIXX
-      - WSJ_PRIME
-      - IORB
-      title: ReferenceRateType
-    AccountData:
+    ValidationError:
       type: object
       properties:
-        id:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
           type: string
-        title:
+        type:
           type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
       required:
-      - id
-      - title
-      title: AccountData
-    PricingGroupRateTierRequestFloatingRatePercentage:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Multiplier applied to the index rate. Required when floating_spread is set.
-      title: PricingGroupRateTierRequestFloatingRatePercentage
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     OAuth:
       type: http

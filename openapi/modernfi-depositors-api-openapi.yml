@@ -332,6 +332,90 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
 components:
   schemas:
+    DepositorType:
+      type: string
+      enum:
+      - CONSUMER
+      - BUSINESS
+      - NONPROFIT
+      - LOCAL_GOVERNMENT
+      - FEDERAL_GOVERNMENT
+      - US_DEPOSITORY
+      - FOREIGN_DEPOSITORY
+      - FOREIGN_GOVERNMENT
+      title: DepositorType
+    UpdateDepositorRequest:
+      type: object
+      properties:
+        first_name:
+          type:
+          - string
+          - 'null'
+        last_name:
+          type:
+          - string
+          - 'null'
+        entity_name:
+          type:
+          - string
+          - 'null'
+        institution_depositor_id:
+          type:
+          - string
+          - 'null'
+        depositor_type:
+          oneOf:
+          - $ref: '#/components/schemas/DepositorType'
+          - type: 'null'
+        ownership_category:
+          oneOf:
+          - $ref: '#/components/schemas/OwnershipCategory'
+          - type: 'null'
+        account_officer:
+          type:
+          - string
+          - 'null'
+        notes:
+          type:
+          - string
+          - 'null'
+        phone_numbers:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/PhoneNumberData'
+        addresses:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/AddressData'
+        approval_status:
+          oneOf:
+          - $ref: '#/components/schemas/ApprovalStatus'
+          - type: 'null'
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Account IDs to associate with this depositor. These are appended to existing associations.
+        institution_opt_out_federal_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
+      title: UpdateDepositorRequest
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
     PhoneNumberData:
       type: object
       properties:
@@ -343,6 +427,96 @@ components:
       required:
       - number
       title: PhoneNumberData
+    IdType:
+      type: string
+      enum:
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
+    OwnershipCategory:
+      type: string
+      enum:
+      - JOINT
+      - SINGLE
+      - RETIREMENT
+      - ESTATE_REVOCABLE_TRUST
+      - OTHER_CONSUMER
+      - CORPORATION
+      - LIMITED_LIABILITY_COMPANY
+      - LIMITED_PARTNERSHIP
+      - SOLE_PROPRIETORSHIP
+      - OTHER_BUSINESS
+      - CLUBS_ASSOCIATIONS
+      - OTHER_NONPROFIT
+      - MUNICIPALITIES
+      - SCHOOL_DISTRICTS
+      - OTHER_LOCAL_GOVERNMENT
+      - US_GOVERNMENT
+      - US_DEPOSITORY
+      title: OwnershipCategory
+    DepositorTINResponse:
+      type: object
+      properties:
+        tin:
+          type: string
+          description: The full decrypted TIN
+      required:
+      - tin
+      title: DepositorTINResponse
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    AddressData:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code (e.g., US)
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - street
+      - city
+      - state
+      - zip
+      - country_code
+      title: AddressData
+    EmailData:
+      type: object
+      properties:
+        email_address:
+          type: string
+          format: email
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - email_address
+      title: EmailData
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId
     ApprovalStatus:
       type: string
       enum:
@@ -350,6 +524,14 @@ components:
       - APPROVED
       - REJECTED
       title: ApprovalStatus
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
     DepositorResponse:
       type: object
       properties:
@@ -428,144 +610,18 @@ components:
       - addresses
       - depositor_type
       title: DepositorResponse
-    AddressData:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code (e.g., US)
-        is_primary:
-          type: boolean
-          default: true
-      required:
-      - street
-      - city
-      - state
-      - zip
-      - country_code
-      title: AddressData
-    DepositorTINResponse:
-      type: object
-      properties:
-        tin:
-          type: string
-          description: The full decrypted TIN
-      required:
-      - tin
-      title: DepositorTINResponse
-    IdType:
-      type: string
-      enum:
-      - INSTITUTION
-      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
-      title: IdType
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    UpdateDepositorRequest:
-      type: object
-      properties:
-        first_name:
-          type:
-          - string
-          - 'null'
-        last_name:
-          type:
-          - string
-          - 'null'
-        entity_name:
-          type:
-          - string
-          - 'null'
-        institution_depositor_id:
-          type:
-          - string
-          - 'null'
-        depositor_type:
-          oneOf:
-          - $ref: '#/components/schemas/DepositorType'
-          - type: 'null'
-        ownership_category:
-          oneOf:
-          - $ref: '#/components/schemas/OwnershipCategory'
-          - type: 'null'
-        account_officer:
-          type:
-          - string
-          - 'null'
-        notes:
-          type:
-          - string
-          - 'null'
-        phone_numbers:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/PhoneNumberData'
-        addresses:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/AddressData'
-        approval_status:
-          oneOf:
-          - $ref: '#/components/schemas/ApprovalStatus'
-          - type: 'null'
-        account_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Account IDs to associate with this depositor. These are appended to existing associations.
-        institution_opt_out_federal_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-          description: List of institutions (by federal_id) excluded from receiving this depositor's funds
-      title: UpdateDepositorRequest
-    HTTPValidationError:
+    ValidationErrorDetail:
       type: object
       properties:
         detail:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
     CreateDepositorRequest:
       type: object
       properties:
@@ -642,82 +698,26 @@ components:
       required:
       - tin
       title: CreateDepositorRequest
-    ErrorDetail:
+    ValidationError:
       type: object
       properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    DepositorType:
-      type: string
-      enum:
-      - CONSUMER
-      - BUSINESS
-      - NONPROFIT
-      - LOCAL_GOVERNMENT
-      - FEDERAL_GOVERNMENT
-      - US_DEPOSITORY
-      - FOREIGN_DEPOSITORY
-      - FOREIGN_GOVERNMENT
-      title: DepositorType
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    OwnershipCategory:
-      type: string
-      enum:
-      - JOINT
-      - SINGLE
-      - RETIREMENT
-      - ESTATE_REVOCABLE_TRUST
-      - OTHER_CONSUMER
-      - CORPORATION
-      - LIMITED_LIABILITY_COMPANY
-      - LIMITED_PARTNERSHIP
-      - SOLE_PROPRIETORSHIP
-      - OTHER_BUSINESS
-      - CLUBS_ASSOCIATIONS
-      - OTHER_NONPROFIT
-      - MUNICIPALITIES
-      - SCHOOL_DISTRICTS
-      - OTHER_LOCAL_GOVERNMENT
-      - US_GOVERNMENT
-      - US_DEPOSITORY
-      title: OwnershipCategory
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
+        loc:
           type: array
           items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
-    DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId
-    EmailData:
-      type: object
-      properties:
-        email_address:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
           type: string
-          format: email
-        is_primary:
-          type: boolean
-          default: true
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
       required:
-      - email_address
-      title: EmailData
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     OAuth:
       type: http

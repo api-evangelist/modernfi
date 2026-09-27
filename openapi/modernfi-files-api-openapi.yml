@@ -346,97 +346,32 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
 components:
   schemas:
-    FileResponseType:
-      type: string
-      enum:
-      - presigned_url
-      - file
-      title: FileResponseType
+    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      description: Required for account-level statement types.
+      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
     ValidationErrorLocItems:
       oneOf:
       - type: string
       - type: integer
       title: ValidationErrorLocItems
-    DigitalBankingV1FilesFileIdGetParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1FilesFileIdGetParametersAccountId
     IdType:
       type: string
       enum:
       - INSTITUTION
       description: Type of the account id. Institution accounts ids are external ids and come from the institution.
       title: IdType
-    StatementResponse:
-      type: object
-      properties:
-        file_id:
-          type: string
-        title:
-          type: string
-        statement_date:
-          type: string
-        account_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The ID of the associated account
-        institution_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The ID of the associated institution
-      required:
-      - file_id
-      - title
-      - statement_date
-      title: StatementResponse
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    HTTPValidationError:
+    ErrorDetail:
       type: object
       properties:
         detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    StatementsResponse:
-      type: object
-      properties:
-        statements:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatementResponse'
+          type: string
       required:
-      - statements
-      title: StatementsResponse
+      - detail
+      title: ErrorDetail
     FileResponse:
       type: object
       properties:
@@ -445,6 +380,16 @@ components:
       required:
       - presigned_url
       title: FileResponse
+    FileResponseType:
+      type: string
+      enum:
+      - presigned_url
+      - file
+      title: FileResponseType
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
     AccountMonthlyStatementConfigResponse:
       type: object
       properties:
@@ -488,14 +433,24 @@ components:
       - is_regulatory_mark
       - is_account_id_masking
       title: AccountMonthlyStatementConfigResponse
-    ErrorDetail:
+    HTTPValidationError:
       type: object
       properties:
         detail:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    StatementsResponse:
+      type: object
+      properties:
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatementResponse'
       required:
-      - detail
-      title: ErrorDetail
+      - statements
+      title: StatementsResponse
     StatementType:
       type: string
       enum:
@@ -518,13 +473,6 @@ components:
       - INSTITUTION_MONTHLY_NBID
       - INSTITUTION_MONTHLY_ACCOUNT_STATEMENT_BUNDLE
       title: StatementType
-    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      description: Required for account-level statement types.
-      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
     ValidationErrorDetail:
       type: object
       properties:
@@ -537,6 +485,52 @@ components:
       required:
       - detail
       title: ValidationErrorDetail
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    StatementResponse:
+      type: object
+      properties:
+        file_id:
+          type: string
+        title:
+          type: string
+        statement_date:
+          type: string
+        account_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The ID of the associated account
+        institution_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The ID of the associated institution
+      required:
+      - file_id
+      - title
+      - statement_date
+      title: StatementResponse
     AccountMonthlyStatementConfigRequest:
       type: object
       properties:
@@ -570,6 +564,12 @@ components:
       - is_regulatory_mark
       - is_account_id_masking
       title: AccountMonthlyStatementConfigRequest
+    DigitalBankingV1FilesFileIdGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1FilesFileIdGetParametersAccountId
   securitySchemes:
     OAuth:
       type: http
