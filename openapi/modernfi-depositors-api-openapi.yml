@@ -332,18 +332,71 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
 components:
   schemas:
-    DepositorType:
+    AddressData:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zip:
+          type: string
+        country_code:
+          type: string
+          description: ISO 3166-1 alpha-2 country code (e.g., US)
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - street
+      - city
+      - state
+      - zip
+      - country_code
+      title: AddressData
+    OwnershipCategory:
       type: string
       enum:
-      - CONSUMER
-      - BUSINESS
-      - NONPROFIT
-      - LOCAL_GOVERNMENT
-      - FEDERAL_GOVERNMENT
+      - JOINT
+      - SINGLE
+      - RETIREMENT
+      - ESTATE_REVOCABLE_TRUST
+      - OTHER_CONSUMER
+      - CORPORATION
+      - LIMITED_LIABILITY_COMPANY
+      - LIMITED_PARTNERSHIP
+      - SOLE_PROPRIETORSHIP
+      - OTHER_BUSINESS
+      - CLUBS_ASSOCIATIONS
+      - OTHER_NONPROFIT
+      - MUNICIPALITIES
+      - SCHOOL_DISTRICTS
+      - OTHER_LOCAL_GOVERNMENT
+      - US_GOVERNMENT
       - US_DEPOSITORY
-      - FOREIGN_DEPOSITORY
-      - FOREIGN_GOVERNMENT
-      title: DepositorType
+      title: OwnershipCategory
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     UpdateDepositorRequest:
       type: object
       properties:
@@ -411,11 +464,6 @@ components:
             type: string
           description: List of institutions (by federal_id) excluded from receiving this depositor's funds
       title: UpdateDepositorRequest
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
     PhoneNumberData:
       type: object
       properties:
@@ -433,27 +481,12 @@ components:
       - INSTITUTION
       description: Type of the account id. Institution accounts ids are external ids and come from the institution.
       title: IdType
-    OwnershipCategory:
-      type: string
-      enum:
-      - JOINT
-      - SINGLE
-      - RETIREMENT
-      - ESTATE_REVOCABLE_TRUST
-      - OTHER_CONSUMER
-      - CORPORATION
-      - LIMITED_LIABILITY_COMPANY
-      - LIMITED_PARTNERSHIP
-      - SOLE_PROPRIETORSHIP
-      - OTHER_BUSINESS
-      - CLUBS_ASSOCIATIONS
-      - OTHER_NONPROFIT
-      - MUNICIPALITIES
-      - SCHOOL_DISTRICTS
-      - OTHER_LOCAL_GOVERNMENT
-      - US_GOVERNMENT
-      - US_DEPOSITORY
-      title: OwnershipCategory
+    DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId
     DepositorTINResponse:
       type: object
       properties:
@@ -463,75 +496,18 @@ components:
       required:
       - tin
       title: DepositorTINResponse
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    AddressData:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        zip:
-          type: string
-        country_code:
-          type: string
-          description: ISO 3166-1 alpha-2 country code (e.g., US)
-        is_primary:
-          type: boolean
-          default: true
-      required:
-      - street
-      - city
-      - state
-      - zip
-      - country_code
-      title: AddressData
-    EmailData:
-      type: object
-      properties:
-        email_address:
-          type: string
-          format: email
-        is_primary:
-          type: boolean
-          default: true
-      required:
-      - email_address
-      title: EmailData
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1DepositorsDepositorIdGetParametersDepositorId
-    ApprovalStatus:
+    DepositorType:
       type: string
       enum:
-      - PENDING
-      - APPROVED
-      - REJECTED
-      title: ApprovalStatus
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+      - CONSUMER
+      - BUSINESS
+      - NONPROFIT
+      - LOCAL_GOVERNMENT
+      - FEDERAL_GOVERNMENT
+      - US_DEPOSITORY
+      - FOREIGN_DEPOSITORY
+      - FOREIGN_GOVERNMENT
+      title: DepositorType
     DepositorResponse:
       type: object
       properties:
@@ -610,18 +586,22 @@ components:
       - addresses
       - depositor_type
       title: DepositorResponse
-    ValidationErrorDetail:
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    ApprovalStatus:
+      type: string
+      enum:
+      - PENDING
+      - APPROVED
+      - REJECTED
+      title: ApprovalStatus
+    ValidationErrorCtx:
       type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
+      properties: {}
+      title: ValidationErrorCtx
     CreateDepositorRequest:
       type: object
       properties:
@@ -698,26 +678,46 @@ components:
       required:
       - tin
       title: CreateDepositorRequest
-    ValidationError:
+    ErrorDetail:
       type: object
       properties:
-        loc:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - detail
+      title: ValidationErrorDetail
+    EmailData:
+      type: object
+      properties:
+        email_address:
+          type: string
+          format: email
+        is_primary:
+          type: boolean
+          default: true
+      required:
+      - email_address
+      title: EmailData
   securitySchemes:
     OAuth:
       type: http

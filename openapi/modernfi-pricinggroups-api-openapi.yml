@@ -488,18 +488,176 @@ paths:
               $ref: '#/components/schemas/UnassignAccountsRequest'
 components:
   schemas:
-    PricingGroupRateTierRequestRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
-      title: PricingGroupRateTierRequestRate
+    ReferenceRateType:
+      type: string
+      enum:
+      - EFFR
+      - CU_RECEIVE_DEFAULT
+      - BANK_RECEIVE_DEFAULT
+      - EFFR_UPPER_BAND
+      - EFFR_LOWER_BAND
+      - SOFR_OVERNIGHT
+      - SOFR_1M
+      - SOFR_3M
+      - SOFR_6M
+      - SOFR_12M
+      - CMT_1M
+      - CMT_3M
+      - CMT_6M
+      - FIDELITY_FISXX
+      - FIDELITY_SPAXX
+      - FIDELITY_FCIXX
+      - WSJ_PRIME
+      - IORB
+      title: ReferenceRateType
     ValidationErrorLocItems:
       oneOf:
       - type: string
       - type: integer
       title: ValidationErrorLocItems
+    AssignAccountsToPricingGroupRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to assign to this pricing group
+        effective_at:
+          type: string
+          format: date-time
+          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
+      required:
+      - account_ids
+      title: AssignAccountsToPricingGroupRequest
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    PricingGroupRateTierRequestMaxBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Maximum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMaxBalance
+    PricingGroupRateTierRequestFloatingRatePercentage:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Multiplier applied to the index rate. Required when floating_spread is set.
+      title: PricingGroupRateTierRequestFloatingRatePercentage
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    PricingGroupRateTierRequest:
+      type: object
+      properties:
+        min_balance:
+          $ref: '#/components/schemas/PricingGroupRateTierRequestMinBalance'
+          description: Minimum balance for this tier (inclusive)
+        max_balance:
+          $ref: '#/components/schemas/PricingGroupRateTierRequestMaxBalance'
+          description: Maximum balance for this tier (inclusive)
+        rate:
+          oneOf:
+          - $ref: '#/components/schemas/PricingGroupRateTierRequestRate'
+          - type: 'null'
+          description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+        floating_spread:
+          oneOf:
+          - $ref: '#/components/schemas/PricingGroupRateTierRequestFloatingSpread'
+          - type: 'null'
+          description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+          description: Reference rate index type (e.g., EFFR). Required when floating_spread is set and custom_benchmark_id is not. Mutually exclusive with custom_benchmark_id.
+        floating_rate_percentage:
+          oneOf:
+          - $ref: '#/components/schemas/PricingGroupRateTierRequestFloatingRatePercentage'
+          - type: 'null'
+          description: Multiplier applied to the index rate. Required when floating_spread is set.
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: Custom benchmark to float against. Mutually exclusive with rate_index_type.
+      required:
+      - min_balance
+      - max_balance
+      title: PricingGroupRateTierRequest
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    PricingGroupRateTierResponse:
+      type: object
+      properties:
+        min_balance:
+          type: string
+        max_balance:
+          type: string
+        rate:
+          type:
+          - string
+          - 'null'
+        floating_spread:
+          type:
+          - string
+          - 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+        floating_rate_percentage:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - min_balance
+      - max_balance
+      title: PricingGroupRateTierResponse
+    AccountData:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+      required:
+      - id
+      - title
+      title: AccountData
     UpdatePricingGroupMetadataRequest:
       type: object
       properties:
@@ -514,86 +672,6 @@ components:
           - 'null'
           description: New description for the pricing group
       title: UpdatePricingGroupMetadataRequest
-    AccountData:
-      type: object
-      properties:
-        id:
-          type: string
-        title:
-          type: string
-      required:
-      - id
-      - title
-      title: AccountData
-    PricingGroupRateTierRequestMinBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Minimum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMinBalance
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
-    PricingGroupRateTierRequestFloatingRatePercentage:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Multiplier applied to the index rate. Required when floating_spread is set.
-      title: PricingGroupRateTierRequestFloatingRatePercentage
-    PricingGroupRateTierRequestFloatingSpread:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
-      title: PricingGroupRateTierRequestFloatingSpread
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    CreatePricingGroupRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description providing additional context about this pricing group
-        interest_rate_tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingGroupRateTierRequest'
-          description: Rate tiers for the pricing group. At least one tier is required.
-        effective_at:
-          type: string
-          format: date-time
-          description: When these rates become effective. Defaults to now if not provided.
-        account_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
-      required:
-      - name
-      - interest_rate_tiers
-      title: CreatePricingGroupRequest
     PricingGroupResponse:
       type: object
       properties:
@@ -634,117 +712,32 @@ components:
       - updated_at
       - accounts
       title: PricingGroupResponse
-    PricingGroupRateTierRequestMaxBalance:
+    PricingGroupRateTierRequestFloatingSpread:
       oneOf:
       - type: number
         format: double
       - type: string
-      description: Maximum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMaxBalance
-    ReferenceRateType:
-      type: string
-      enum:
-      - EFFR
-      - CU_RECEIVE_DEFAULT
-      - BANK_RECEIVE_DEFAULT
-      - EFFR_UPPER_BAND
-      - EFFR_LOWER_BAND
-      - SOFR_OVERNIGHT
-      - SOFR_1M
-      - SOFR_3M
-      - SOFR_6M
-      - SOFR_12M
-      - CMT_1M
-      - CMT_3M
-      - CMT_6M
-      - FIDELITY_FISXX
-      - FIDELITY_SPAXX
-      - FIDELITY_FCIXX
-      - WSJ_PRIME
-      - IORB
-      title: ReferenceRateType
-    UnassignAccountsRequest:
+      description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
+      title: PricingGroupRateTierRequestFloatingSpread
+    ValidationErrorDetail:
       type: object
       properties:
-        account_ids:
+        detail:
           type: array
           items:
-            type: string
-            format: uuid
-          description: List of account IDs to unassign from the pricing group
+            type: object
+            additionalProperties:
+              description: Any type
       required:
-      - account_ids
-      title: UnassignAccountsRequest
-    PricingGroupRateTierResponse:
-      type: object
-      properties:
-        min_balance:
-          type: string
-        max_balance:
-          type: string
-        rate:
-          type:
-          - string
-          - 'null'
-        floating_spread:
-          type:
-          - string
-          - 'null'
-        rate_index_type:
-          oneOf:
-          - $ref: '#/components/schemas/ReferenceRateType'
-          - type: 'null'
-        floating_rate_percentage:
-          type:
-          - string
-          - 'null'
-        custom_benchmark_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - min_balance
-      - max_balance
-      title: PricingGroupRateTierResponse
-    PricingGroupRateTierRequest:
-      type: object
-      properties:
-        min_balance:
-          $ref: '#/components/schemas/PricingGroupRateTierRequestMinBalance'
-          description: Minimum balance for this tier (inclusive)
-        max_balance:
-          $ref: '#/components/schemas/PricingGroupRateTierRequestMaxBalance'
-          description: Maximum balance for this tier (inclusive)
-        rate:
-          oneOf:
-          - $ref: '#/components/schemas/PricingGroupRateTierRequestRate'
-          - type: 'null'
-          description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
-        floating_spread:
-          oneOf:
-          - $ref: '#/components/schemas/PricingGroupRateTierRequestFloatingSpread'
-          - type: 'null'
-          description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
-        rate_index_type:
-          oneOf:
-          - $ref: '#/components/schemas/ReferenceRateType'
-          - type: 'null'
-          description: Reference rate index type (e.g., EFFR). Required when floating_spread is set and custom_benchmark_id is not. Mutually exclusive with custom_benchmark_id.
-        floating_rate_percentage:
-          oneOf:
-          - $ref: '#/components/schemas/PricingGroupRateTierRequestFloatingRatePercentage'
-          - type: 'null'
-          description: Multiplier applied to the index rate. Required when floating_spread is set.
-        custom_benchmark_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: Custom benchmark to float against. Mutually exclusive with rate_index_type.
-      required:
-      - min_balance
-      - max_balance
-      title: PricingGroupRateTierRequest
+      - detail
+      title: ValidationErrorDetail
+    PricingGroupRateTierRequestMinBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Minimum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMinBalance
     UpdatePricingGroupRatesRequest:
       type: object
       properties:
@@ -760,6 +753,57 @@ components:
       required:
       - interest_rate_tiers
       title: UpdatePricingGroupRatesRequest
+    CreatePricingGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this pricing group
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: Rate tiers for the pricing group. At least one tier is required.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
+      required:
+      - name
+      - interest_rate_tiers
+      title: CreatePricingGroupRequest
+    PricingGroupRateTierRequestRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+      title: PricingGroupRateTierRequestRate
+    UnassignAccountsRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to unassign from the pricing group
+      required:
+      - account_ids
+      title: UnassignAccountsRequest
     ErrorDetail:
       type: object
       properties:
@@ -768,50 +812,6 @@ components:
       required:
       - detail
       title: ErrorDetail
-    AssignAccountsToPricingGroupRequest:
-      type: object
-      properties:
-        account_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of account IDs to assign to this pricing group
-        effective_at:
-          type: string
-          format: date-time
-          description: When the pricing group rates become effective for these accounts. Defaults to now if not provided.
-      required:
-      - account_ids
-      title: AssignAccountsToPricingGroupRequest
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     OAuth:
       type: http

@@ -378,67 +378,6 @@ components:
       - name
       - rate
       title: CreateCustomBenchmarkRequest
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    PatchCustomBenchmarkRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the custom benchmark
-        description:
-          type:
-          - string
-          - 'null'
-          description: New description for the custom benchmark
-      title: PatchCustomBenchmarkRequest
-    UpdateCustomBenchmarkRateRequest:
-      type: object
-      properties:
-        rate:
-          $ref: '#/components/schemas/CustomBenchmarkRate'
-          description: New rate for the custom benchmark. Will create a new rate entry.
-        effective_at:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: When the new rate becomes effective. Defaults to now if not provided.
-      required:
-      - rate
-      title: UpdateCustomBenchmarkRateRequest
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
-    CustomBenchmarkRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: New rate for the custom benchmark. Will create a new rate entry.
-      title: CustomBenchmarkRate
     ValidationError:
       type: object
       properties:
@@ -459,6 +398,67 @@ components:
       - msg
       - type
       title: ValidationError
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    PatchCustomBenchmarkRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the custom benchmark
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the custom benchmark
+      title: PatchCustomBenchmarkRequest
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    CustomBenchmarkRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: New rate for the custom benchmark. Will create a new rate entry.
+      title: CustomBenchmarkRate
+    UpdateCustomBenchmarkRateRequest:
+      type: object
+      properties:
+        rate:
+          $ref: '#/components/schemas/CustomBenchmarkRate'
+          description: New rate for the custom benchmark. Will create a new rate entry.
+        effective_at:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: When the new rate becomes effective. Defaults to now if not provided.
+      required:
+      - rate
+      title: UpdateCustomBenchmarkRateRequest
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
     ValidationErrorDetail:
       type: object
       properties:

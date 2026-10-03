@@ -346,50 +346,66 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
 components:
   schemas:
-    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      description: Required for account-level statement types.
-      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    StatementResponse:
+      type: object
+      properties:
+        file_id:
+          type: string
+        title:
+          type: string
+        statement_date:
+          type: string
+        account_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The ID of the associated account
+        institution_id:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The ID of the associated institution
+      required:
+      - file_id
+      - title
+      - statement_date
+      title: StatementResponse
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     IdType:
       type: string
       enum:
       - INSTITUTION
       description: Type of the account id. Institution accounts ids are external ids and come from the institution.
       title: IdType
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    FileResponse:
-      type: object
-      properties:
-        presigned_url:
-          type: string
-      required:
-      - presigned_url
-      title: FileResponse
-    FileResponseType:
-      type: string
-      enum:
-      - presigned_url
-      - file
-      title: FileResponseType
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
     AccountMonthlyStatementConfigResponse:
       type: object
       properties:
@@ -433,14 +449,44 @@ components:
       - is_regulatory_mark
       - is_account_id_masking
       title: AccountMonthlyStatementConfigResponse
-    HTTPValidationError:
+    DigitalBankingV1FilesFileIdGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1FilesFileIdGetParametersAccountId
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    FileResponse:
+      type: object
+      properties:
+        presigned_url:
+          type: string
+      required:
+      - presigned_url
+      title: FileResponse
+    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      description: Required for account-level statement types.
+      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    ErrorDetail:
       type: object
       properties:
         detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
     StatementsResponse:
       type: object
       properties:
@@ -451,6 +497,39 @@ components:
       required:
       - statements
       title: StatementsResponse
+    AccountMonthlyStatementConfigRequest:
+      type: object
+      properties:
+        statement_title:
+          type:
+          - string
+          - 'null'
+          description: Custom statement title. Leave blank or null to use the default title.
+        disclosures_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Disclosures text displayed at the bottom of each page. Leave blank or null to omit.
+        contact_and_mailing_info:
+          type:
+          - string
+          - 'null'
+          description: Contact and mailing information shown on the statement. Supports multiple lines.
+        closing_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Closing message displayed at the end of the statement. Leave blank or null to use the default text.
+        is_regulatory_mark:
+          type: boolean
+          description: Indicates whether to display the regulatory mark.
+        is_account_id_masking:
+          type: boolean
+          description: Determines whether account numbers should be masked.
+      required:
+      - is_regulatory_mark
+      - is_account_id_masking
+      title: AccountMonthlyStatementConfigRequest
     StatementType:
       type: string
       enum:
@@ -485,91 +564,12 @@ components:
       required:
       - detail
       title: ValidationErrorDetail
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    StatementResponse:
-      type: object
-      properties:
-        file_id:
-          type: string
-        title:
-          type: string
-        statement_date:
-          type: string
-        account_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The ID of the associated account
-        institution_id:
-          type:
-          - string
-          - 'null'
-          format: uuid
-          description: The ID of the associated institution
-      required:
-      - file_id
-      - title
-      - statement_date
-      title: StatementResponse
-    AccountMonthlyStatementConfigRequest:
-      type: object
-      properties:
-        statement_title:
-          type:
-          - string
-          - 'null'
-          description: Custom statement title. Leave blank or null to use the default title.
-        disclosures_paragraph:
-          type:
-          - string
-          - 'null'
-          description: Disclosures text displayed at the bottom of each page. Leave blank or null to omit.
-        contact_and_mailing_info:
-          type:
-          - string
-          - 'null'
-          description: Contact and mailing information shown on the statement. Supports multiple lines.
-        closing_paragraph:
-          type:
-          - string
-          - 'null'
-          description: Closing message displayed at the end of the statement. Leave blank or null to use the default text.
-        is_regulatory_mark:
-          type: boolean
-          description: Indicates whether to display the regulatory mark.
-        is_account_id_masking:
-          type: boolean
-          description: Determines whether account numbers should be masked.
-      required:
-      - is_regulatory_mark
-      - is_account_id_masking
-      title: AccountMonthlyStatementConfigRequest
-    DigitalBankingV1FilesFileIdGetParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1FilesFileIdGetParametersAccountId
+    FileResponseType:
+      type: string
+      enum:
+      - presigned_url
+      - file
+      title: FileResponseType
   securitySchemes:
     OAuth:
       type: http
