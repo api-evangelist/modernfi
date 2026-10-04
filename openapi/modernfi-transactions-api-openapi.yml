@@ -369,52 +369,66 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionRequest'
 components:
   schemas:
-    DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId
-    HTTPValidationError:
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        transaction_status:
+          oneOf:
+          - $ref: '#/components/schemas/TransactionStatus'
+          - type: 'null'
+        institution_transaction_id:
+          type:
+          - string
+          - 'null'
+      title: UpdateTransactionRequest
+    TransactionStatusFilter:
+      type: string
+      enum:
+      - PENDING
+      - POSTED
+      title: TransactionStatusFilter
+    ErrorDetail:
       type: object
       properties:
         detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
           type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - detail
+      title: ErrorDetail
     IdType:
       type: string
       enum:
       - INSTITUTION
       description: Type of the account id. Institution accounts ids are external ids and come from the institution.
       title: IdType
-    DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    TransactionTypeFilter:
+      type: string
+      enum:
+      - CREDIT
+      - DEBIT
+      title: TransactionTypeFilter
+    TransactionType:
+      type: string
+      enum:
+      - CREDIT
+      - DEBIT
+      title: TransactionType
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
     TransactionResponse:
       type: object
       properties:
@@ -456,17 +470,34 @@ components:
       - is_interest_payment
       - transaction_type
       title: TransactionResponse
-    TransactionType:
-      type: string
-      enum:
-      - CREDIT
-      - DEBIT
-      title: TransactionType
-    ValidationErrorLocItems:
+    CreateTransactionRequest:
+      type: object
+      properties:
+        amount:
+          type: string
+          description: Transaction amount. If negative, the transaction type will be Debit instead of Credit.
+        transacted_at:
+          type: string
+          format: date-time
+          description: The datetime when the transaction occurred. Must be timezone-aware and cannot be in the future. Backdating is restricted to the current calendar month and must not precede the most recent allocation cutoff (2:00 PM ET on the last business day at or before the time of submission). Transactions submitted after the allocation cutoff on the last day of the month will have their effective date adjusted to the 1st of the following month.
+        description:
+          type:
+          - string
+          - 'null'
+        institution_transaction_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - amount
+      - transacted_at
+      title: CreateTransactionRequest
+    DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId:
       oneOf:
       - type: string
-      - type: integer
-      title: ValidationErrorLocItems
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId
     TransactionStatus:
       type: string
       enum:
@@ -474,42 +505,32 @@ components:
       - POSTED
       - CANCELLED
       title: TransactionStatus
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
     DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId:
       oneOf:
       - type: string
         format: uuid
       - type: string
       title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId
-    TransactionStatusFilter:
-      type: string
-      enum:
-      - PENDING
-      - POSTED
-      title: TransactionStatusFilter
-    UpdateTransactionRequest:
+    ValidationError:
       type: object
       properties:
-        transaction_status:
-          oneOf:
-          - $ref: '#/components/schemas/TransactionStatus'
-          - type: 'null'
-        institution_transaction_id:
-          type:
-          - string
-          - 'null'
-      title: UpdateTransactionRequest
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     DigitalBankingV1AccountsAccountIdTransactionsGetParametersTimezoneSchema:
       type: string
       enum:
@@ -1112,46 +1133,25 @@ components:
       - WET
       - Zulu
       title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersTimezoneSchema
-    CreateTransactionRequest:
-      type: object
-      properties:
-        amount:
-          type: string
-          description: Transaction amount. If negative, the transaction type will be Debit instead of Credit.
-        transacted_at:
-          type: string
-          format: date-time
-          description: The datetime when the transaction occurred. Must be timezone-aware and cannot be in the future. Backdating is restricted to the current calendar month and must not precede the most recent allocation cutoff (2:00 PM ET on the last business day at or before the time of submission). Transactions submitted after the allocation cutoff on the last day of the month will have their effective date adjusted to the 1st of the following month.
-        description:
-          type:
-          - string
-          - 'null'
-        institution_transaction_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - amount
-      - transacted_at
-      title: CreateTransactionRequest
-    ValidationErrorDetail:
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    HTTPValidationError:
       type: object
       properties:
         detail:
           type: array
           items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
-    TransactionTypeFilter:
-      type: string
-      enum:
-      - CREDIT
-      - DEBIT
-      title: TransactionTypeFilter
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId
   securitySchemes:
     OAuth:
       type: http
