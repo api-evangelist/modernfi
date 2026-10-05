@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.modernfi.com/openapi.yaml",
+ "requested_url": "https://docs.modernfi.com/openapi.yaml",
+ "status": 200,
+ "content_type": "application/x-yaml; charset=utf-8",
+ "bytes": 139896,
+ "sha256": "f4f9d88d855e2546fa0dec44619a36dc58e91172a6f97bc1b52250be58c37878",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
