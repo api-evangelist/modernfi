@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/modernfi/integrations
+- https://n8n.io/integrations/modernfi/
+- https://composio.dev/toolkits/modernfi
+- https://monid.ai/tools/modernfi
+checked:
+- https://composio.dev/toolkits/modernfi
+- https://monid.ai/tools/modernfi
+- https://n8n.io/integrations/modernfi/
+- https://zapier.com/apps/modernfi/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
