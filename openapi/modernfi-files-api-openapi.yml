@@ -346,6 +346,34 @@ paths:
                 $ref: '#/components/schemas/ErrorDetail'
 components:
   schemas:
+    FileResponse:
+      type: object
+      properties:
+        presigned_url:
+          type: string
+      required:
+      - presigned_url
+      title: FileResponse
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    FileResponseType:
+      type: string
+      enum:
+      - presigned_url
+      - file
+      title: FileResponseType
+    DigitalBankingV1FilesFileIdGetParametersAccountId:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      title: DigitalBankingV1FilesFileIdGetParametersAccountId
     StatementResponse:
       type: object
       properties:
@@ -372,19 +400,43 @@ components:
       - title
       - statement_date
       title: StatementResponse
-    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      description: Required for account-level statement types.
-      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
-    DigitalBankingV1FilesFileIdGetParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1FilesFileIdGetParametersAccountId
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    AccountMonthlyStatementConfigRequest:
+      type: object
+      properties:
+        statement_title:
+          type:
+          - string
+          - 'null'
+          description: Custom statement title. Leave blank or null to use the default title.
+        disclosures_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Disclosures text displayed at the bottom of each page. Leave blank or null to omit.
+        contact_and_mailing_info:
+          type:
+          - string
+          - 'null'
+          description: Contact and mailing information shown on the statement. Supports multiple lines.
+        closing_paragraph:
+          type:
+          - string
+          - 'null'
+          description: Closing message displayed at the end of the statement. Leave blank or null to use the default text.
+        is_regulatory_mark:
+          type: boolean
+          description: Indicates whether to display the regulatory mark.
+        is_account_id_masking:
+          type: boolean
+          description: Determines whether account numbers should be masked.
+      required:
+      - is_regulatory_mark
+      - is_account_id_masking
+      title: AccountMonthlyStatementConfigRequest
     ErrorDetail:
       type: object
       properties:
@@ -393,16 +445,6 @@ components:
       required:
       - detail
       title: ErrorDetail
-    FileResponseType:
-      type: string
-      enum:
-      - presigned_url
-      - file
-      title: FileResponseType
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
     ValidationErrorDetail:
       type: object
       properties:
@@ -415,20 +457,70 @@ components:
       required:
       - detail
       title: ValidationErrorDetail
-    IdType:
-      type: string
-      enum:
-      - INSTITUTION
-      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
-      title: IdType
-    FileResponse:
+    StatementsResponse:
       type: object
       properties:
-        presigned_url:
-          type: string
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatementResponse'
       required:
-      - presigned_url
-      title: FileResponse
+      - statements
+      title: StatementsResponse
+    StatementType:
+      type: string
+      enum:
+      - INSTITUTION_DAILY_SWEEP
+      - INSTITUTION_DAILY_RECEIVE
+      - INSTITUTION_MONTHLY_INTEREST
+      - ACCOUNT_MONTHLY_SWEEP
+      - INSTITUTION_DAILY_GL_POSTINGS
+      - INSTITUTION_DAILY_GL_BALANCES
+      - INSTITUTION_DAILY_COST_CENTER_POSTINGS
+      - INSTITUTION_DAILY_COST_CENTER_BALANCES
+      - INSTITUTION_DAILY_TRIAL_BALANCES
+      - INSTITUTION_QUARTERLY_CALL_REPORT
+      - INSTITUTION_WEEKLY_FR2900
+      - INSTITUTION_DAILY_ACCOUNT_HISTORY
+      - INSTITUTION_DAILY_TRANSACTION_HISTORY
+      - INSTITUTION_DAILY_TRANSACTION_ERRORS
+      - INSTITUTION_MONTHLY_SETTLEMENT_POSTINGS
+      - INSTITUTION_MONTHLY_COST_CENTER_SETTLEMENT_POSTINGS
+      - INSTITUTION_MONTHLY_NBID
+      - INSTITUTION_MONTHLY_ACCOUNT_STATEMENT_BUNDLE
+      title: StatementType
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    DigitalBankingV1FilesStatementsGetParametersAccountIdSchema:
+      oneOf:
+      - type: string
+        format: uuid
+      - type: string
+      description: Required for account-level statement types.
+      title: DigitalBankingV1FilesStatementsGetParametersAccountIdSchema
     AccountMonthlyStatementConfigResponse:
       type: object
       properties:
@@ -472,104 +564,12 @@ components:
       - is_regulatory_mark
       - is_account_id_masking
       title: AccountMonthlyStatementConfigResponse
-    StatementType:
+    IdType:
       type: string
       enum:
-      - INSTITUTION_DAILY_SWEEP
-      - INSTITUTION_DAILY_RECEIVE
-      - INSTITUTION_MONTHLY_INTEREST
-      - ACCOUNT_MONTHLY_SWEEP
-      - INSTITUTION_DAILY_GL_POSTINGS
-      - INSTITUTION_DAILY_GL_BALANCES
-      - INSTITUTION_DAILY_COST_CENTER_POSTINGS
-      - INSTITUTION_DAILY_COST_CENTER_BALANCES
-      - INSTITUTION_DAILY_TRIAL_BALANCES
-      - INSTITUTION_QUARTERLY_CALL_REPORT
-      - INSTITUTION_WEEKLY_FR2900
-      - INSTITUTION_DAILY_ACCOUNT_HISTORY
-      - INSTITUTION_DAILY_TRANSACTION_HISTORY
-      - INSTITUTION_DAILY_TRANSACTION_ERRORS
-      - INSTITUTION_MONTHLY_SETTLEMENT_POSTINGS
-      - INSTITUTION_MONTHLY_COST_CENTER_SETTLEMENT_POSTINGS
-      - INSTITUTION_MONTHLY_NBID
-      - INSTITUTION_MONTHLY_ACCOUNT_STATEMENT_BUNDLE
-      title: StatementType
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    StatementsResponse:
-      type: object
-      properties:
-        statements:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatementResponse'
-      required:
-      - statements
-      title: StatementsResponse
-    AccountMonthlyStatementConfigRequest:
-      type: object
-      properties:
-        statement_title:
-          type:
-          - string
-          - 'null'
-          description: Custom statement title. Leave blank or null to use the default title.
-        disclosures_paragraph:
-          type:
-          - string
-          - 'null'
-          description: Disclosures text displayed at the bottom of each page. Leave blank or null to omit.
-        contact_and_mailing_info:
-          type:
-          - string
-          - 'null'
-          description: Contact and mailing information shown on the statement. Supports multiple lines.
-        closing_paragraph:
-          type:
-          - string
-          - 'null'
-          description: Closing message displayed at the end of the statement. Leave blank or null to use the default text.
-        is_regulatory_mark:
-          type: boolean
-          description: Indicates whether to display the regulatory mark.
-        is_account_id_masking:
-          type: boolean
-          description: Determines whether account numbers should be masked.
-      required:
-      - is_regulatory_mark
-      - is_account_id_masking
-      title: AccountMonthlyStatementConfigRequest
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    HTTPValidationError:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
   securitySchemes:
     OAuth:
       type: http

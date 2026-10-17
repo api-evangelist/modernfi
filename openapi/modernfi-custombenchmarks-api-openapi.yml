@@ -360,63 +360,6 @@ paths:
               $ref: '#/components/schemas/PatchCustomBenchmarkRequest'
 components:
   schemas:
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    CustomBenchmarkRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: New rate for the custom benchmark. Will create a new rate entry.
-      title: CustomBenchmarkRate
-    PatchCustomBenchmarkRequest:
-      type: object
-      properties:
-        name:
-          type:
-          - string
-          - 'null'
-          description: New name for the custom benchmark
-        description:
-          type:
-          - string
-          - 'null'
-          description: New description for the custom benchmark
-      title: PatchCustomBenchmarkRequest
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
     UpdateCustomBenchmarkRateRequest:
       type: object
       properties:
@@ -432,6 +375,35 @@ components:
       required:
       - rate
       title: UpdateCustomBenchmarkRateRequest
+    CustomBenchmarkRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: New rate for the custom benchmark. Will create a new rate entry.
+      title: CustomBenchmarkRate
+    HTTPValidationError:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
+    PatchCustomBenchmarkRequest:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+          description: New name for the custom benchmark
+        description:
+          type:
+          - string
+          - 'null'
+          description: New description for the custom benchmark
+      title: PatchCustomBenchmarkRequest
     CreateCustomBenchmarkRequest:
       type: object
       properties:
@@ -458,19 +430,47 @@ components:
       required:
       - detail
       title: ErrorDetail
-    ValidationErrorLocItems:
-      oneOf:
-      - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    HTTPValidationError:
+    ValidationErrorDetail:
       type: object
       properties:
         detail:
           type: array
           items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     OAuth:
       type: http

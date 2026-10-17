@@ -369,66 +369,6 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionRequest'
 components:
   schemas:
-    UpdateTransactionRequest:
-      type: object
-      properties:
-        transaction_status:
-          oneOf:
-          - $ref: '#/components/schemas/TransactionStatus'
-          - type: 'null'
-        institution_transaction_id:
-          type:
-          - string
-          - 'null'
-      title: UpdateTransactionRequest
-    TransactionStatusFilter:
-      type: string
-      enum:
-      - PENDING
-      - POSTED
-      title: TransactionStatusFilter
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
-    IdType:
-      type: string
-      enum:
-      - INSTITUTION
-      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
-      title: IdType
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    TransactionTypeFilter:
-      type: string
-      enum:
-      - CREDIT
-      - DEBIT
-      title: TransactionTypeFilter
-    TransactionType:
-      type: string
-      enum:
-      - CREDIT
-      - DEBIT
-      title: TransactionType
-    ValidationErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              description: Any type
-      required:
-      - detail
-      title: ValidationErrorDetail
     TransactionResponse:
       type: object
       properties:
@@ -470,67 +410,38 @@ components:
       - is_interest_payment
       - transaction_type
       title: TransactionResponse
-    CreateTransactionRequest:
+    TransactionType:
+      type: string
+      enum:
+      - CREDIT
+      - DEBIT
+      title: TransactionType
+    TransactionTypeFilter:
+      type: string
+      enum:
+      - CREDIT
+      - DEBIT
+      title: TransactionTypeFilter
+    TransactionStatusFilter:
+      type: string
+      enum:
+      - PENDING
+      - POSTED
+      title: TransactionStatusFilter
+    HTTPValidationError:
       type: object
       properties:
-        amount:
-          type: string
-          description: Transaction amount. If negative, the transaction type will be Debit instead of Credit.
-        transacted_at:
-          type: string
-          format: date-time
-          description: The datetime when the transaction occurred. Must be timezone-aware and cannot be in the future. Backdating is restricted to the current calendar month and must not precede the most recent allocation cutoff (2:00 PM ET on the last business day at or before the time of submission). Transactions submitted after the allocation cutoff on the last day of the month will have their effective date adjusted to the 1st of the following month.
-        description:
-          type:
-          - string
-          - 'null'
-        institution_transaction_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - amount
-      - transacted_at
-      title: CreateTransactionRequest
+        detail:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationError'
+      title: HTTPValidationError
     DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId:
       oneOf:
       - type: string
         format: uuid
       - type: string
       title: DigitalBankingV1AccountsAccountIdTransactionsTransactionIdPatchParametersAccountId
-    TransactionStatus:
-      type: string
-      enum:
-      - PENDING
-      - POSTED
-      - CANCELLED
-      title: TransactionStatus
-    DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId:
-      oneOf:
-      - type: string
-        format: uuid
-      - type: string
-      title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId
-    ValidationError:
-      type: object
-      properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
-          type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     DigitalBankingV1AccountsAccountIdTransactionsGetParametersTimezoneSchema:
       type: string
       enum:
@@ -1133,25 +1044,114 @@ components:
       - WET
       - Zulu
       title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersTimezoneSchema
-    ValidationErrorLocItems:
+    DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId:
       oneOf:
       - type: string
-      - type: integer
-      title: ValidationErrorLocItems
-    HTTPValidationError:
+        format: uuid
+      - type: string
+      title: DigitalBankingV1AccountsAccountIdTransactionsGetParametersAccountId
+    CreateTransactionRequest:
       type: object
       properties:
-        detail:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationError'
-      title: HTTPValidationError
+        amount:
+          type: string
+          description: Transaction amount. If negative, the transaction type will be Debit instead of Credit.
+        transacted_at:
+          type: string
+          format: date-time
+          description: The datetime when the transaction occurred. Must be timezone-aware and cannot be in the future. Backdating is restricted to the current calendar month and must not precede the most recent allocation cutoff (2:00 PM ET on the last business day at or before the time of submission). Transactions submitted after the allocation cutoff on the last day of the month will have their effective date adjusted to the 1st of the following month.
+        description:
+          type:
+          - string
+          - 'null'
+        institution_transaction_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - amount
+      - transacted_at
+      title: CreateTransactionRequest
     DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId:
       oneOf:
       - type: string
         format: uuid
       - type: string
       title: DigitalBankingV1AccountsAccountIdTransactionsPostParametersAccountId
+    ErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: string
+      required:
+      - detail
+      title: ErrorDetail
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    ValidationErrorLocItems:
+      oneOf:
+      - type: string
+      - type: integer
+      title: ValidationErrorLocItems
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        transaction_status:
+          oneOf:
+          - $ref: '#/components/schemas/TransactionStatus'
+          - type: 'null'
+        institution_transaction_id:
+          type:
+          - string
+          - 'null'
+      title: UpdateTransactionRequest
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    TransactionStatus:
+      type: string
+      enum:
+      - PENDING
+      - POSTED
+      - CANCELLED
+      title: TransactionStatus
+    IdType:
+      type: string
+      enum:
+      - INSTITUTION
+      description: Type of the account id. Institution accounts ids are external ids and come from the institution.
+      title: IdType
   securitySchemes:
     OAuth:
       type: http

@@ -499,6 +499,28 @@ components:
       - id
       - title
       title: AccountData
+    ReferenceRateType:
+      type: string
+      enum:
+      - EFFR
+      - CU_RECEIVE_DEFAULT
+      - BANK_RECEIVE_DEFAULT
+      - EFFR_UPPER_BAND
+      - EFFR_LOWER_BAND
+      - SOFR_OVERNIGHT
+      - SOFR_1M
+      - SOFR_3M
+      - SOFR_6M
+      - SOFR_12M
+      - CMT_1M
+      - CMT_3M
+      - CMT_6M
+      - FIDELITY_FISXX
+      - FIDELITY_SPAXX
+      - FIDELITY_FCIXX
+      - WSJ_PRIME
+      - IORB
+      title: ReferenceRateType
     AssignAccountsToPricingGroupRequest:
       type: object
       properties:
@@ -515,6 +537,25 @@ components:
       required:
       - account_ids
       title: AssignAccountsToPricingGroupRequest
+    UpdatePricingGroupRatesRequest:
+      type: object
+      properties:
+        interest_rate_tiers:
+          type: array
+          items:
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: New rate tiers for the pricing group.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+      required:
+      - interest_rate_tiers
+      title: UpdatePricingGroupRatesRequest
+    ValidationErrorCtx:
+      type: object
+      properties: {}
+      title: ValidationErrorCtx
     PricingGroupRateTierRequestFloatingSpread:
       oneOf:
       - type: number
@@ -522,64 +563,55 @@ components:
       - type: string
       description: Floating spread relative to market reference rate (e.g., 0.005 for +0.5%). Mutually exclusive with rate.
       title: PricingGroupRateTierRequestFloatingSpread
-    PricingGroupRateTierRequestMinBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Minimum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMinBalance
-    PricingGroupRateTierResponse:
-      type: object
-      properties:
-        min_balance:
-          type: string
-        max_balance:
-          type: string
-        rate:
-          type:
-          - string
-          - 'null'
-        floating_spread:
-          type:
-          - string
-          - 'null'
-        rate_index_type:
-          oneOf:
-          - $ref: '#/components/schemas/ReferenceRateType'
-          - type: 'null'
-        floating_rate_percentage:
-          type:
-          - string
-          - 'null'
-        custom_benchmark_id:
-          type:
-          - string
-          - 'null'
-      required:
-      - min_balance
-      - max_balance
-      title: PricingGroupRateTierResponse
-    PricingGroupRateTierRequestMaxBalance:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Maximum balance for this tier (inclusive)
-      title: PricingGroupRateTierRequestMaxBalance
-    ErrorDetail:
-      type: object
-      properties:
-        detail:
-          type: string
-      required:
-      - detail
-      title: ErrorDetail
     ValidationErrorLocItems:
       oneOf:
       - type: string
       - type: integer
       title: ValidationErrorLocItems
+    ValidationErrorDetail:
+      type: object
+      properties:
+        detail:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              description: Any type
+      required:
+      - detail
+      title: ValidationErrorDetail
+    ValidationError:
+      type: object
+      properties:
+        loc:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorLocItems'
+        msg:
+          type: string
+        type:
+          type: string
+        input:
+          description: Any type
+        ctx:
+          $ref: '#/components/schemas/ValidationErrorCtx'
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    UnassignAccountsRequest:
+      type: object
+      properties:
+        account_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+          description: List of account IDs to unassign from the pricing group
+      required:
+      - account_ids
+      title: UnassignAccountsRequest
     HTTPValidationError:
       type: object
       properties:
@@ -602,26 +634,14 @@ components:
           - 'null'
           description: New description for the pricing group
       title: UpdatePricingGroupMetadataRequest
-    ValidationError:
+    ErrorDetail:
       type: object
       properties:
-        loc:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationErrorLocItems'
-        msg:
+        detail:
           type: string
-        type:
-          type: string
-        input:
-          description: Any type
-        ctx:
-          $ref: '#/components/schemas/ValidationErrorCtx'
       required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
+      - detail
+      title: ErrorDetail
     PricingGroupResponse:
       type: object
       properties:
@@ -662,22 +682,76 @@ components:
       - updated_at
       - accounts
       title: PricingGroupResponse
-    ValidationErrorCtx:
-      type: object
-      properties: {}
-      title: ValidationErrorCtx
-    ValidationErrorDetail:
+    PricingGroupRateTierRequestMaxBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Maximum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMaxBalance
+    CreatePricingGroupRequest:
       type: object
       properties:
-        detail:
+        name:
+          type: string
+          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description providing additional context about this pricing group
+        interest_rate_tiers:
           type: array
           items:
-            type: object
-            additionalProperties:
-              description: Any type
+            $ref: '#/components/schemas/PricingGroupRateTierRequest'
+          description: Rate tiers for the pricing group. At least one tier is required.
+        effective_at:
+          type: string
+          format: date-time
+          description: When these rates become effective. Defaults to now if not provided.
+        account_ids:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+            format: uuid
+          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
       required:
-      - detail
-      title: ValidationErrorDetail
+      - name
+      - interest_rate_tiers
+      title: CreatePricingGroupRequest
+    PricingGroupRateTierResponse:
+      type: object
+      properties:
+        min_balance:
+          type: string
+        max_balance:
+          type: string
+        rate:
+          type:
+          - string
+          - 'null'
+        floating_spread:
+          type:
+          - string
+          - 'null'
+        rate_index_type:
+          oneOf:
+          - $ref: '#/components/schemas/ReferenceRateType'
+          - type: 'null'
+        floating_rate_percentage:
+          type:
+          - string
+          - 'null'
+        custom_benchmark_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - min_balance
+      - max_balance
+      title: PricingGroupRateTierResponse
     PricingGroupRateTierRequestFloatingRatePercentage:
       oneOf:
       - type: number
@@ -685,18 +759,20 @@ components:
       - type: string
       description: Multiplier applied to the index rate. Required when floating_spread is set.
       title: PricingGroupRateTierRequestFloatingRatePercentage
-    UnassignAccountsRequest:
-      type: object
-      properties:
-        account_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-          description: List of account IDs to unassign from the pricing group
-      required:
-      - account_ids
-      title: UnassignAccountsRequest
+    PricingGroupRateTierRequestRate:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
+      title: PricingGroupRateTierRequestRate
+    PricingGroupRateTierRequestMinBalance:
+      oneOf:
+      - type: number
+        format: double
+      - type: string
+      description: Minimum balance for this tier (inclusive)
+      title: PricingGroupRateTierRequestMinBalance
     PricingGroupRateTierRequest:
       type: object
       properties:
@@ -736,82 +812,6 @@ components:
       - min_balance
       - max_balance
       title: PricingGroupRateTierRequest
-    CreatePricingGroupRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Name of the pricing group (e.g., 'Retail Checking', 'Accounts 2025')
-        description:
-          type:
-          - string
-          - 'null'
-          description: Optional description providing additional context about this pricing group
-        interest_rate_tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingGroupRateTierRequest'
-          description: Rate tiers for the pricing group. At least one tier is required.
-        effective_at:
-          type: string
-          format: date-time
-          description: When these rates become effective. Defaults to now if not provided.
-        account_ids:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-            format: uuid
-          description: Optional list of account IDs to assign to this pricing group upon creation. If provided, the pricing group rates will be applied to these accounts immediately.
-      required:
-      - name
-      - interest_rate_tiers
-      title: CreatePricingGroupRequest
-    ReferenceRateType:
-      type: string
-      enum:
-      - EFFR
-      - CU_RECEIVE_DEFAULT
-      - BANK_RECEIVE_DEFAULT
-      - EFFR_UPPER_BAND
-      - EFFR_LOWER_BAND
-      - SOFR_OVERNIGHT
-      - SOFR_1M
-      - SOFR_3M
-      - SOFR_6M
-      - SOFR_12M
-      - CMT_1M
-      - CMT_3M
-      - CMT_6M
-      - FIDELITY_FISXX
-      - FIDELITY_SPAXX
-      - FIDELITY_FCIXX
-      - WSJ_PRIME
-      - IORB
-      title: ReferenceRateType
-    PricingGroupRateTierRequestRate:
-      oneOf:
-      - type: number
-        format: double
-      - type: string
-      description: Fixed interest rate (e.g., 0.035 for 3.5%). Mutually exclusive with floating_spread.
-      title: PricingGroupRateTierRequestRate
-    UpdatePricingGroupRatesRequest:
-      type: object
-      properties:
-        interest_rate_tiers:
-          type: array
-          items:
-            $ref: '#/components/schemas/PricingGroupRateTierRequest'
-          description: New rate tiers for the pricing group.
-        effective_at:
-          type: string
-          format: date-time
-          description: When these rates become effective. Defaults to now if not provided.
-      required:
-      - interest_rate_tiers
-      title: UpdatePricingGroupRatesRequest
   securitySchemes:
     OAuth:
       type: http
